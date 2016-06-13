@@ -23,11 +23,11 @@ props.setProperty('mail.smtp.socketFactory.port','465');
 % Send mail
 
 if isempty(attachments)
-    disp('No attachments');
-    sendmail(recipients,subject,body);
+    %disp('No attachments');
+    %sendmail(recipients,subject,body);
 else
-    disp('Attachments');
-    sendmail(recipients,subject,body,attachments);
+    %disp('Attachments');
+    %sendmail(recipients,subject,body,attachments);
 end
 
 end

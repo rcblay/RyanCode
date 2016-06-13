@@ -57,7 +57,6 @@ if ~isempty(indexBelowThres)
     ylim([minThreshold(1)-1 maxThreshold(1)+1]);
 end
 
-title(['Filename: ' Results.fileStrTitles]);
 %ylim([-100 100]);
 xlabel('Time (h)');
 xlim([0 (Results.timeHours(end) - Results.timeHours(1))]);
@@ -84,11 +83,10 @@ if ~isempty(indexBelowThres)
     ylim([minThreshold(1)-1 maxThreshold(1)+1]);
 end
 
-title(['Filename: ' Results.fileStrTitles]);
 %ylim([-100 100]);
 xlabel('Time (h)');
 xlim([0 (Results.timeHours(end) - Results.timeHours(1))]);
-y=ylabel('Y Vel [m/s]');
+y=ylabel('Z Vel [m/s]');
 set(y, 'Units', 'Normalized', 'Position', [-0.1, 0.5, 0]);
 grid on;
 hold off

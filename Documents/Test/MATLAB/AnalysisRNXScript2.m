@@ -1,9 +1,9 @@
 %% Script to analyze an rnxBinaries.bin file and produce plots to visualize the data.
 % Inputs:
-fileStr = 'timingrnxBinaries_0_0.bin';
-parentpath = '/home/dma/Documents/Test/output/Static1/';
-plotpath = '/home/dma/Documents/Test/output/Static1/Plots/';
-%   - Analysis Settings = customize which plots should be created and/or
+%   - fileStr : name of binary file to analyze set under File Details
+%   - parentpath : full path to file to analyze
+%   - plotpath : path where plots should be saved
+%   - Analysis Settings : customize which plots should be created and/or
 %   saved
 %% Clear Workspace
 clear all;
@@ -11,6 +11,9 @@ close all;
 %% Set File Details
 % Set File String
 fileStr = 'timingrnxBinaries_0_0.bin';
+% (OPTIONAL) set truth file or set it to empty if no truth file
+truthStr = {};
+format = 'nmea'; %available FORMATS = {'nmea', 'drive'}
 % Set Path for Plots and Files
 parentpath = '/home/dma/Documents/Test/output/Static1/';
 plotpath = '/home/dma/Documents/Test/output/Static1/Plots/';
@@ -20,12 +23,13 @@ plotIntervalPos =           1;
 plotSigParams =             1;
 plotVelocityComponents =    1;
 plotVelocityHist =          1;
-plotPRNElevation =          1; 
-plot2DSky =                 0; 
+plotPRNElevation =          1;
+plot2DSky =                 0;
 plot3DSky =                 0;
 performOutageAnalysis =     1;
 savePlots =                 1;
 saveResultsandSendEmail =   1;
+generateKMLfile =           0;
 
 recipients = {'griffin.esposito@colorado.edu'};
 
@@ -39,7 +43,7 @@ addpath(genpath(currentpath));
 cd(currentpathinitial);
 
 %% Process/Parse file
-Results  = ProcessResultsRNX( fileStr, parentpath );
+Results  = ProcessResultsRNX( fileStr,truthStr, format, parentpath );
 handleIndex =  1;
 %% 1. Whole position solutions
 if plotWholePos ~= 0
@@ -108,4 +112,9 @@ if saveResultsandSendEmail ~= 0
         [ Outagestr ] = OutageAnalysis( Results );
     end
     SaveResultsSendEmail( Results, Outagestr, attachments, recipients, fileStr, plotpath );
+end
+
+%% Generate KML file
+if generateKMLfile ~= 0
+    [ kmlfilename ] = generateKML( Results, fileStr, parentpath );
 end
