@@ -12,11 +12,11 @@ close all;
 % Set File String
 fileStr = 'timingrnxBinaries_0_0.bin';
 % (OPTIONAL) set truth file or set it to empty if no truth file
-truthStr = {};
+truthStr = 'test2.txt';
 format = 'drive'; %available FORMATS = {'nmea', 'drive'}
 % Set Path for Plots and Files
-parentpath = '/home/dma/Documents/Test/output/Dynamic1/';
-plotpath = '/home/dma/Documents/Test/output/Dynamic1/Plots/';
+parentpath = '/home/dma/Documents/Test/output/Dynamic1Heavy/';
+plotpath = '/home/dma/Documents/Test/output/Dynamic1Heavy/Plots/';
 %% Analysis Settings
 plotWholePos =              1;
 plotIntervalPos =           1;

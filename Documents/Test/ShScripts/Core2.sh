@@ -1,22 +1,34 @@
 #!/bin/bash
 #################################################
 #      	Pyxis Test Core 2			#
-# Tests the current build of Pyxis and shows	#
-# results as plots from matlab as well as info	#
-# regarding execution of the file.		#
+# Tests the current build of Pyxis for the	#
+# static test and gives results as plots from 	#
+# matlab and other info regarding execution of 	#
+# the file.					#
 #						#
 # Input: Raw Intermediate Frequency (IF) files  #
 #	that are static, dynamic, real and	#
-#	complex.				#
+#	complex, and apt and rnx binaries. 	#
 #						#
-# Output: Wwarning.txt, Valwar.txt, 		#
-# 	MATLAB plots, DetermStat.txt, apt and	#
-# 	rnx Binaries.				#
+# Output:  Valwar.txt, MATLAB plots, 		#
+#          DetermStat.txt			#
 #################################################
 
-cd /home/dma/Documents/Test/MATLAB
+# Change to Test directory
+cd /home/dma/Documents/Test
 
-# Set Matlab preferences
+## Execute Pyxis with Valgrind
+cd ./output/Static1Heavy
+#valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis
+./pyxis
+
+## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
+cd ../../MATLAB
+sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript2.m
+sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Static1Heavy\/';" AnalysisRNXScript2.m
+sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Static1Heavy\/Plots\/';" AnalysisRNXScript2.m
+sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript2.m
+# Set Matlab preferences: 1 indicates to run, 0 indicates to not run
 sed -i "/plotWholePos =              /c\plotWholePos =              1;" AnalysisRNXScript2.m
 sed -i "/plotIntervalPos =           /c\plotIntervalPos =           1;" AnalysisRNXScript2.m
 sed -i "/plotSigParams =             /c\plotSigParams =             1;" AnalysisRNXScript2.m
@@ -29,32 +41,20 @@ sed -i "/performOutageAnalysis =     /c\performOutageAnalysis =     1;" Analysis
 sed -i "/savePlots =                 /c\savePlots =                 1;" AnalysisRNXScript2.m
 sed -i "/saveResultsandSendEmail =   /c\saveResultsandSendEmail =   1;" AnalysisRNXScript2.m
 sed -i "/generateKMLfile =           /c\generateKMLfile =           0;" AnalysisRNXScript2.m
-
 # Set so no email is sent
 sed -i "/sendmail(recipients,subject,body);/c\    %sendmail(recipients,subject,body);" ./HelperFunctions/sendLssRnxEmail.m
+sed -i "/disp('No attachments');/c\    %disp('No attachments');" ./HelperFunctions/sendLssRnxEmail.m
 sed -i "/sendmail(recipients,subject,body,attachments);/c\    %sendmail(recipients,subject,body,attachments);" ./HelperFunctions/sendLssRnxEmail.m
-
-# Executing Pyxis
-cd ../output/Static1Heavy
-
-#valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis
-
-./pyxis
-
-## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
-cd ../../MATLAB
-sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript2.m
-sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Static1Heavy\/';" AnalysisRNXScript2.m
-sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Static1Heavy\/Plots\/';" AnalysisRNXScript2.m
-
+sed -i "/disp('Attachments');/c\    %disp('Attachments');" ./HelperFunctions/sendLssRnxEmail.m
+# Run matlab
 matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript2.m; exit;"
 
-# Executing Pyxis
+## Execute Pyxis and print to terminal that output is saved in txt file
 echo "Printing Static 1 output to screenout.txt"
 cd ../output/Static1
 ./pyxis &> screenout.txt
 
-# Test if deterministic
+## Test if deterministic by comparing Static1Heavy (w/valgrind) with Static1 (w/o valgrind)
 cd ../Static1Heavy
 echo 'apt Differences:' > DetermStat.txt
 cmp timingaptBinaries_0_0.bin ../Static1/timingaptBinaries_0_0.bin >> DetermStat.txt
@@ -67,14 +67,16 @@ cd ../../MATLAB
 sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript2.m
 sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Static1\/';" AnalysisRNXScript2.m
 sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Static1\/Plots\/';" AnalysisRNXScript2.m
-
+sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript2.m
+# No need for change in matlab preferences
+# Run matlab
 matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript2.m; exit;"
 
-## Time when Core 2 was finished
+## Time when Core 2 was finished is printed to Summary.txt
 cd ../output
 echo 'Core 2 was done at the local time of:' >> Summary.txt
 date >> Summary.txt
 
-# # Finished script
+## Core2 completion message printed to terminal
 echo "Core 2 is finished"
-sleep 5s
+sleep 3s

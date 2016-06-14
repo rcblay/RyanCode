@@ -15,8 +15,8 @@ fileStr = 'timingrnxBinaries_0_0.bin';
 truthStr = {};
 format = 'nmea'; %available FORMATS = {'nmea', 'drive'}
 % Set Path for Plots and Files
-parentpath = '/home/dma/Documents/Test/output/Static1/';
-plotpath = '/home/dma/Documents/Test/output/Static1/Plots/';
+parentpath = '/home/dma/Documents/Test/output/Static1Heavy/';
+plotpath = '/home/dma/Documents/Test/output/Static1Heavy/Plots/';
 %% Analysis Settings
 plotWholePos =              1;
 plotIntervalPos =           1;
