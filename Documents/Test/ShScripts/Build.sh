@@ -84,6 +84,40 @@ make
 ## Move pyxis into Static1 output directory
 mv ../bin/rcv/pyxis ../../../output/Static1/
 
+cd ../../../MATLAB
+
+# Set Matlab preferences: 1 indicates to run, 0 indicates to not run
+sed -i "/plotWholePos =              /c\plotWholePos =              1;" AnalysisRNXScript1.m
+sed -i "/plotIntervalPos =           /c\plotIntervalPos =           1;" AnalysisRNXScript1.m
+sed -i "/plotSigParams =             /c\plotSigParams =             1;" AnalysisRNXScript1.m
+sed -i "/plotVelocityComponents =    /c\plotVelocityComponents =    1;" AnalysisRNXScript1.m
+sed -i "/plotVelocityHist =          /c\plotVelocityHist =          1;" AnalysisRNXScript1.m
+sed -i "/plotPRNElevation =          /c\plotPRNElevation =          1;" AnalysisRNXScript1.m
+sed -i "/plot2DSky =                 /c\plot2DSky =                 0;" AnalysisRNXScript1.m
+sed -i "/plot3DSky =                 /c\plot3DSky =                 0;" AnalysisRNXScript1.m
+sed -i "/performOutageAnalysis =     /c\performOutageAnalysis =     1;" AnalysisRNXScript1.m
+sed -i "/savePlots =                 /c\savePlots =                 1;" AnalysisRNXScript1.m
+sed -i "/saveResultsandSendEmail =   /c\saveResultsandSendEmail =   1;" AnalysisRNXScript1.m
+sed -i "/generateKMLfile =           /c\generateKMLfile =           0;" AnalysisRNXScript1.m
+# Set Matlab preferences: 1 indicates to run, 0 indicates to not run
+sed -i "/plotWholePos =              /c\plotWholePos =              1;" AnalysisRNXScript2.m
+sed -i "/plotIntervalPos =           /c\plotIntervalPos =           1;" AnalysisRNXScript2.m
+sed -i "/plotSigParams =             /c\plotSigParams =             1;" AnalysisRNXScript2.m
+sed -i "/plotVelocityComponents =    /c\plotVelocityComponents =    1;" AnalysisRNXScript2.m
+sed -i "/plotVelocityHist =          /c\plotVelocityHist =          1;" AnalysisRNXScript2.m
+sed -i "/plotPRNElevation =          /c\plotPRNElevation =          1;" AnalysisRNXScript2.m
+sed -i "/plot2DSky =                 /c\plot2DSky =                 0;" AnalysisRNXScript2.m
+sed -i "/plot3DSky =                 /c\plot3DSky =                 0;" AnalysisRNXScript2.m
+sed -i "/performOutageAnalysis =     /c\performOutageAnalysis =     1;" AnalysisRNXScript2.m
+sed -i "/savePlots =                 /c\savePlots =                 1;" AnalysisRNXScript2.m
+sed -i "/saveResultsandSendEmail =   /c\saveResultsandSendEmail =   1;" AnalysisRNXScript2.m
+sed -i "/generateKMLfile =           /c\generateKMLfile =           0;" AnalysisRNXScript2.m
+# Set so no email is sent
+sed -i "/sendmail(recipients,subject,body);/c\    %sendmail(recipients,subject,body);" /HelperFunctions/sendLssRnxEmail.m
+sed -i "/disp('No attachments');/c\    %disp('No attachments');" /HelperFunctions/sendLssRnxEmail.m
+sed -i "/sendmail(recipients,subject,body,attachments);/c\    %sendmail(recipients,subject,body,attachments);" /HelperFunctions/sendLssRnxEmail.m
+sed -i "/disp('Attachments');/c\    %disp('Attachments');" /HelperFunctions/sendLssRnxEmail.m
+
 ## Print completion of build message to terminal
 echo "All buildings of pyxis are completed"
 sleep 1s

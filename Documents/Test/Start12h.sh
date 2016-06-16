@@ -53,12 +53,7 @@ sleep 3s
 
 echo "Waiting for Core 1, 2 and 3 to finish..."
 # Keep checking whether Core1 is running, if so then wait
-while [ `pgrep -c PyxisTestCore1` -gt 0 ]
-	do
-	sleep 1s
-done
-# Keep checking whether Core2 is running, if so then wait
-while [ `pgrep -c Core2` -gt 0 ]
+while [ `pgrep -c PyxisTestCore1` -gt 0 ] || [ `pgrep -c Core2` -gt 0 ] #||  `pgrep -c Core3` -gt 0 ]
 	do
 	sleep 1s
 done
