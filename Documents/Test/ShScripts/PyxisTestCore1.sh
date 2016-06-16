@@ -44,13 +44,13 @@ cmp timingrnxBinaries_0_0.bin ../Dynamic1/timingrnxBinaries_0_0.bin >> DetermDyn
 
 ## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
 cd ../../MATLAB
-sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript.m
-sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Dynamic1\/';" AnalysisRNXScript.m
-sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Dynamic1\/Plots\/';" AnalysisRNXScript.m
-sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript.m
+sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript1.m
+sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Dynamic1\/';" AnalysisRNXScript1.m
+sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Dynamic1\/Plots\/';" AnalysisRNXScript1.m
+sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript1.m
 # No need for change in matlab preferences
 # Run matlab
-matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript.m; exit;" 
+matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript1.m; exit;" 
 
 ## Time when Core 1 was finished is printed to Summary.txt
 cd ../output
