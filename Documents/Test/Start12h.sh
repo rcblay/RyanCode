@@ -33,18 +33,14 @@ echo 'Pyxis Test was started at the local time of:' `date`
 cd ShScripts
 gnome-terminal -x ./Build.sh
 
-sleep 1s
+sleep 5s
 
-## Print Build message to terminal
 echo "Waiting for Build.sh to finish..."
 # Keep checking whether Build is running, if so then wait
 while [ `pgrep -c Build.sh` -gt 0 ]
 	do
 	sleep 1s
 done
-
-
-## Print Build completion message
 echo "Pyxis builds are complete"
 
 ## Starts PyxisTestCore1.sh
@@ -53,11 +49,9 @@ gnome-terminal -x ./PyxisTestCore1.sh
 ## Starts Core2.sh
 gnome-terminal -x ./Core2.sh
 
-sleep 1s
+sleep 3s
 
-## Check if Cores are running and print message to terminal
-echo "Waiting for Core 1 and 2 to finish..."
-
+echo "Waiting for Core 1, 2 and 3 to finish..."
 # Keep checking whether Core1 is running, if so then wait
 while [ `pgrep -c PyxisTestCore1` -gt 0 ]
 	do
@@ -76,7 +70,7 @@ echo "All cores are completed"
 echo 'Pyxis Test was finished at the local time of:' >> ../output/Summary.txt
 date >> ../output/Summary.txt
 
-## Run Performance.sh once all cores are completed
+## Run Performance.sh once all cores are completed # What is it? Some echo regarding what is happening?
 ./Performance.sh
 
 ## Print finished Pyxis test message to terminal

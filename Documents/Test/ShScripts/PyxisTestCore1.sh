@@ -14,40 +14,37 @@
 #          DetermDyn.txt			#
 #################################################
 
-# Change to Test directory
-cd /home/dma/Documents/Test
-
 ## Execute Pyxis with Valgrind
-cd ./output/Dynamic1Heavy
+cd ../output/Dynamic1Heavy
 #valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis
 ./pyxis
 
 ## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
 cd ../../MATLAB
-sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript.m
-sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Dynamic1Heavy\/';" AnalysisRNXScript.m
-sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Dynamic1Heavy\/Plots\/';" AnalysisRNXScript.m
-sed -i "/truthStr = /c\truthStr = 'test2.txt';" AnalysisRNXScript.m
+sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript1.m
+sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Dynamic1Heavy\/';" AnalysisRNXScript1.m
+sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Dynamic1Heavy\/Plots\/';" AnalysisRNXScript1.m
+sed -i "/truthStr = /c\truthStr = 'test2.txt';" AnalysisRNXScript1.m
 # Set Matlab preferences: 1 indicates to run, 0 indicates to not run
-sed -i "/plotWholePos =              /c\plotWholePos =              1;" AnalysisRNXScript.m
-sed -i "/plotIntervalPos =           /c\plotIntervalPos =           1;" AnalysisRNXScript.m
-sed -i "/plotSigParams =             /c\plotSigParams =             1;" AnalysisRNXScript.m
-sed -i "/plotVelocityComponents =    /c\plotVelocityComponents =    1;" AnalysisRNXScript.m
-sed -i "/plotVelocityHist =          /c\plotVelocityHist =          1;" AnalysisRNXScript.m
-sed -i "/plotPRNElevation =          /c\plotPRNElevation =          1;" AnalysisRNXScript.m
-sed -i "/plot2DSky =                 /c\plot2DSky =                 0;" AnalysisRNXScript.m
-sed -i "/plot3DSky =                 /c\plot3DSky =                 0;" AnalysisRNXScript.m
-sed -i "/performOutageAnalysis =     /c\performOutageAnalysis =     1;" AnalysisRNXScript.m
-sed -i "/savePlots =                 /c\savePlots =                 1;" AnalysisRNXScript.m
-sed -i "/saveResultsandSendEmail =   /c\saveResultsandSendEmail =   1;" AnalysisRNXScript.m
-sed -i "/generateKMLfile =           /c\generateKMLfile =           0;" AnalysisRNXScript.m
+sed -i "/plotWholePos =              /c\plotWholePos =              1;" AnalysisRNXScript1.m
+sed -i "/plotIntervalPos =           /c\plotIntervalPos =           1;" AnalysisRNXScript1.m
+sed -i "/plotSigParams =             /c\plotSigParams =             1;" AnalysisRNXScript1.m
+sed -i "/plotVelocityComponents =    /c\plotVelocityComponents =    1;" AnalysisRNXScript1.m
+sed -i "/plotVelocityHist =          /c\plotVelocityHist =          1;" AnalysisRNXScript1.m
+sed -i "/plotPRNElevation =          /c\plotPRNElevation =          1;" AnalysisRNXScript1.m
+sed -i "/plot2DSky =                 /c\plot2DSky =                 0;" AnalysisRNXScript1.m
+sed -i "/plot3DSky =                 /c\plot3DSky =                 0;" AnalysisRNXScript1.m
+sed -i "/performOutageAnalysis =     /c\performOutageAnalysis =     1;" AnalysisRNXScript1.m
+sed -i "/savePlots =                 /c\savePlots =                 1;" AnalysisRNXScript1.m
+sed -i "/saveResultsandSendEmail =   /c\saveResultsandSendEmail =   1;" AnalysisRNXScript1.m
+sed -i "/generateKMLfile =           /c\generateKMLfile =           0;" AnalysisRNXScript1.m
 # Set so no email is sent
-sed -i "/sendmail(recipients,subject,body);/c\    %sendmail(recipients,subject,body);" ./HelperFunctions/sendLssRnxEmail.m
-sed -i "/disp('No attachments');/c\    %disp('No attachments');" ./HelperFunctions/sendLssRnxEmail.m
-sed -i "/sendmail(recipients,subject,body,attachments);/c\    %sendmail(recipients,subject,body,attachments);" ./HelperFunctions/sendLssRnxEmail.m
-sed -i "/disp('Attachments');/c\    %disp('Attachments');" ./HelperFunctions/sendLssRnxEmail.m
+sed -i "/sendmail(recipients,subject,body);/c\    %sendmail(recipients,subject,body);" /HelperFunctions/sendLssRnxEmail.m
+sed -i "/disp('No attachments');/c\    %disp('No attachments');" /HelperFunctions/sendLssRnxEmail.m
+sed -i "/sendmail(recipients,subject,body,attachments);/c\    %sendmail(recipients,subject,body,attachments);" /HelperFunctions/sendLssRnxEmail.m
+sed -i "/disp('Attachments');/c\    %disp('Attachments');" /HelperFunctions/sendLssRnxEmail.m
 # Run matlab
-matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript.m; exit;"
+matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript1.m; exit;"
 
 ## Execute Pyxis and print to terminal that output is saved in txt file
 echo "Printing Dynamic 1 output to screenout.txt"
