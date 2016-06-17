@@ -44,19 +44,19 @@ done
 echo "Pyxis builds are complete"
 
 ## Starts PyxisTestCore1.sh
-gnome-terminal -x ./PyxisTestCore1.sh
+#gnome-terminal -x ./PyxisTestCore1.sh
 
 ## Starts Core2.sh
 gnome-terminal -x ./Core2.sh
 
 ## Starts Core3.sh
-#gnome-terminal -x ./Core3.sh
+gnome-terminal -x ./Core3.sh
 
 sleep 3s
 
 echo "Waiting for Core 1, 2 and 3 to finish..."
 # Keep checking whether Core1 is running, if so then wait
-while [ `pgrep -c PyxisTestCore1` -gt 0 ] || [ `pgrep -c Core2` -gt 0 ] #||  `pgrep -c Core3` -gt 0 ]
+while [ `pgrep -c PyxisTestCore1` -gt 0 ] || [ `pgrep -c Core2` -gt 0 ] || [ `pgrep -c Core3` -gt 0 ]
 	do
 	sleep 1s
 done

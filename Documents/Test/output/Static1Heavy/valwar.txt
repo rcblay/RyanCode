@@ -1,0 +1,45 @@
+==15649== Memcheck, a memory error detector
+==15649== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==15649== Using Valgrind-3.10.1 and LibVEX; rerun with -h for copyright info
+==15649== Command: ./pyxis
+==15649== Parent PID: 14627
+==15649== 
+==15649== 
+==15649== FILE DESCRIPTORS: 4 open at exit.
+==15649== Open file descriptor 3: /home/dma/Documents/Test/output/Static1Heavy/valwar.txt
+==15649==    <inherited from parent>
+==15649== 
+==15649== Open file descriptor 2: /dev/pts/6
+==15649==    <inherited from parent>
+==15649== 
+==15649== Open file descriptor 1: /dev/pts/6
+==15649==    <inherited from parent>
+==15649== 
+==15649== Open file descriptor 0: /dev/pts/6
+==15649==    <inherited from parent>
+==15649== 
+==15649== 
+==15649== HEAP SUMMARY:
+==15649==     in use at exit: 198,508 bytes in 1 blocks
+==15649==   total heap usage: 1,984,025 allocs, 1,984,024 frees, 104,594,870 bytes allocated
+==15649== 
+==15649== 198,508 bytes in 1 blocks are still reachable in loss record 1 of 1
+==15649==    at 0x4C2CC70: calloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15649==    by 0x5239500: monstartup (gmon.c:134)
+==15649==    by 0x4016BC: __gmon_start__ (in /home/dma/Documents/Test/output/Static1Heavy/pyxis)
+==15649==    by 0x4C2A474: ??? (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15649==    by 0xE72AEFDDFFFFFFFF: ???
+==15649==    by 0x40100CC: call_init.part.0 (dl-init.c:64)
+==15649==    by 0x4010214: call_init (dl-init.c:36)
+==15649==    by 0x4010214: _dl_init (dl-init.c:93)
+==15649==    by 0x4001309: ??? (in /lib/x86_64-linux-gnu/ld-2.19.so)
+==15649== 
+==15649== LEAK SUMMARY:
+==15649==    definitely lost: 0 bytes in 0 blocks
+==15649==    indirectly lost: 0 bytes in 0 blocks
+==15649==      possibly lost: 0 bytes in 0 blocks
+==15649==    still reachable: 198,508 bytes in 1 blocks
+==15649==         suppressed: 0 bytes in 0 blocks
+==15649== 
+==15649== For counts of detected and suppressed errors, rerun with: -v
+==15649== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

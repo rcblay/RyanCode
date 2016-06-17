@@ -1,0 +1,96 @@
+#########################################################################
+#######################Performance Characteristics#######################
+#########################################################################
+ 
+Pyxis Test was started at the local time of:
+Mon Jun 13 14:38:18 MDT 2016
+Core 2 was done at the local time of:
+Mon Jun 13 14:41:26 MDT 2016
+Core 1 was done at the local time of:
+Mon Jun 13 15:22:51 MDT 2016
+Core 2 was done at the local time of:
+ 
+##############################Dynamic Test###############################
+ 
+------------------------Dynamic1 Characteristics-------------------------
+ 
+Max 3D Error:       1866.0873 meters (0.1905 hours)
+Mean 3D Error:      825.9099 meters
+Availability:       69.3 %
+ 
+***Warning: Mean 3D Error has increased by more than 20 cm***
+ 
+------------------------Dynamic Compiler Warnings------------------------
+ 
+../../test/include//test_utils.c:162:3: warning: string length ‘4433’ is greater than the length ‘4095’ ISO C99 compilers are required to support [-Woverlength-strings]
+../../test/nav//test_adjustFormat.c:24:2: warning: string length ‘5255’ is greater than the length ‘4095’ ISO C99 compilers are required to support [-Woverlength-strings]
+../../test/chn//test_assignPrn.c:12:11: warning: unused variable ‘i’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:12:9: warning: unused variable ‘n’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:12:7: warning: unused variable ‘m’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:30:12: warning: unused variable ‘i’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:30:10: warning: unused variable ‘n’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:30:8: warning: unused variable ‘m’ [-Wunused-variable]
+ 
+----------------------Dynamic Valgrind Information-----------------------
+ 
+==14626== FILE DESCRIPTORS: 4 open at exit.
+==14626== LEAK SUMMARY:
+==14626==    definitely lost: 0 bytes in 0 blocks
+==14626==    indirectly lost: 0 bytes in 0 blocks
+==14626==      possibly lost: 0 bytes in 0 blocks
+==14626==    still reachable: 200,180 bytes in 1 blocks
+==14626==         suppressed: 0 bytes in 0 blocks
+==14626== 
+==14626== For counts of detected and suppressed errors, rerun with: -v
+==14626== Use --track-origins=yes to see where uninitialised values come from
+==14626== ERROR SUMMARY: 47 errors from 4 contexts (suppressed: 0 from 0)
+ 
+-------------------Dynamic Deterministic Information---------------------
+ 
+apt Differences:
+ 
+rnx Differences:
+ 
+#############################Static Test#################################
+ 
+-----------------------Static1 Characteristics---------------------------
+ 
+Max 3D Error:       154.8514 meters (0.036893 hours)
+Mean 3D Error:      7.3595 meters
+Availability:       98.2 %
+ 
+***Warning: Mean 3D Error has increased by more than 20 cm***
+ 
+-----------------------Static Compiler Warnings--------------------------
+ 
+../../test/include//test_utils.c:162:3: warning: string length ‘4433’ is greater than the length ‘4095’ ISO C99 compilers are required to support [-Woverlength-strings]
+../../test/nav//test_adjustFormat.c:24:2: warning: string length ‘5255’ is greater than the length ‘4095’ ISO C99 compilers are required to support [-Woverlength-strings]
+../../test/chn//test_assignPrn.c:12:11: warning: unused variable ‘i’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:12:9: warning: unused variable ‘n’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:12:7: warning: unused variable ‘m’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:30:12: warning: unused variable ‘i’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:30:10: warning: unused variable ‘n’ [-Wunused-variable]
+../../test/chn//test_assignPrn.c:30:8: warning: unused variable ‘m’ [-Wunused-variable]
+ 
+---------------------Static Valgrind Information-------------------------
+ 
+==15649== FILE DESCRIPTORS: 4 open at exit.
+==15649== LEAK SUMMARY:
+==15649==    definitely lost: 0 bytes in 0 blocks
+==15649==    indirectly lost: 0 bytes in 0 blocks
+==15649==      possibly lost: 0 bytes in 0 blocks
+==15649==    still reachable: 198,508 bytes in 1 blocks
+==15649==         suppressed: 0 bytes in 0 blocks
+==15649== 
+==15649== For counts of detected and suppressed errors, rerun with: -v
+==15649== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+ 
+-------------------Static Deterministic Information----------------------
+ 
+apt Differences:
+ 
+rnx Differences:
+ 
+#########################################################################
+##############Performance Characteristics Summary Complete###############
+#########################################################################

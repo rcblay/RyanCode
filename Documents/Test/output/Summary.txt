@@ -1,0 +1,4 @@
+Pyxis Test was started at the local time of:
+Fri Jun 17 15:43:17 MDT 2016
+Pyxis Test was finished at the local time of:
+Fri Jun 17 15:44:52 MDT 2016

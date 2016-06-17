@@ -1,0 +1,52 @@
+#########################################################################
+#######################Performance Characteristics#######################
+#########################################################################
+ 
+Pyxis Test was started at the local time of:
+Fri Jun 17 15:43:17 MDT 2016
+Pyxis Test was finished at the local time of:
+Fri Jun 17 15:44:52 MDT 2016
+ 
+##############################Dynamic Test###############################
+ 
+------------------------Dynamic1 Characteristics-------------------------
+ 
+Max 3D Error:       1355.7467 meters (0.15411 hours)
+Mean 3D Error:      21.3812 meters
+Availability:       85.7 %
+ 
+------------------------Dynamic Compiler Warnings------------------------
+ 
+../../test/include//test_utils.c:164:3: warning: string length ‘4917’ is greater than the length ‘4095’ ISO C99 compilers are required to support [-Woverlength-strings]
+../../test/nav//test_adjustFormat.c:24:2: warning: string length ‘5255’ is greater than the length ‘4095’ ISO C99 compilers are required to support [-Woverlength-strings]
+ 
+----------------------Dynamic Valgrind Information-----------------------
+ 
+No Dynamic Valgrind Information Found
+ 
+-------------------Dynamic Deterministic Information---------------------
+ 
+ 
+#############################Static Test#################################
+ 
+-----------------------Static1 Characteristics---------------------------
+ 
+Max 3D Error:       154.8514 meters (0.036893 hours)
+Mean 3D Error:      7.3595 meters
+Availability:       98.2 %
+ 
+-----------------------Static Compiler Warnings--------------------------
+ 
+../../test/include//test_utils.c:164:3: warning: string length ‘4917’ is greater than the length ‘4095’ ISO C99 compilers are required to support [-Woverlength-strings]
+../../test/nav//test_adjustFormat.c:24:2: warning: string length ‘5255’ is greater than the length ‘4095’ ISO C99 compilers are required to support [-Woverlength-strings]
+ 
+---------------------Static Valgrind Information-------------------------
+ 
+No Static Valgrind Information Found
+ 
+-------------------Static Deterministic Information----------------------
+ 
+ 
+#########################################################################
+##############Performance Characteristics Summary Complete###############
+#########################################################################

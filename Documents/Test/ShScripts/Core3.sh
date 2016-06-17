@@ -21,32 +21,42 @@ cd ../output/StaticSim
 ## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
 cd ../../MATLAB
 sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript3.m
-sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Static1Sim\/';" AnalysisRNXScript3.m
-sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Static1Sim\/Plots\/';" AnalysisRNXScript3.m
+sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/StaticSim\/';" AnalysisRNXScript3.m
+sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/StaticSim\/Plots\/';" AnalysisRNXScript3.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript3.m
 
 # Run matlab
 matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript3.m; exit;"
 
 sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_1859_518400.bin';" AnalysisRNXScript3.m
-sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Static1Sim\/';" AnalysisRNXScript3.m
-sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Static1Sim\/Plots\/';" AnalysisRNXScript3.m
+sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/StaticSim\/';" AnalysisRNXScript3.m
+sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/StaticSim\/Plots\/';" AnalysisRNXScript3.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript3.m
 
 # Run matlab
 matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript3.m; exit;"
 
 sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_1860_0.bin';" AnalysisRNXScript3.m
-sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Static1Sim\/';" AnalysisRNXScript3.m
-sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Static1Sim\/Plots\/';" AnalysisRNXScript3.m
+sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/StaticSim\/';" AnalysisRNXScript3.m
+sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/StaticSim\/Plots\/';" AnalysisRNXScript3.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript3.m
 
 # Run matlab
 matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript3.m; exit;"
+
 sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_1860_86400.bin';" AnalysisRNXScript3.m
-sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/Static1Sim\/';" AnalysisRNXScript3.m
-sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/Static1Sim\/Plots\/';" AnalysisRNXScript3.m
+sed -i "/parentpath =/c\parentpath = '\/home\/dma\/Documents\/Test\/output\/StaticSim\/';" AnalysisRNXScript3.m
+sed -i "/plotpath =/c\plotpath = '\/home\/dma\/Documents\/Test\/output\/StaticSim\/Plots\/';" AnalysisRNXScript3.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript3.m
 
 # Run matlab
 matlab -nodesktop -r "run /home/dma/Documents/Test/MATLAB/AnalysisRNXScript3.m; exit;"
+
+## Time when Core 3 was finished is printed to Summary.txt
+cd ../output
+echo 'Core 3 was done at the local time of:' >> Summary.txt
+date >> Summary.txt
+
+## Core3 completion message printed to terminal
+echo "Core 3 is finished"
+sleep 3s
