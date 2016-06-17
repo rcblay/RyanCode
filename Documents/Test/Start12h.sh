@@ -49,6 +49,9 @@ gnome-terminal -x ./PyxisTestCore1.sh
 ## Starts Core2.sh
 gnome-terminal -x ./Core2.sh
 
+## Starts Core3.sh
+#gnome-terminal -x ./Core3.sh
+
 sleep 3s
 
 echo "Waiting for Core 1, 2 and 3 to finish..."

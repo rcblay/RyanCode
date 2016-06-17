@@ -13,11 +13,8 @@
 # Output: PerfSummary.txt			#
 #################################################
 
-# Change to Test directory
-cd /home/dma/Documents/Test
-
 ## Test Characteristics Summary
-cd ./output
+cd ../output
 echo "#########################################################################" > PerfSummary.txt
 echo "#######################Performance Characteristics#######################" >> PerfSummary.txt
 echo "#########################################################################" >> PerfSummary.txt

@@ -80,12 +80,21 @@ cp ../../../../conf_swc/Static1_conf_swc/conf_swc.h conf_swc.h
 cd ../../build
 make clean
 make
-
-## Move pyxis into Static1 output directory
+# Move pyxis into Static1 output directory
 mv ../bin/rcv/pyxis ../../../output/Static1/
 
-cd ../../../MATLAB
+## Build Pyxis for long test
+cd ../src/conf
+# Replace conf_swc.h with Static1Heavy's conf_swc.h file (already preset with correct values)
+cp ../../../../conf_swc/StaticSim_conf_swc/conf_swc.h conf_swc.h
+# Build Pyxis for StaticSim
+cd ../../build
+make clean
+make
+# Move Pyxis into StaticSim output directory
+mv ../bin/rcv/pyxis ../../../output/StaticSim/
 
+cd ../../../MATLAB
 # Set Matlab preferences: 1 indicates to run, 0 indicates to not run
 sed -i "/plotWholePos =              /c\plotWholePos =              1;" AnalysisRNXScript1.m
 sed -i "/plotIntervalPos =           /c\plotIntervalPos =           1;" AnalysisRNXScript1.m
@@ -112,6 +121,19 @@ sed -i "/performOutageAnalysis =     /c\performOutageAnalysis =     1;" Analysis
 sed -i "/savePlots =                 /c\savePlots =                 1;" AnalysisRNXScript2.m
 sed -i "/saveResultsandSendEmail =   /c\saveResultsandSendEmail =   1;" AnalysisRNXScript2.m
 sed -i "/generateKMLfile =           /c\generateKMLfile =           0;" AnalysisRNXScript2.m
+# Set Matlab preferences: 1 indicates to run, 0 indicates to not run
+sed -i "/plotWholePos =              /c\plotWholePos =              1;" AnalysisRNXScript3.m
+sed -i "/plotIntervalPos =           /c\plotIntervalPos =           1;" AnalysisRNXScript3.m
+sed -i "/plotSigParams =             /c\plotSigParams =             1;" AnalysisRNXScript3.m
+sed -i "/plotVelocityComponents =    /c\plotVelocityComponents =    1;" AnalysisRNXScript3.m
+sed -i "/plotVelocityHist =          /c\plotVelocityHist =          1;" AnalysisRNXScript3.m
+sed -i "/plotPRNElevation =          /c\plotPRNElevation =          1;" AnalysisRNXScript3.m
+sed -i "/plot2DSky =                 /c\plot2DSky =                 0;" AnalysisRNXScript3.m
+sed -i "/plot3DSky =                 /c\plot3DSky =                 0;" AnalysisRNXScript3.m
+sed -i "/performOutageAnalysis =     /c\performOutageAnalysis =     1;" AnalysisRNXScript3.m
+sed -i "/savePlots =                 /c\savePlots =                 1;" AnalysisRNXScript3.m
+sed -i "/saveResultsandSendEmail =   /c\saveResultsandSendEmail =   1;" AnalysisRNXScript3.m
+sed -i "/generateKMLfile =           /c\generateKMLfile =           0;" AnalysisRNXScript3.m
 # Set so no email is sent
 sed -i "/sendmail(recipients,subject,body);/c\    %sendmail(recipients,subject,body);" /HelperFunctions/sendLssRnxEmail.m
 sed -i "/disp('No attachments');/c\    %disp('No attachments');" /HelperFunctions/sendLssRnxEmail.m

@@ -14,11 +14,8 @@
 #          DetermStat.txt			#
 #################################################
 
-# Change to Test directory
-cd /home/dma/Documents/Test
-
 ## Execute Pyxis with Valgrind
-cd ./output/Static1Heavy
+cd ../output/Static1Heavy
 #valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis
 ./pyxis
 
