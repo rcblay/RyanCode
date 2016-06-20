@@ -1,13 +1,13 @@
 #!/bin/bash
 #################################################
-#      		Build			#
+#      		Build				#
 # Compiles all pyxis and distributes it to all	#
 # appropriate folders for four tests.	 	#
 #						#
 # Input: conf files and other build files.	#
 #						#
 # Output: pyxis builds in all three cases 	#
-#         (Static1, Dynamic1, StaticSim)	#
+#         (Static, Dynamic, StaticSim)		#
 #	  Wwarning.txt,				#
 #	  apt and rnx binaries.			#
 #################################################
@@ -20,15 +20,15 @@ sed -i '/#define LOGCOR/!b;n;c\#define LOGAPT 1 		\/\/\/< Log the navigation dat
 sed -i '/#define LOGKML/c\#define LOGKML 0 		\/\/\/< Log the KML data for Google Earth' conf.h
 sed -i '/#define LOGRNX/c\#define LOGRNX 1 		\/\/\/< Log the LSS structure in navigation' conf.h
 
-## Set correct input values and replace conf_swc.h with Dynamic1's conf_swc.h file
+## Set correct input values and replace conf_swc.h with Dynamic's conf_swc.h file
 cd ../Pyxis_current/pyxis/src/conf
 # Exchange for testing sampling rate, carrier frequency and acquisition threshold.
 sed -i '/#define SAMPLINGRATE/c\#define SAMPLINGRATE (ui64 )4e6       \/*Sampling frequency, default is a 40MHz sampling rate*\/' conf.h
 sed -i '/#define CARRFREQ/c\#define CARRFREQ 20e3		\/*Intermediate frequency*\/' conf.h
 sed -i '/NUMSAMPLEINBUFF/c\#define NUMSAMPLEINBUFF ( (NUMSAMPLE1MSEC \/ 10) * 9)\/\/6178 65536 \/\/2^16, should be more than 1msec of data (depends on sampling freq), more has more latency' conf.h
 sed -i '/ACQTHRESHOLD/c\#define ACQTHRESHOLD (ui64) 9e7\/\/2.5e8\/\/9e7\/\/2e8 for all the other ones.' conf_chn.h
-# Replace conf_swc.h with Dynamic1's conf_swc.h file (already preset with correct values)
-cp ../../../../conf_swc/Dynamic1_conf_swc/conf_swc.h conf_swc.h
+# Replace conf_swc.h with Dynamic's conf_swc.h file (already preset with correct values)
+cp ../../../../conf_swc/conf_dynamic.h conf_swc.h
 # Set File usage, complex, L2, linking in conf.mk file
 cd ../../build/conf
 sed -i '/FRONTENDTYPE=/c\FRONTENDTYPE=FILE#USB\/FILE' conf.mk
@@ -36,23 +36,23 @@ sed -i '/FILETYPE/c\FILETYPE=2' conf.mk
 sed -i '/USEL2C/c\USEL2C=FALSE' conf.mk
 sed -i '/LINKING=/c\LINKING=DYNAMIC' conf.mk
 
-## Build Pyxis for Dynamic1 and send warnings to Wwarning.txt
+## Build Pyxis for Dynamic and send warnings to Wwarning.txt
 cd ..
 make clean
-make 2> ../../../output/Dynamic1/Wwarning.txt
+make 2> ../../../output/Dynamic/Wwarning.txt
 
-## Move pyxis into Dynamic1 output directory
-mv ../bin/rcv/pyxis ../../../output/Dynamic1/
+## Move pyxis into Dynamic output directory
+mv ../bin/rcv/pyxis ../../../output/Dynamic/
 
-## Set correct input values and replace conf_swc.h with Static1's conf_swc.h file
+## Set correct input values and replace conf_swc.h with Static's conf_swc.h file
 cd ../src/conf
 # Exchange for testing sampling rate and carrier frequency
 sed -i '/#define SAMPLINGRATE/c\#define SAMPLINGRATE (ui64 )6.864e6       \/*Sampling frequency, default is a 40MHz sampling rate*\/' conf.h
 sed -i '/#define CARRFREQ/c\#define CARRFREQ 2.1912e6		\/*Intermediate frequency*\/' conf.h
 sed -i '/NUMSAMPLEINBUFF/c\#define NUMSAMPLEINBUFF 6178 \/\/ ( (NUMSAMPLE1MSEC \/ 10) * 9)\/\/6178 65536 \/\/2^16, should be more than 1msec of data (depends on sampling freq), more has more latency' conf.h
 sed -i '/ACQTHRESHOLD/c\#define ACQTHRESHOLD (ui64) 2.5e8\/\/2.5e8\/\/9e7\/\/2e8 for all the other ones.' conf_chn.h
-# Replace conf_swc.h with Static1's conf_swc.h file (already preset with correct values)
-cp ../../../../conf_swc/Static1_conf_swc/conf_swc.h conf_swc.h
+# Replace conf_swc.h with Static's conf_swc.h file (already preset with correct values)
+cp ../../../../conf_swc/conf_static.h conf_swc.h
 # Set File usage, real, no L2 and linking in conf.mk file
 cd ../../build/conf
 sed -i '/FRONTENDTYPE=/c\FRONTENDTYPE=FILE#USB\/FILE' conf.mk
@@ -60,18 +60,18 @@ sed -i '/FILETYPE/c\FILETYPE=1' conf.mk
 sed -i '/USEL2C/c\USEL2C=FALSE' conf.mk
 sed -i '/LINKING=/c\LINKING=DYNAMIC' conf.mk
 
-## Build Pyxis for Static1 and send warnings to Wwarning.txt
+## Build Pyxis for Static and send warnings to Wwarning.txt
 cd ..
 make clean
-make 2> ../../../output/Static1/Wwarning.txt
+make 2> ../../../output/Static/Wwarning.txt
 
-## Move pyxis into Static1 output directory
-mv ../bin/rcv/pyxis ../../../output/Static1/
+## Move pyxis into Static output directory
+mv ../bin/rcv/pyxis ../../../output/Static/
 
 ## Build Pyxis for long test (make sure this is placed after Static so parameters can stay the same)
 cd ../src/conf
-# Replace conf_swc.h with Static1Heavy's conf_swc.h file (already preset with correct values)
-cp ../../../../conf_swc/StaticSim_conf_swc/conf_swc.h conf_swc.h
+# Replace conf_swc.h with StaticHeavy's conf_swc.h file (already preset with correct values)
+cp ../../../../conf_swc/conf_staticsim.h conf_swc.h
 # Build Pyxis for StaticSim
 cd ../../build
 make clean
