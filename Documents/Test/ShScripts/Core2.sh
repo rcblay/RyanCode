@@ -23,17 +23,17 @@ cd ../output/Dynamic
 ## Checks whether the Pyxis results are the same as the previous test, if they are then it breaks. If not, then it runs the test again and confirms that its deterministic.
 while [ true ]
 	do
-	cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermDyn.txt
+	#cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermDyn.txt
 	cmp ./REFaptrnx/REFtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermDyn.txt
 	if ! [ -s DetermDyn.txt ]
 		then
 		break
 	else
 		echo "Pyxis results different than Reference, running again"
-		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
+		#mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
 		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
 		./pyxis
-		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin >> DetermDyn2.txt
+		#cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin >> DetermDyn2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermDyn2.txt
 		if ! [ -s DetermDyn2.txt ]
 			then
@@ -66,17 +66,17 @@ cd ../output/Static
 
 while [ true ]
 	do
-	cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStat.txt
+	#cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStat.txt
 	cmp ./REFaptrnx/REFtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStat.txt
 	if ! [ -s DetermDyn.txt ]
 		then
 		break
 	else
 		echo "Pyxis results different than Reference, running again"
-		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
+		#mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
 		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
 		./pyxis
-		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStat2.txt
+		#cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStat2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStat2.txt
 		if ! [ -s DetermStat2.txt ]
 			then

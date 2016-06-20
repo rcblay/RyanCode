@@ -16,12 +16,11 @@
 cd ../Pyxis_current/pyxis/src/conf
 sed -i '/#define NAVDEBUG/c\#define NAVDEBUG 0		\/\/\/< NAV debugging mode: run with APT' conf.h
 sed -i '/#define LOGCOR/c\#define LOGCOR 0 		\/\/\/< Log the correlator data to a file' conf.h
-sed -i '/#define LOGCOR/!b;n;c\#define LOGAPT 1 		\/\/\/< Log the navigation data to a file' conf.h
+sed -i '/#define LOGCOR/!b;n;c\#define LOGAPT 0 		\/\/\/< Log the navigation data to a file' conf.h
 sed -i '/#define LOGKML/c\#define LOGKML 0 		\/\/\/< Log the KML data for Google Earth' conf.h
 sed -i '/#define LOGRNX/c\#define LOGRNX 1 		\/\/\/< Log the LSS structure in navigation' conf.h
 
 ## Set correct input values and replace conf_swc.h with Dynamic's conf_swc.h file
-cd ../Pyxis_current/pyxis/src/conf
 # Exchange for testing sampling rate, carrier frequency and acquisition threshold.
 sed -i '/#define SAMPLINGRATE/c\#define SAMPLINGRATE (ui64 )4e6       \/*Sampling frequency, default is a 40MHz sampling rate*\/' conf.h
 sed -i '/#define CARRFREQ/c\#define CARRFREQ 20e3		\/*Intermediate frequency*\/' conf.h
