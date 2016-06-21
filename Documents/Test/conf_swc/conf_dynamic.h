@@ -9,7 +9,7 @@ extern int make_ISO_compiler_happy;
 #define SWC_MILLISEC 2
 
 // DATAFILEIN for Virtualbox
-#define DATAFILEIN "/home/dma/Documents/Test/input/Dynamic/L1_201510161135_fs_4e6_if20e3_schar1bit.bin"
+#define DATAFILEIN "../../input/Dynamic/L1_201510161135_fs_4e6_if20e3_schar1bit.bin"
 
 //L2DATAFILEIN
 //#define L2DATAFILEIN "/home/dma/Documents/Test/input/Dynamic/L2_201510161135_fs_4e6_if20e3_schar1bit.bin"
@@ -37,11 +37,11 @@ extern int make_ISO_compiler_happy;
 
 #ifdef USEFILE
 
-#define APTOUT "/home/dma/Documents/Test/output/Dynamic/timingaptBinaries_%d_%d.bin" //FAPT
-#define KMLOUT "/home/dma/Documents/Test/output/Dynamic/data.kml" //FKML
-#define POSOUT "/home/dma/Documents/Test/output/Dynamic/posBinaries.bin" //FPOS
-#define OBSOUT "/home/dma/Documents/Test/output/Dynamic/obsBinaries.bin" //FOBS
-#define RNXOUT "/home/dma/Documents/Test/output/Dynamic/timingrnxBinaries_%d_%d.bin" //FRNX
+#define APTOUT "timingaptBinaries_%d_%d.bin"
+#define KMLOUT "data.kml"
+#define POSOUT "posBinaries.bin"
+#define OBSOUT "obsBinaries.bin"
+#define RNXOUT "timingrnxBinaries_%d_%d.bin"
 
 #endif
 

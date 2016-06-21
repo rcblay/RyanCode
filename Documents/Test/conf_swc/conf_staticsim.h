@@ -9,7 +9,7 @@ extern int make_ISO_compiler_happy;
 #define SWC_MILLISEC 2
 
 // DATAFILEIN for Virtualbox
-#define DATAFILEIN "/home/dma/Documents/Test/input/Static_6864e6/MAX2769_L1_20150828_20150831_fs_6864e6_if21912e6_schar_WRoverBIG.bin"
+#define DATAFILEIN "../../input/Static_6864e6/MAX2769_L1_20150828_20150831_fs_6864e6_if21912e6_schar_WRoverBIG.bin"
 
 //L2DATAFILEIN
 //#define L2DATAFILEIN "/home/dma/Documents/Test/input/Static_6864e6/MAX2769_L2_20150828_20150831_fs_6864e6_if21912e6_schar_20GB.bin"
@@ -37,11 +37,11 @@ extern int make_ISO_compiler_happy;
 
 #ifdef USEFILE
 
-#define APTOUT "/home/dma/Documents/Test/output/StaticSim/timingaptBinaries_%d_%d.bin"
-#define KMLOUT "/home/dma/Documents/Test/output/StaticSim/data.kml"
-#define POSOUT "/home/dma/Documents/Test/output/StaticSim/posBinaries.bin"
-#define OBSOUT "/home/dma/Documents/Test/output/StaticSim/obsBinaries.bin"
-#define RNXOUT "/home/dma/Documents/Test/output/StaticSim/timingrnxBinaries_%d_%d.bin"
+#define APTOUT "timingaptBinaries_%d_%d.bin"
+#define KMLOUT "data.kml"
+#define POSOUT "posBinaries.bin"
+#define OBSOUT "obsBinaries.bin"
+#define RNXOUT "timingrnxBinaries_%d_%d.bin"
 
 #endif
 
