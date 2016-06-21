@@ -1,9 +1,0 @@
-"| Results           "|timingrnxBinaries_0_0.bin               
-"| Max 2D Error      "|1632.47 meters (0.37994 hours)          
-"| Max 3D Error      "|1866.0873 meters (0.1905 hours)         
-"| Max Height Error  "|705.4236 meters (0.53994 hours)         
-"| Mean 2D           "|824.7877 meters                         
-"| 1 Std 2D          "|324.9945 meters                         
-"| Mean 3D           "|825.9099 meters                         
-"| 1 Std 3D          "|325.8242 meters                         
-"| Availability      "|69.3 %                                  
