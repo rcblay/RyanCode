@@ -16,7 +16,7 @@
 cd ../Pyxis_current/pyxis/src/conf
 sed -i '/#define NAVDEBUG/c\#define NAVDEBUG 0		\/\/\/< NAV debugging mode: run with APT' conf.h
 sed -i '/#define LOGCOR/c\#define LOGCOR 0 		\/\/\/< Log the correlator data to a file' conf.h
-sed -i '/#define LOGCOR/!b;n;c\#define LOGAPT 0 		\/\/\/< Log the navigation data to a file' conf.h
+sed -i '/#define LOGCOR/!b;n;c\#define LOGAPT 1 		\/\/\/< Log the navigation data to a file' conf.h
 sed -i '/#define LOGKML/c\#define LOGKML 0 		\/\/\/< Log the KML data for Google Earth' conf.h
 sed -i '/#define LOGRNX/c\#define LOGRNX 1 		\/\/\/< Log the LSS structure in navigation' conf.h
 
@@ -67,8 +67,23 @@ make 2> ../../../output/Static/Wwarning.txt
 ## Move pyxis into Static output directory
 mv ../bin/rcv/pyxis ../../../output/Static/
 
+# Set File usage, real, no L2 and linking in conf.mk file
+cd ./conf
+sed -i '/FRONTENDTYPE=/c\FRONTENDTYPE=FILE#USB\/FILE' conf.mk
+sed -i '/FILETYPE/c\FILETYPE=1' conf.mk
+sed -i '/USEL2C/c\USEL2C=FALSE' conf.mk
+sed -i '/LINKING=/c\LINKING=STATIC' conf.mk
+
+sed -i '/#export DEBUGFLAGS/d' ../Makefile
+sed -i '/export DEBUGFLAGS/c\export DEBUGFLAGS=-g' ../Makefile
+sed -i '/#export OPTFLAGS/d' ../Makefile
+sed -i '/export OPTFLAGS/c\export OPTFLAGS= -O3 -funroll-loops -funit-at-a-time' ../Makefile
+
+make clean
+make arm
+
 ## Build Pyxis for long test (make sure this is placed after Static so parameters can stay the same)
-cd ../src/conf
+cd ../../src/conf
 # Replace conf_swc.h with StaticHeavy's conf_swc.h file (already preset with correct values)
 cp ../../../../conf_swc/conf_staticsim.h conf_swc.h
 # Build Pyxis for StaticSim

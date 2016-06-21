@@ -13,25 +13,7 @@
 # Output:  MATLAB plots, DetermARM.txt		#
 #################################################
 
-## This will probably eventually go into build.sh
-
-# Set File usage, real, no L2 and linking in conf.mk file
-cd ../../build/conf
-sed -i '/FRONTENDTYPE=/c\FRONTENDTYPE=FILE#USB\/FILE' conf.mk
-sed -i '/FILETYPE/c\FILETYPE=1' conf.mk
-sed -i '/USEL2C/c\USEL2C=FALSE' conf.mk
-sed -i '/LINKING=/c\LINKING=STATIC' conf.mk
-
-sed -i '/#export DEBUGFLAGS/d' ../Makefile
-sed -i '/export DEBUGFLAGS/c\export DEBUGFLAGS=-g' ../Makefile
-
-sed -i '/#export OPTFLAGS/d' ../Makefile
-sed -i '/export OPTFLAGS/c\export OPTFLAGS= -O3 -funroll-loops -funit-at-a-time' ../Makefile
-
-make clean
-make arm
-
-cd /home/dma/Documents/Test/output/nfsshare
+cd ../output/nfsshare
 
 ./pyxis
 
