@@ -22,17 +22,18 @@
 #################################################
 
 # Change to Test directory
-cd /home/dma/Documents/Test
+cd /home/dma/Documents/Test12h
 
 ## Print time of starting operation to Summary.txt and terminal
 echo 'Pyxis Test was started at the local time of:' > output/Summary.txt
 date >> output/Summary.txt
 echo 'Pyxis Test was started at the local time of:' `date`
 
-## Change to ShScripts directory and start Build.sh
-cd ShScripts
+## Change to ShScripts directory and start Clean.sh then Build.sh
+cd ./ShScripts
+./Clean.sh
+sleep 2s
 gnome-terminal -x ./Build.sh
-
 sleep 5s
 
 echo "Waiting for Build.sh to finish..."

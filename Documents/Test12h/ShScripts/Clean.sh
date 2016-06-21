@@ -14,7 +14,7 @@
 cd ../output/Dynamic
 
 ## Remove all unnecessary files
-rm -f pyxis
+rm pyxis
 rm REVISEDtimingrnxBinaries_0_0.bin
 rm REVISEDtimingaptBinaries_0_0.bin
 rm timingrnxBinaries_0_0.bin

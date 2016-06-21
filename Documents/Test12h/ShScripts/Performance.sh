@@ -180,6 +180,9 @@ echo "No Static Deterministic Information Found" >> PerfSummary.txt
 fi
 echo " " >> PerfSummary.txt
 
+## Removes Summary.txt
+rm Summary.txt
+
 ## Prints Completion Message
 echo "#########################################################################" >> PerfSummary.txt
 echo "###########   Performance Characteristics Summary Complete   ############" >> PerfSummary.txt
