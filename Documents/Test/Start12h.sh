@@ -50,7 +50,7 @@ echo "Pyxis builds are complete"
 gnome-terminal -x ./Core2.sh
 
 ## Starts Core3.sh
-gnome-terminal -x ./Core3.sh
+#gnome-terminal -x ./Core3.sh
 
 sleep 3s
 

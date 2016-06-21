@@ -35,7 +35,7 @@ while [ true ]
 		./pyxis
 		#cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin >> DetermDyn2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermDyn2.txt
-		if ! [ -s DetermDyn2.txt ]
+		if [ -s DetermDyn2.txt ]
 			then
 			echo "Not Deterministic!"
 			echo " " >> DetermDyn.txt
@@ -68,7 +68,7 @@ while [ true ]
 	do
 	#cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStat.txt
 	cmp ./REFaptrnx/REFtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStat.txt
-	if ! [ -s DetermDyn.txt ]
+	if ! [ -s DetermStat.txt ]
 		then
 		break
 	else
@@ -78,7 +78,7 @@ while [ true ]
 		./pyxis
 		#cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStat2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStat2.txt
-		if ! [ -s DetermStat2.txt ]
+		if [ -s DetermStat2.txt ]
 			then
 			echo "Not Deterministic!"
 			echo " " >> DetermStat.txt

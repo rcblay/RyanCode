@@ -16,18 +16,18 @@
 ## Test Characteristics Summary
 cd ../output
 echo "#########################################################################" > PerfSummary.txt
-echo "#######################Performance Characteristics#######################" >> PerfSummary.txt
+echo "####################   Performance Characteristics   ####################" >> PerfSummary.txt
 echo "#########################################################################" >> PerfSummary.txt
 echo " " >> PerfSummary.txt
 # Takes start and stop information located in Summary.txt 
 grep -A8 'Pyxis Test' ./Summary.txt >> PerfSummary.txt
 echo " " >> PerfSummary.txt
-echo "##############################Dynamic Test###############################" >> PerfSummary.txt
+echo "###########################   Dynamic Test   ############################" >> PerfSummary.txt
 echo " " >> PerfSummary.txt
 
 
 ## Obtains Dynamic Characteristics from results_0_0.txt
-echo "------------------------Dynamic Characteristics-------------------------" >> PerfSummary.txt
+echo "---------------------   Dynamic Characteristics   ----------------------" >> PerfSummary.txt
 echo " " >> PerfSummary.txt
 # Tidies up information from results_0_0.txt and presents it in nice format
 max3dval=`awk '/Max 3D Error/ {print $5}' ./Dynamic/Plots/results_0_0.txt | sed 's/.*|//'`
@@ -38,7 +38,7 @@ echo "Mean 3D Error:      $mean3dval meters" >> PerfSummary.txt
 availabilityval=`awk '/Availability/ {print $3}' ./Dynamic/Plots/results_0_0.txt | sed 's/.*|//'`
 echo "Availability:       $availabilityval %" >> PerfSummary.txt
 # If there is no information from dynamic characteristics, print that to PerfSummary.txt
-if [ $? -ne 0 ]
+if ! [ -v availabilityval ]
 then 
 echo "No Dynamic Characteristics Found" >> PerfSummary.txt
 fi
@@ -52,11 +52,9 @@ Tolerance=0.2 #meters
 # Gleans numbers from both files and compares them
 var=`awk '/Mean 3D/ {print $4}' $File1`
 mean3d=`echo $var | sed 's/.*|//'`
-num=$mean3d
 varRef=`awk '/Mean 3D/ {print $4}' $File2`
 mean3dRef=`echo $varRef | sed 's/.*|//'`
-numRef=$mean3dRef
-rv=`bc -l <<< "$num > ($numRef + $Tolerance)"`
+rv=`bc -l <<< "$mean3d > ($mean3dRef + $Tolerance)"`
 # If new file is greater than reference file by more than the tolerance, warning is printed
 if [ $rv -eq 1 ]
 then
@@ -65,8 +63,10 @@ echo " " >> PerfSummary.txt
 fi
 
 ## Obtains Dynamic Compiler Warnings from Wwarning.txt
-echo "------------------------Dynamic Compiler Warnings------------------------" >> PerfSummary.txt
+echo "---------------------   Dynamic Compiler Warnings   ---------------------" >> PerfSummary.txt
+# Search for Segmentation faults and print to PerfSummary.txt
 echo " " >> PerfSummary.txt
+grep 'Segmentation fault' ./Dynamic/Wwarning.txt >> PerfSummary.txt
 # Search for 'warning:' and print to PerfSummary.txt
 grep 'warning:' ./Dynamic/Wwarning.txt >> PerfSummary.txt
 # If there is no dynamic compiler warning, print that to PerfSummary.txt
@@ -77,7 +77,7 @@ fi
 echo " " >> PerfSummary.txt
 
 ## Obtains Dynamic Valgrind Information from valwar.txt
-echo "----------------------Dynamic Valgrind Information-----------------------" >> PerfSummary.txt
+echo "-------------------   Dynamic Valgrind Information   --------------------" >> PerfSummary.txt
 echo " " >> PerfSummary.txt
 # Search for 'FILE DESCRIPTORS' and print out line to PerfSummary.txt
 grep 'FILE DESCRIPTORS' ./Dynamic/valwar.txt >> PerfSummary.txt
@@ -91,18 +91,22 @@ fi
 echo " " >> PerfSummary.txt
 
 ## Obtains Dynamic Deterministic Information from DetermDyn.txt
-echo "-------------------Dynamic Deterministic Information---------------------" >> PerfSummary.txt
+echo "----------------   Dynamic Deterministic Information   ------------------" >> PerfSummary.txt
 echo " " >> PerfSummary.txt
 # Search for 'apt' and print out the following four lines to PerfSummary.txt
 grep -A4 'apt' ./Dynamic/DetermDyn.txt >> PerfSummary.txt
+if [ $? -ne 0 ]
+then 
+echo "No Dynamic Deterministic Information Found" >> PerfSummary.txt
+fi
 echo " " >> PerfSummary.txt
 
 ## Static Characteristics Summary
-echo "#############################Static Test#################################" >> PerfSummary.txt
+echo "##########################   Static Test   ##############################" >> PerfSummary.txt
 echo " " >> PerfSummary.txt
 
 ## Obtains Static Characteristics from results_0_0.txt
-echo "-----------------------Static Characteristics---------------------------" >> PerfSummary.txt
+echo "--------------------   Static Characteristics   ------------------------" >> PerfSummary.txt
 echo " " >> PerfSummary.txt
 # Tidies up information from results_0_0.txt and presents it in nice format
 max3dval2=`awk '/Max 3D Error/ {print $5}' ./Static/Plots/results_0_0.txt | sed 's/.*|//'`
@@ -113,7 +117,7 @@ echo "Mean 3D Error:      $mean3dval2 meters" >> PerfSummary.txt
 availabilityval2=`awk '/Availability/ {print $3}' ./Static/Plots/results_0_0.txt | sed 's/.*|//'`
 echo "Availability:       $availabilityval2 %" >> PerfSummary.txt
 # If there is no information from static characteristics, print that to PerfSummary.txt
-if [ $? -ne 0 ]
+if ! [ -v availabilityval2 ]
 then 
 echo "No Static Characteristics Found" >> PerfSummary.txt
 fi
@@ -127,11 +131,9 @@ Tolerance=0.2 #meters
 # Gleans numbers from both files and compares them
 var=`awk '/Mean 3D/ {print $4}' $File1`
 mean3d=`echo $var | sed 's/.*|//'`
-num=$mean3d
 varRef=`awk '/Mean 3D/ {print $4}' $File2`
 mean3dRef=`echo $varRef | sed 's/.*|//'`
-numRef=$mean3dRef
-rv=`bc -l <<< "$num > ($numRef + $Tolerance)"`
+rv=`bc -l <<< "$mean3d > ($mean3dRef + $Tolerance)"`
 # If new file is greater than reference file by more than the tolerance, warning is printed
 if [ $rv -eq 1 ]
 then
@@ -140,8 +142,10 @@ echo " " >> PerfSummary.txt
 fi
 
 ## Obtains Static Compiler Warnings from Wwarning.txt
-echo "-----------------------Static Compiler Warnings--------------------------" >> PerfSummary.txt
+echo "--------------------   Static Compiler Warnings   -----------------------" >> PerfSummary.txt
+# Search for Segmentation faults and print to PerfSummary.txt
 echo " " >> PerfSummary.txt
+grep 'Segmentation fault' ./Static/Wwarning.txt >> PerfSummary.txt
 # Search for 'warning:' and print to PerfSummary.txt
 grep 'warning:' ./Static/Wwarning.txt >> PerfSummary.txt
 # If there is no static compiler warning, print that to PerfSummary.txt
@@ -152,7 +156,7 @@ fi
 echo " " >> PerfSummary.txt
 
 ## Obtains Static Valgrind Information from valwar.txt
-echo "---------------------Static Valgrind Information-------------------------" >> PerfSummary.txt
+echo "------------------   Static Valgrind Information   ----------------------" >> PerfSummary.txt
 echo " " >> PerfSummary.txt
 # Search for 'FILE DESCRIPTORS' and print out line to PerfSummary.txt
 grep 'FILE DESCRIPTORS' ./Static/valwar.txt >> PerfSummary.txt
@@ -166,13 +170,17 @@ fi
 echo " " >> PerfSummary.txt
 
 ## Obtains Static Deterministic Information from DetermDyn.txt
-echo "-------------------Static Deterministic Information----------------------" >> PerfSummary.txt
+echo "----------------   Static Deterministic Information   -------------------" >> PerfSummary.txt
 echo " " >> PerfSummary.txt
 # Search for 'apt' and print out the following four lines to PerfSummary.txt
 grep -A4 'apt' ./Static/DetermStat.txt >> PerfSummary.txt
+if [ $? -ne 0 ]
+then 
+echo "No Static Deterministic Information Found" >> PerfSummary.txt
+fi
 echo " " >> PerfSummary.txt
 
 ## Prints Completion Message
 echo "#########################################################################" >> PerfSummary.txt
-echo "##############Performance Characteristics Summary Complete###############" >> PerfSummary.txt
+echo "###########   Performance Characteristics Summary Complete   ############" >> PerfSummary.txt
 echo "#########################################################################" >> PerfSummary.txt

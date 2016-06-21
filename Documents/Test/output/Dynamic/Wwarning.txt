@@ -1,0 +1,76 @@
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx....done (934 entries accepted, 0 rejected).
+Sorting entries..........done (9655 comparisons).
+Generating output file refman.ind....done (1405 lines written, 0 warnings).
+Output written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx....done (934 entries accepted, 0 rejected).
+Sorting entries..........done (9655 comparisons).
+Generating output file refman.ind....done (1405 lines written, 0 warnings).
+Output written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 257 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 257 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 77 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 77 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx....done (232 entries accepted, 0 rejected).
+Sorting entries.....done (2065 comparisons).
+Generating output file refman.ind....done (394 lines written, 0 warnings).
+Output written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx....done (232 entries accepted, 0 rejected).
+Sorting entries.....done (2065 comparisons).
+Generating output file refman.ind....done (394 lines written, 0 warnings).
+Output written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 0 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 0 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 0 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 0 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 0 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx...done (0 entries accepted, 0 rejected).
+Nothing written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx....done (86 entries accepted, 1174 rejected).
+Sorting entries....done (574 comparisons).
+Generating output file refman.ind....done (166 lines written, 0 warnings).
+Output written in refman.ind.
+Transcript written in refman.ilg.
+This is makeindex, version 2.15 [TeX Live 2013] (kpathsea + Thai support).
+Scanning input file refman.idx....done (86 entries accepted, 1174 rejected).
+Sorting entries....done (574 comparisons).
+Generating output file refman.ind....done (166 lines written, 0 warnings).
+Output written in refman.ind.
+Transcript written in refman.ilg.
