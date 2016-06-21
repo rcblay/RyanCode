@@ -37,11 +37,11 @@ extern int make_ISO_compiler_happy;
 
 #ifdef USEFILE
 
-#define APTOUT "timingaptBinaries_%d_%d.bin" //FAPT
-#define KMLOUT "data.kml" //FKML
-#define POSOUT "posBinaries.bin" //FPOS
-#define OBSOUT "obsBinaries.bin" //FOBS
-#define RNXOUT "timingrnxBinaries_%d_%d.bin" //FRNX
+#define APTOUT "timingaptBinaries_%d_%d.bin"
+#define KMLOUT "data.kml"
+#define POSOUT "posBinaries.bin"
+#define OBSOUT "obsBinaries.bin"
+#define RNXOUT "timingrnxBinaries_%d_%d.bin"
 
 #endif
 
