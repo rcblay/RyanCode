@@ -39,8 +39,8 @@ availabilityval=`awk '/Availability/ {print $3}' ./Dynamic/Plots/results_0_0.txt
 echo "Availability:       $availabilityval %" >> PerfSummary.txt
 # If there is no information from dynamic characteristics, print that to PerfSummary.txt
 if ! [ -v availabilityval ]
-then 
-echo "No Dynamic Characteristics Found" >> PerfSummary.txt
+	then
+	echo "No Dynamic Characteristics Found" >> PerfSummary.txt
 fi
 echo " " >> PerfSummary.txt
 
@@ -57,9 +57,9 @@ mean3dRef=`echo $varRef | sed 's/.*|//'`
 rv=`bc -l <<< "$mean3d > ($mean3dRef + $Tolerance)"`
 # If new file is greater than reference file by more than the tolerance, warning is printed
 if [ $rv -eq 1 ]
-then
-echo "***Warning: Mean 3D Error has increased by more than 20 cm***" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
+	then
+	echo "***Warning: Mean 3D Error has increased by more than 20 cm***" >> PerfSummary.txt
+	echo " " >> PerfSummary.txt
 fi
 
 ## Obtains Dynamic Compiler Warnings from Wwarning.txt
@@ -71,8 +71,8 @@ grep 'Segmentation fault' ./Dynamic/Wwarning.txt >> PerfSummary.txt
 grep 'warning:' ./Dynamic/Wwarning.txt >> PerfSummary.txt
 # If there is no dynamic compiler warning, print that to PerfSummary.txt
 if [ $? -ne 0 ]
-then 
-echo "No Dynamic Compiler Warnings Found" >> PerfSummary.txt
+	then 
+	echo "No Dynamic Compiler Warnings Found" >> PerfSummary.txt
 fi
 echo " " >> PerfSummary.txt
 
@@ -96,8 +96,8 @@ echo " " >> PerfSummary.txt
 # Search for 'apt' and print out the following four lines to PerfSummary.txt
 grep -A4 'apt' ./Dynamic/DetermDyn.txt >> PerfSummary.txt
 if [ $? -ne 0 ]
-then 
-echo "No Dynamic Deterministic Information Found" >> PerfSummary.txt
+	then 
+	echo "No Dynamic Deterministic Information Found" >> PerfSummary.txt
 fi
 echo " " >> PerfSummary.txt
 
@@ -118,8 +118,8 @@ availabilityval2=`awk '/Availability/ {print $3}' ./Static/Plots/results_0_0.txt
 echo "Availability:       $availabilityval2 %" >> PerfSummary.txt
 # If there is no information from static characteristics, print that to PerfSummary.txt
 if ! [ -v availabilityval2 ]
-then 
-echo "No Static Characteristics Found" >> PerfSummary.txt
+	then 
+	echo "No Static Characteristics Found" >> PerfSummary.txt
 fi
 echo " " >> PerfSummary.txt
 
@@ -136,9 +136,9 @@ mean3dRef=`echo $varRef | sed 's/.*|//'`
 rv=`bc -l <<< "$mean3d > ($mean3dRef + $Tolerance)"`
 # If new file is greater than reference file by more than the tolerance, warning is printed
 if [ $rv -eq 1 ]
-then
-echo "***Warning: Mean 3D Error has increased by more than 20 cm***" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
+	then
+	echo "***Warning: Mean 3D Error has increased by more than 20 cm***" >> PerfSummary.txt
+	echo " " >> PerfSummary.txt
 fi
 
 ## Obtains Static Compiler Warnings from Wwarning.txt
@@ -150,8 +150,8 @@ grep 'Segmentation fault' ./Static/Wwarning.txt >> PerfSummary.txt
 grep 'warning:' ./Static/Wwarning.txt >> PerfSummary.txt
 # If there is no static compiler warning, print that to PerfSummary.txt
 if [ $? -ne 0 ]
-then 
-echo "No Static Compiler Warnings Found" >> PerfSummary.txt
+	then 
+	echo "No Static Compiler Warnings Found" >> PerfSummary.txt
 fi
 echo " " >> PerfSummary.txt
 
@@ -164,8 +164,8 @@ grep 'FILE DESCRIPTORS' ./Static/valwar.txt >> PerfSummary.txt
 grep -A10 'LEAK SUMMARY' ./Static/valwar.txt >> PerfSummary.txt
 # If there is no static valgrind information, print that to PerfSummary.txt
 if [ $? -ne 0 ]
-then 
-echo "No Static Valgrind Information Found" >> PerfSummary.txt
+	then 
+	echo "No Static Valgrind Information Found" >> PerfSummary.txt
 fi
 echo " " >> PerfSummary.txt
 
@@ -175,8 +175,8 @@ echo " " >> PerfSummary.txt
 # Search for 'apt' and print out the following four lines to PerfSummary.txt
 grep -A4 'apt' ./Static/DetermStat.txt >> PerfSummary.txt
 if [ $? -ne 0 ]
-then 
-echo "No Static Deterministic Information Found" >> PerfSummary.txt
+	then 
+	echo "No Static Deterministic Information Found" >> PerfSummary.txt
 fi
 echo " " >> PerfSummary.txt
 

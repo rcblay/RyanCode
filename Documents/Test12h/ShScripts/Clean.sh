@@ -80,6 +80,11 @@ rm Wwarning.txt
 
 ## Will need to do same for arm test
 
+## Clean matlab files
+cd ../../../MATLAB
+rm AnalysisRNXScript1.m
+rm AnalysisRNXScript2.m
+rm AnalysisRNXScript3.m
 
 ## Clean completion message printed to terminal
 echo "Clean is finished"

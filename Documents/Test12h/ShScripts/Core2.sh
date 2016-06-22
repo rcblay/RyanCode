@@ -39,7 +39,7 @@ while [ true ]
 			echo "Not Deterministic!"
 			echo " " >> DetermDyn.txt
 			echo "New Pyxis Run not Deterministic with itself" >> DetermDyn.txt
-			sleep 5s
+			sleep 2s
 		fi
 		break
 	fi
@@ -80,7 +80,7 @@ while [ true ]
 			echo "Not Deterministic!"
 			echo " " >> DetermStat.txt
 			echo "New Pyxis Run not Deterministic with itself" >> DetermStat.txt
-			sleep 5s
+			sleep 2s
 		fi
 		break
 	fi
