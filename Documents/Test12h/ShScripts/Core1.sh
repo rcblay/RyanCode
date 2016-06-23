@@ -13,41 +13,42 @@
 # Output:  MATLAB plots, DetermARM.txt		#
 #################################################
 
-cd ../output/nfsshare
+loc=`pwd`
+
+cd /nfsshare
 
 ./pyxis
 
 while [ true ]
 	do
-	cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermARM.txt
-	cmp ./REFaptrnx/REFtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermARM.txt
-	if ! [ -s DetermARM.txt ]
+	cmp nightly-results/REFtimingaptBinaries_0_0.bin nightly-results/timingaptBinaries_0_0.bin > nightly-results/DetermARM.txt
+	cmp nightly-results/REFtimingrnxBinaries_0_0.bin nightly-results/timingrnxBinaries_0_0.bin >> nightly-results/DetermARM.txt
+	if ! [ -s nightly-results/DetermARM.txt ]
 		then
 		break
 	else
 		echo "Pyxis results different than Reference, running again"
-		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
-		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
+		mv nightly-results/timingaptBinaries_0_0.bin nightly-results/REVISEDtimingaptBinaries_0_0.bin
+		mv nightly-results/timingrnxBinaries_0_0.bin nightly-results/REVISEDtimingrnxBinaries_0_0.bin
 		./pyxis
-		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermARM2.txt
-		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermARM2.txt
-		if ! [ -s DetermARM2.txt ]
+		cmp nightly-results/REVISEDtimingaptBinaries_0_0.bin nightly-results/timingaptBinaries_0_0.bin > nightly-results/DetermARM2.txt
+		cmp nightly-results/REVISEDtimingrnxBinaries_0_0.bin nightly-results/timingrnxBinaries_0_0.bin >> nightly-results/DetermARM2.txt
+		if ! [ -s nightly-results/DetermARM2.txt ]
 			then
 			echo "Not Deterministic!"
-			echo " " >> DetermARM.txt
-			echo "New Pyxis Run not Deterministic with itself" >> DetermARM.txt
-			sleep 5s
-			exit
+			echo " " >> nightly-results/DetermARM.txt
+			echo "New Pyxis Run not Deterministic with itself" >> nightly-results/DetermARM.txt
+			sleep 2s
 		fi
 		break
 	fi
 done
-
-cd ../../MATLAB
+cd $loc
+cd ../MATLAB
 
 sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript1.m
-sed -i "/parentpath =/c\parentpath = '..\/output\/nfsshare\/';" AnalysisRNXScript1.m
-sed -i "/plotpath =/c\plotpath = '..\/output\/nfsshare\/Plots\/';" AnalysisRNXScript1.m
+sed -i "/parentpath =/c\parentpath = '\/nfsshare\/nightly-results\/';" AnalysisRNXScript1.m
+sed -i "/plotpath =/c\plotpath = '\/nfsshare\/nightly-results\/Plots\/';" AnalysisRNXScript1.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript1.m
 
 # Run matlab

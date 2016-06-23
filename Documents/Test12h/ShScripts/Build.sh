@@ -86,7 +86,9 @@ cp ../../../../conf_swc/conf_staticARM.h ../../src/conf/conf_swc.h
 
 cd ..
 make clean
-make arm 2> ../../../output/nfsshare/Wwarning.txt
+make arm 2> /nfsshare/nightly-results/Wwarning.txt
+
+mv ../bin/rcv/pyxis /nfsshare/
 
 ## Build Pyxis for long test (make sure this is placed after Static so parameters can stay the same)
 cd ../src/conf

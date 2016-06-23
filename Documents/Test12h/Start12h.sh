@@ -31,8 +31,8 @@ echo 'Pyxis Test was started at the local time of:' `date`
 
 ## Change to ShScripts directory and start Clean.sh then Build.sh
 cd ./ShScripts
-./Clean.sh
-sleep 2s
+gnome-terminal -x ./Clean.sh
+sleep 5s
 gnome-terminal -x ./Build.sh
 sleep 5s
 
@@ -45,7 +45,7 @@ done
 echo "Pyxis builds are complete"
 
 ## Starts PyxisTestCore1.sh
-#gnome-terminal -x ./Core1.sh
+gnome-terminal -x ./Core1.sh
 
 ## Starts Core2.sh
 gnome-terminal -x ./Core2.sh
