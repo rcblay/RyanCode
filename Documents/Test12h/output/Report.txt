@@ -11,20 +11,33 @@ Performance:
  
 - MAX2769 Sampfreq:6864e6 26min x86 StaticSim ----------------------------------
  
-Max 3D Error:	510.3406
-Mean 3D Error:	805.0305 meters
+Max 3D Error:		
+Mean 3D Error:		
+Availability:       	
  
 - MAX2769 Sampfreq:6864e6 52min x86 Static -------------------------------------
  
+Max 3D Error:		
+Mean 3D Error:		
+Availability:       	
  
 - MAX2769 Sampfreq:6864e6 52min ARM Static -------------------------------------
  
+Max 3D Error:		1866.0873  meters	 510.3406  meters	 510.3406  meters
+Mean 3D Error:		825.9099  meters	 805.0305  meters	 805.0305  meters
+Availability:       	69.3  %			 0  %			 0  %
  
 - MAX2769 Sampfreq:6864e6 34hours x86 StaticLong -------------------------------
  
+Max 3D Error:		1866.0873  meters	 510.3406  meters	 510.3406  meters
+Mean 3D Error:		825.9099  meters	 805.0305  meters	 805.0305  meters
+Availability:       	69.3  %			 0  %			 0  %
  
 - URSP-N210 Sampfreq:4e6 54min x86 Dynamic -------------------------------------
  
+Max 3D Error:		1866.0873  meters	 510.3406  meters	 510.3406  meters
+Mean 3D Error:		825.9099  meters	 805.0305  meters	 805.0305  meters
+Availability:       	69.3  %			 0  %			 0  %
 #########################################################################
 ###########   Performance Characteristics Summary Complete   ############
 #########################################################################
