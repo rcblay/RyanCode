@@ -1,0 +1,30 @@
+###########################   Small Weekend Report   ##########################
+ 
+Version:
+Compiler:
+ 
+Performance: 
+ 
+#############################   GPS-Performance   #############################
+ 
+			Actual			Comp Yesterday		Comp 2 Weeks
+ 
+- MAX2769 Sampfreq:6864e6 26min x86 StaticSim ----------------------------------
+ 
+Max 3D Error:	510.3406
+Mean 3D Error:	805.0305 meters
+ 
+- MAX2769 Sampfreq:6864e6 52min x86 Static -------------------------------------
+ 
+ 
+- MAX2769 Sampfreq:6864e6 52min ARM Static -------------------------------------
+ 
+ 
+- MAX2769 Sampfreq:6864e6 34hours x86 StaticLong -------------------------------
+ 
+ 
+- URSP-N210 Sampfreq:4e6 54min x86 Dynamic -------------------------------------
+ 
+#########################################################################
+###########   Performance Characteristics Summary Complete   ############
+#########################################################################
