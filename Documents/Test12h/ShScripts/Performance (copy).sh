@@ -83,6 +83,7 @@ echo " " >> Report.txt
 echo "- URSP-N210 Sampfreq:4e6 54min x86 Dynamic -------------------------------------" >> Report.txt
 echo " " >> Report.txt
 
+echo "0_0" >> Report.txt
 sed -i 's/|//g' Dynamic/Plots/resultOver_0_0.txt
 sed -i 's/"//g' Dynamic/Plots/resultOver_0_0.txt 
 max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Dynamic/Plots/resultOver_0_0.txt`
@@ -91,6 +92,29 @@ mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}'
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
 availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./Dynamic/Plots/resultOver_0_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
+
+echo " " >> Report.txt
+echo "1859_518400" >> Report.txt
+sed -i 's/|//g' Dynamic/Plots/resultOver_1859_518400.txt
+sed -i 's/"//g' Dynamic/Plots/resultOver_1859_518400.txt 
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Dynamic/Plots/resultOver_1859_518400.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Dynamic/Plots/resultOver_1859_518400.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./Dynamic/Plots/resultOver_1859_518400.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+
+echo " " >> Report.txt
+echo "1860_0" >> Report.txt
+sed -i 's/|//g' Dynamic/Plots/resultOver_1860_0.txt
+sed -i 's/"//g' Dynamic/Plots/resultOver_1860_0.txt 
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Dynamic/Plots/resultOver_1860_0.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Dynamic/Plots/resultOver_1860_0.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./Dynamic/Plots/resultOver_1860_0.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+echo " " >> Report.txt
 
 ## Prints Completion Message
 echo "#########################################################################" >> Report.txt
