@@ -1,0 +1,9 @@
+"| Results           "|"| Results           "|"| Results           "|timingrnxBinaries_0_0.bin               
+"| Max 2D Error      "|"1632.47 meters (0.37994 hours)          "|"1078.8056 meters                        "|1078.8056 meters                        
+"| Max 3D Error      "|"1866.0873 meters (0.1905 hours)         "|"510.3406 meters                         "|510.3406 meters                         
+"| Max Height Error  "|"705.4236 meters (0.53994 hours)         "|"-13.3426 meters                         "|-13.3426 meters                         
+"| Mean 2D           "|"824.7877 meters                         "|"818.5445 meters                         "|818.5445 meters                         
+"| 1 Std 2D          "|"324.9945 meters                         "|"307.7769 meters                         "|307.7769 meters                         
+"| Mean 3D           "|"825.9099 meters                         "|"805.0305 meters                         "|805.0305 meters                         
+"| 1 Std 3D          "|"325.8242 meters                         "|"277.0934 meters                         "|277.0934 meters                         
+"| Availability      "|"69.3 %                                  "|"0 %                                     "|0 %                                     
