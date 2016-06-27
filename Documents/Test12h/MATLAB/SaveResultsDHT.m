@@ -19,8 +19,8 @@ bodyStr = ['Max 2D Error: ', num2str(Results.maxError2D), ' meters ', ...
         Outagestr];
 body = bodyStr;
 
-ResY = importWeek('../RyanCode/Documents/Test12h/output/Dynamic/Refaptrnx/ResY.txt');
-ResW = importWeek('../RyanCode/Documents/Test12h/output/Dynamic/Refaptrnx/ResW.txt');
+ResY = importWeek('/home/dma/Documents/Test12h/output/Dynamic/Refaptrnx/ResY.txt');
+ResW = importWeek('/home/dma/Documents/Test12h/output/Dynamic/Refaptrnx/ResW.txt');
 
 %% Save results in table to output text file
 resultsstr = sprintf('%-20s','| Results');
@@ -90,7 +90,8 @@ bodyCell = {max3Dstr, max3Dstrdata, max3DstrdataY, max3DstrdataW; ...
         std2Dstr, std2Dstrdata, std2DstrdataY, std2DstrdataW; ...
         mean3Dstr, mean3Dstrdata, mean3DstrdataY, mean3DstrdataW; ...
         std3Dstr, std3Dstrdata, std3DstrdataY, std3DstrdataW; ...
-        availstr, availstrdata, availstrdataY, availstrdataW};
+        availstr, availstrdata, availstrdataY, availstrdataW; ...
+        Results.metadata(2) , '   ' , Results.metadata(3) , '   '};
 bodyTable = cell2table(bodyCell);     
 writetable(bodyTable,[plotFolder 'resultOverV' dateStr '.txt'],'Delimiter','|','WriteVariableNames',0);
 %% Send Rnx Email
