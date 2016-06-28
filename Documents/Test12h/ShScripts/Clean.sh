@@ -11,7 +11,11 @@
 # Output: none.					#
 #################################################
 
-cd ../output/Dynamic
+cd ../output
+
+rm times.txt
+
+cd ./Dynamic
 
 ## Remove all unnecessary files
 rm pyxis

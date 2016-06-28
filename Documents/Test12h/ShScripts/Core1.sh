@@ -19,7 +19,7 @@ cd /nfsshare
 
 # Save run time to times.txt
 echo "MAX2769 Sampfreq:6864e6 52min ARM Static" > ../../output/times.txt
-/usr/bin/time -f "%E" -a ../../output/times.txt ./pyxis
+/usr/bin/time -f "%E" -o ../../output/times.txt -a ./pyxis
 
 while [ true ]
 	do
