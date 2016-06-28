@@ -17,7 +17,9 @@ loc=`pwd`
 
 cd /nfsshare
 
-./pyxis
+# Save run time to times.txt
+echo "MAX2769 Sampfreq:6864e6 52min ARM Static" > ../../output/times.txt
+/usr/bin/time -f "%E" ./pyxis >> ../../output/times.txt
 
 while [ true ]
 	do
