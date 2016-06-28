@@ -26,7 +26,7 @@ echo "Performance: " >> Report.txt # NEEDS TO BE FILLED IN
 echo " " >> Report.txt
 echo "#############################   GPS-Performance   #############################" >> Report.txt
 echo " " >> Report.txt
-echo "			Actual			Comp Yesterday		Comp 2 Weeks" >> Report.txt
+echo "			Actual			Comp Yesterday		Comp 2 Weekend" >> Report.txt
 echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 26min x86 StaticSim ----------------------------------" >> Report.txt
 echo " " >> Report.txt
@@ -84,6 +84,32 @@ availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}'
 echo "Availability:       	$availabilityval" >> Report.txt
 
 echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
+echo "1859_518400" >> Report.txt
+sed -i 's/|//g' StaticLong/Plots/resultOver_1859_518400.txt
+sed -i 's/"//g' StaticLong/Plots/resultOver_1859_518400.txt 
+# Extracts the values needed and prints them to the report
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticLong/Plots/resultOver_1859_518400.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./StaticLong/Plots/resultOver_1859_518400.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOver_1859_518400.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+
+echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
+echo "1860_0" >> Report.txt
+sed -i 's/|//g' StaticLong/Plots/resultOver_1860_0.txt
+sed -i 's/"//g' StaticLong/Plots/resultOver_1860_0.txt
+# Extracts the values needed and prints them to the report
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticLong/Plots/resultOver_1860_0.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./StaticLong/Plots/resultOver_1860_0.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOver_1860_0.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+
+echo " " >> Report.txt
 echo "- URSP-N210 Sampfreq:4e6 54min x86 Dynamic -------------------------------------" >> Report.txt
 echo " " >> Report.txt
 # Cleans out the expanded resultOver_-_-.txt file of | and " symbols
@@ -96,32 +122,6 @@ echo "Max 3D Error:		$max3dval" >> Report.txt
 mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Dynamic/Plots/resultOver_0_0.txt`
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
 availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./Dynamic/Plots/resultOver_0_0.txt`
-echo "Availability:       	$availabilityval" >> Report.txt
-
-echo " " >> Report.txt
-# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
-echo "1859_518400" >> Report.txt
-sed -i 's/|//g' Dynamic/Plots/resultOver_1859_518400.txt
-sed -i 's/"//g' Dynamic/Plots/resultOver_1859_518400.txt 
-# Extracts the values needed and prints them to the report
-max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Dynamic/Plots/resultOver_1859_518400.txt`
-echo "Max 3D Error:		$max3dval" >> Report.txt
-mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Dynamic/Plots/resultOver_1859_518400.txt`
-echo "Mean 3D Error:		$mean3dval" >> Report.txt
-availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./Dynamic/Plots/resultOver_1859_518400.txt`
-echo "Availability:       	$availabilityval" >> Report.txt
-
-echo " " >> Report.txt
-# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
-echo "1860_0" >> Report.txt
-sed -i 's/|//g' Dynamic/Plots/resultOver_1860_0.txt
-sed -i 's/"//g' Dynamic/Plots/resultOver_1860_0.txt
-# Extracts the values needed and prints them to the report
-max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Dynamic/Plots/resultOver_1860_0.txt`
-echo "Max 3D Error:		$max3dval" >> Report.txt
-mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Dynamic/Plots/resultOver_1860_0.txt`
-echo "Mean 3D Error:		$mean3dval" >> Report.txt
-availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./Dynamic/Plots/resultOver_1860_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 
@@ -137,12 +137,93 @@ echo "------------------------------   Deterministic   -------------------------
 echo " " >> Report.txt
 echo " Not deterministic tests are:" >> Report.txt
 echo " " >> Report.txt
-if [ -s ]
+# Check if either rnx or apt are un-deterministic
+if [ -s StaticSim/DetermStatSim.txt ]
+	then 
+	if [ -s StaticSim/DetermStatSim2.txt ]
+		then
+		if [ grep -q -i "apt" StaticSim/DetermStatSim2.txt ] && [ grep -q -i "rnx" StaticSim/DetermStatSim2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" StaticSim/DetermStatSim2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	rnx" >> Report.txt
+		fi
+	fi
+fi
+
+if [ -s Static/DetermStat.txt ]
+	then 
+	if [ -s Static/DetermStat2.txt ]
+		then
+		if [ grep -q -i "apt" Static/DetermStat2.txt ] && [ grep -q -i "rnx" Static/DetermStat2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min x86 Static	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" Static/DetermStat2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min x86 Static	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 52min x86 Static	rnx" >> Report.txt
+		fi
+	fi
+fi
+
+if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
+	then 
+	if [ -s /6TB/nfsshare/nightly-results/DetermARM2.txt ]
+		then
+		if [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM2.txt ] && [ grep -q -i "rnx" /6TB/nfsshare/nightly-results/DetermARM2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	rnx" >> Report.txt
+		fi
+	fi
+fi
+
+if [ -s StaticLong/DetermStatL.txt ]
+	then 
+	if [ -s StaticLong/DetermStatL2.txt ]
+		then
+		if [ grep -q -i "apt" StaticLong/DetermStatL2.txt ] && [ grep -q -i "rnx" StaticLong/DetermStatL2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" StaticLong/DetermStat2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	rnx" >> Report.txt
+		fi
+	fi
+fi
+
+if [ -s Dynamic/DetermDyn.txt ]
+	then 
+	if [ -s Dynamic/DetermDyn2.txt ]
+		then
+		if [ grep -q -i "apt" Dynamic/DetermDyn2.txt ] && [ grep -q -i "rnx" Dynamic/DetermDyn2.txt ]
+			then
+			echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" Dynamic/DetermDyn2.txt ]
+			then
+			echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic	apt" >> Report.txt
+		else
+			echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic	rnx" >> Report.txt
+		fi
+	fi
+fi
 
 echo " " >> Report.txt
 echo "------------------------------   GCC Warnings   -------------------------------" >> Report.txt
 echo " " >> Report.txt
-# NEEDS TO BE FILLED IN
+
+
+
 echo " " >> Report.txt
 echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
 echo " " >> Report.txt

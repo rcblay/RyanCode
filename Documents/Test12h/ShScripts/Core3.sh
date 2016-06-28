@@ -14,10 +14,12 @@
 #################################################
 
 ## Execute Pyxis with Valgrind
-cd ../output/StaticSim
+
+cd ../output/StaticLong
+./pyxis
+cd ../StaticSim
 echo "MAX2769 Sampfreq:6864e6 26min x86 StaticSim" >> ../times.txt
-#valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis
-/usr/bin/time -f "%E" -o ../times.txt -a ./pyxis
+./pyxis
 
 ## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
 cd ../../MATLAB
