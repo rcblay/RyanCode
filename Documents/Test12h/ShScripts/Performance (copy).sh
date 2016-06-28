@@ -132,6 +132,61 @@ echo " " >> Report.txt
 echo "--------------------------------   Run Times   --------------------------------" >> Report.txt
 echo " " >> Report.txt
 # NEEDS TO BE FILLED IN
+
+echo -n "MAX2769 Sampfreq:6864e6 52min ARM Static:		" >> Report.txt
+RunTime='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' times.txt'
+RTf=`../ShScripts/timeFormat.sh $RunTime`
+RunTimeY='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' ytimes.txt'
+diffyRunTime=expr $RunTimeY - $RunTime
+diffyRTf=`../ShScripts/timeFormat.sh $diffyRunTime`
+echo -n "$RTf		$diffyRTf		" >> Report.txt
+RunTimeW='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' wtimes.txt'
+diffwRunTime=expr $RunTimeW - $RunTime
+diffwRTf=`../ShScripts/timeFormat.sh $diffwRunTime`
+echo "$diffwRTf" >> Report.txt
+echo " " >> Report.txt
+
+echo -n "URSP-N210 Sampfreq:4e6 54min x86 Dynamic:		" >> Report.txt
+RunTime='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' times.txt'
+RTf=`../ShScripts/timeFormat.sh $RunTime`
+RunTimeY='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' ytimes.txt'
+diffyRunTime=expr $RunTimeY - $RunTime
+diffyRTf=`../ShScripts/timeFormat.sh $diffyRunTime`
+echo -n "$RTf		$diffyRTf		" >> Report.txt
+RunTimeW='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' wtimes.txt'
+diffwRunTime=expr $RunTimeW - $RunTime
+diffwRTf=`../ShScripts/timeFormat.sh $diffwRunTime`
+echo "$diffwRTf" >> Report.txt
+echo " " >> Report.txt
+
+echo -n "MAX2769 Sampfreq:6864e6 52min Static:		" >> Report.txt
+RunTime='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' times.txt'
+RTf=`../ShScripts/timeFormat.sh $RunTime`
+RunTimeY='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' ytimes.txt'
+diffyRunTime=expr $RunTimeY - $RunTime
+diffyRTf=`../ShScripts/timeFormat.sh $diffyRunTime`
+echo -n "$RTf		$diffyRTf		" >> Report.txt
+RunTimeW='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' wtimes.txt'
+diffwRunTime=expr $RunTimeW - $RunTime
+diffwRTf=`../ShScripts/timeFormat.sh $diffwRunTime`
+echo "$diffwRTf" >> Report.txt
+echo " " >> Report.txt
+
+echo -n "MAX2769 Sampfreq:6864e6 26min x86 StaticSim:		" >> Report.txt
+RunTime='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' times.txt'
+RTf=`../ShScripts/timeFormat.sh $RunTime`
+RunTimeY='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' ytimes.txt'
+diffyRunTime=expr $RunTimeY - $RunTime
+diffyRTf=`../ShScripts/timeFormat.sh $diffyRunTime`
+echo -n "$RTf		$diffyRTf		" >> Report.txt
+RunTimeW='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' wtimes.txt'
+diffwRunTime=expr $RunTimeW - $RunTime
+diffwRTf=`../ShScripts/timeFormat.sh $diffwRunTime`
+echo "$diffwRTf" >> Report.txt
+echo " " >> Report.txt
+
+##### NEED STATIC LONG
+
 echo " " >> Report.txt
 echo "------------------------------   Deterministic   ------------------------------" >> Report.txt
 echo " " >> Report.txt

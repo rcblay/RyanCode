@@ -16,8 +16,11 @@
 ## Execute Pyxis with Valgrind
 cd ../output/StaticSim
 echo "MAX2769 Sampfreq:6864e6 26min x86 StaticSim" >> ../times.txt
-#valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis
-/usr/bin/time -f "%E" -o ../times.txt -a ./pyxis
+STARTTIME=$(date +%s)
+./pyxis &> screenout.txt
+ENDTIME=$(date +%s)
+diff=$(($ENDTIME-$STARTTIME))
+echo "$diff" >> ../times.txt
 
 ## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
 cd ../../MATLAB
