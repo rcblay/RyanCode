@@ -19,7 +19,11 @@ cd /nfsshare
 
 # Save run time to times.txt
 echo "MAX2769 Sampfreq:6864e6 52min ARM Static" > ../../output/times.txt
-/usr/bin/time -f "%E" -o ../../output/times.txt -a ./pyxis
+STARTTIME=$(date +%s)
+./pyxis
+ENDTIME=$(date +%s)
+diff=$(($ENDTIME-$STARTTIME))
+echo "$diff" >> ../../output/times.txt
 
 while [ true ]
 	do

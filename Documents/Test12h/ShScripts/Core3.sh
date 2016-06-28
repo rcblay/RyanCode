@@ -14,12 +14,13 @@
 #################################################
 
 ## Execute Pyxis with Valgrind
-
-cd ../output/StaticLong
-./pyxis
-cd ../StaticSim
+cd ../output/StaticSim
 echo "MAX2769 Sampfreq:6864e6 26min x86 StaticSim" >> ../times.txt
-./pyxis
+STARTTIME=$(date +%s)
+./pyxis &> screenout.txt
+ENDTIME=$(date +%s)
+diff=$(($ENDTIME-$STARTTIME))
+echo "$diff" >> ../times.txt
 
 ## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
 cd ../../MATLAB
