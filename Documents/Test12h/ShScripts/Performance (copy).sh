@@ -30,9 +30,10 @@ echo "			Actual			Comp Yesterday		Comp 2 Weeks" >> Report.txt
 echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 26min x86 StaticSim ----------------------------------" >> Report.txt
 echo " " >> Report.txt
-
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
 sed -i 's/|//g' StaticSim/Plots/resultOver_0_0.txt
 sed -i 's/"//g' StaticSim/Plots/resultOver_0_0.txt 
+# Extracts the values needed and prints them to the report
 max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticSim/Plots/resultOver_0_0.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
 mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./StaticSim/Plots/resultOver_0_0.txt`
@@ -43,9 +44,10 @@ echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 52min x86 Static -------------------------------------" >> Report.txt
 echo " " >> Report.txt
-
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
 sed -i 's/|//g' Static/Plots/resultOver_0_0.txt
-sed -i 's/"//g' Static/Plots/resultOver_0_0.txt 
+sed -i 's/"//g' Static/Plots/resultOver_0_0.txt
+# Extracts the values needed and prints them to the report
 max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Static/Plots/resultOver_0_0.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
 mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Static/Plots/resultOver_0_0.txt`
@@ -56,9 +58,10 @@ echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 52min ARM Static -------------------------------------" >> Report.txt
 echo " " >> Report.txt
-
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
 sed -i 's/|//g' /6TB/nfsshare/nightly-results/resultOver_0_0.txt
 sed -i 's/"//g' /6TB/nfsshare/nightly-results/resultOver_0_0.txt 
+# Extracts the values needed and prints them to the report
 max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' /6TB/nfsshare/nightly-results/resultOver_0_0.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
 mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' /6TB/nfsshare/nightly-results/resultOver_0_0.txt`
@@ -69,9 +72,10 @@ echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 34hours x86 StaticLong -------------------------------" >> Report.txt
 echo " " >> Report.txt
-
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
 sed -i 's/|//g' StaticLong/Plots/resultOver_0_0.txt
-sed -i 's/"//g' StaticLong/Plots/resultOver_0_0.txt 
+sed -i 's/"//g' StaticLong/Plots/resultOver_0_0.txt
+# Extracts the values needed and prints them to the report
 max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticLong/Plots/resultOver_0_0.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
 mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./StaticLong/Plots/resultOver_0_0.txt`
@@ -82,10 +86,11 @@ echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 echo "- URSP-N210 Sampfreq:4e6 54min x86 Dynamic -------------------------------------" >> Report.txt
 echo " " >> Report.txt
-
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
 echo "0_0" >> Report.txt
 sed -i 's/|//g' Dynamic/Plots/resultOver_0_0.txt
-sed -i 's/"//g' Dynamic/Plots/resultOver_0_0.txt 
+sed -i 's/"//g' Dynamic/Plots/resultOver_0_0.txt
+# Extracts the values needed and prints them to the report
 max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Dynamic/Plots/resultOver_0_0.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
 mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Dynamic/Plots/resultOver_0_0.txt`
@@ -94,9 +99,11 @@ availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}'
 echo "Availability:       	$availabilityval" >> Report.txt
 
 echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
 echo "1859_518400" >> Report.txt
 sed -i 's/|//g' Dynamic/Plots/resultOver_1859_518400.txt
 sed -i 's/"//g' Dynamic/Plots/resultOver_1859_518400.txt 
+# Extracts the values needed and prints them to the report
 max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Dynamic/Plots/resultOver_1859_518400.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
 mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Dynamic/Plots/resultOver_1859_518400.txt`
@@ -105,9 +112,11 @@ availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}'
 echo "Availability:       	$availabilityval" >> Report.txt
 
 echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
 echo "1860_0" >> Report.txt
 sed -i 's/|//g' Dynamic/Plots/resultOver_1860_0.txt
-sed -i 's/"//g' Dynamic/Plots/resultOver_1860_0.txt 
+sed -i 's/"//g' Dynamic/Plots/resultOver_1860_0.txt
+# Extracts the values needed and prints them to the report
 max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Dynamic/Plots/resultOver_1860_0.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
 mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Dynamic/Plots/resultOver_1860_0.txt`
@@ -116,9 +125,30 @@ availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}'
 echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 
+echo " " >> Report.txt
+echo "############################   Code-Performance   #############################" >> Report.txt
+
+echo " " >> Report.txt
+echo "--------------------------------   Run Times   --------------------------------" >> Report.txt
+echo " " >> Report.txt
+# NEEDS TO BE FILLED IN
+echo " " >> Report.txt
+echo "------------------------------   Deterministic   ------------------------------" >> Report.txt
+echo " " >> Report.txt
+echo " Not deterministic tests are:" >> Report.txt
+echo " " >> Report.txt
+if [ -s ]
+
+echo " " >> Report.txt
+echo "------------------------------   GCC Warnings   -------------------------------" >> Report.txt
+echo " " >> Report.txt
+# NEEDS TO BE FILLED IN
+echo " " >> Report.txt
+echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
+echo " " >> Report.txt
+# NEEDS TO BE FILLED IN
+echo " " >> Report.txt
 ## Prints Completion Message
-echo "#########################################################################" >> Report.txt
 echo "###########   Performance Characteristics Summary Complete   ############" >> Report.txt
-echo "#########################################################################" >> Report.txt
 
 sleep 5s
