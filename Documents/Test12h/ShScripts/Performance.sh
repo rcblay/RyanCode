@@ -145,6 +145,8 @@ mv StaticLong/Plots/Results_1859_518400.bin StaticLong/Plots/ResY2.txt
 mv StaticLong/Plots/Results_1860_0.bin StaticLong/Plots/ResY3.txt
 mv Dynamic/Plots/Results_0_0.txt Dynamic/Plots/ResY.txt
 
+
+
 echo " " >> Report.txt
 echo "############################   Code-Performance   #############################" >> Report.txt
 echo " " >> Report.txt
@@ -216,8 +218,10 @@ diffwRunTime2=`expr $RunTimeW2 - $RunTime2`
 diffwRTf2=`../ShScripts/timeFormat.sh $diffwRunTime2`
 echo "$diffwRTf2" >> Report.txt
 echo " " >> Report.txt
-
+# Move current times.txt and make it new ytimes.txt
 mv times.txt ytimes.txt
+
+
 
 echo " " >> Report.txt
 echo "------------------------------   Deterministic   ------------------------------" >> Report.txt
@@ -289,41 +293,52 @@ fi
 echo " " >> Report.txt
 echo "------------------------------   GCC Warnings   -------------------------------" >> Report.txt
 echo " " >> Report.txt
-
 echo " Files with GCC warnings:" >> Report.txt
 echo "" >> Report.txt
+## GCC WARNINGS STATICSIM
+if [ tail StaticSim/screenout.txt | grep -q -i "Segmentation Fault" ]
+	then 
+	echo " MAX2769 Sampfreq:6864e6 26min x86 StaticSim	Segmentation Fault" >> Report.txt
+fi
+## GCC WARNINGS STATIC
 grep "warning:" Static/stderr.txt > Static/Wwarning.txt
-if [ -s Static/Wwarning.txt ]
+if [ -s Static/Wwarning.txt || tail Static/screenout.txt | grep -q -i "Segmentation Fault" ]
 	then
-	if [ grep -q -i "Segmentation Fault" Static/Wwarning.txt ]
+	if [ tail Static/screenout.txt | grep -q -i "Segmentation Fault" ]
 		then
-		echo " MAX2769 Sampfreq:6864e6 52min x86 Static   Segmentation Fault" >> Report.txt
+		echo " MAX2769 Sampfreq:6864e6 52min x86 Static		Segmentation Fault" >> Report.txt
 	else
 		echo "	MAX2769 Sampfreq:6864e6 52min x86 Static" >> Report.txt
 	fi
 fi
-
+## GCC WARNINGS STATIC ARM
 grep "warning:" /6TB/nfsshare/nightly-results/stderr.txt > /6TB/nfsshare/nightly-results/Wwarning.txt
-if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt ]
+if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt || tail /6TB/nfsshare/nightly-results/screenout.txt | grep -q -i "Segmentation Fault" ]
 	then
-	if [ grep -q -i "Segmentation Fault" /6TB/nfsshare/nightly-results/Wwarning.txt ]
+	if [ tail /6TB/nfsshare/nightly-results/screenout.txt | grep -q -i "Segmentation Fault" ]
 		then
-		echo " MAX2769 Sampfreq:6864e6 52min ARM Static   Segmentation Fault" >> Report.txt
+		echo " MAX2769 Sampfreq:6864e6 52min ARM Static		Segmentation Fault" >> Report.txt
 	else
 		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static" >> Report.txt
 	fi
 fi
-
+## GCC WARNINGS STATICLONG
+if [ tail StaticLong/screenout.txt | grep -q -i "Segmentation Fault" ]
+	then 
+	echo " MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	Segmentation Fault" >> Report.txt
+fi
+## GCC WARNINGS DYNAMIC
 grep "warning:" Dynamic/stderr.txt > Dynamic/Wwarning.txt
-if [ -s Dynamic/Wwarning.txt ]
+if [ -s Dynamic/Wwarning.txt || tail Dynamic/screenout.txt | grep -q -i "Segmentation Fault" ]
 	then
-	if [ grep -q -i "Segmentation Fault" Dynamic/Wwarning.txt ]
+	if [ tail Dynamic/screenout.txt | grep -q -i "Segmentation Fault" ]
 		then
-		echo " URSP-N210 Sampfreq:4e6 54min x86 Dynamic   Segmentation Fault" >> Report.txt
+		echo " URSP-N210 Sampfreq:4e6 54min x86 Dynamic		Segmentation Fault" >> Report.txt
 	else
 		echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
 	fi
 fi
+
 
 
 echo " " >> Report.txt
