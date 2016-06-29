@@ -15,15 +15,16 @@
 
 loc=`pwd`
 
-cd /nfsshare
+cd /6TB/nfsshare
 
 # Save run time to times.txt
 STARTTIME=$(date +%s)
 ./pyxis
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
-echo "MAX2769 Sampfreq:6864e6 52min ARM Static: $diff" >> ../../output/times.txt
-
+cd $loc
+echo "MAX2769 Sampfreq:6864e6 52min ARM Static: $diff" >> ../output/times.txt
+cd /6TB/nfsshare
 while [ true ]
 	do
 	cmp nightly-results/REFtimingaptBinaries_0_0.bin nightly-results/timingaptBinaries_0_0.bin > nightly-results/DetermARM.txt
