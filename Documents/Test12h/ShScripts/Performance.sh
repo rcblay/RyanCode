@@ -15,175 +15,297 @@
 
 ## Test Characteristics Summary
 cd ../output
-echo "#########################################################################" > PerfSummary.txt
-echo "####################   Performance Characteristics   ####################" >> PerfSummary.txt
-echo "#########################################################################" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
+echo "###########################   Small Weekend Report   ##########################" > Report.txt
+echo " " >> Report.txt
+echo "Version:" >> Report.txt # NEEDS TO BE FILLED IN
+echo "Compiler:" >> Report.txt # NEEDS TO BE FILLED IN
 # Takes start and stop information located in Summary.txt 
 grep -A8 'Pyxis Test' ./Summary.txt >> PerfSummary.txt
-echo " " >> PerfSummary.txt
-echo "###########################   Dynamic Test   ############################" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
+echo " " >> Report.txt
+echo "Performance: " >> Report.txt # NEEDS TO BE FILLED IN
 
 
-## Obtains Dynamic Characteristics from results_0_0.txt
-echo "---------------------   Dynamic Characteristics   ----------------------" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
-# Tidies up information from results_0_0.txt and presents it in nice format
-max3dval=`awk '/Max 3D Error/ {print $5}' ./Dynamic/Plots/results_0_0.txt | sed 's/.*|//'`
-timemax3d=`awk '/Max 3D Error/ {print $7 " " $8}' ./Dynamic/Plots/results_0_0.txt`
-echo "Max 3D Error:       $max3dval meters $timemax3d" >> PerfSummary.txt
-mean3dval=`awk '/Mean 3D/ {print $4}' ./Dynamic/Plots/results_0_0.txt | sed 's/.*|//'`
-echo "Mean 3D Error:      $mean3dval meters" >> PerfSummary.txt
-availabilityval=`awk '/Availability/ {print $3}' ./Dynamic/Plots/results_0_0.txt | sed 's/.*|//'`
-echo "Availability:       $availabilityval %" >> PerfSummary.txt
-# If there is no information from dynamic characteristics, print that to PerfSummary.txt
-if ! [ -v availabilityval ]
+
+echo " " >> Report.txt
+echo "#############################   GPS-Performance   #############################" >> Report.txt
+echo " " >> Report.txt
+echo "			Actual			Comp Yesterday		Comp 2 Weekend" >> Report.txt
+## GPS PERFORMANCE STATICSIM
+echo " " >> Report.txt
+echo "- MAX2769 Sampfreq:6864e6 26min x86 StaticSim ----------------------------------" >> Report.txt
+echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
+sed -i 's/|//g' StaticSim/Plots/resultOver_0_0.txt
+sed -i 's/"//g' StaticSim/Plots/resultOver_0_0.txt 
+# Extracts the values needed and prints them to the report
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticSim/Plots/resultOver_0_0.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./StaticSim/Plots/resultOver_0_0.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' /StaticSim/Plots/resultOver_0_0.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+## GPS PERFORMANCE STATIC
+echo " " >> Report.txt
+echo "- MAX2769 Sampfreq:6864e6 52min x86 Static -------------------------------------" >> Report.txt
+echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
+sed -i 's/|//g' Static/Plots/resultOver_0_0.txt
+sed -i 's/"//g' Static/Plots/resultOver_0_0.txt
+# Extracts the values needed and prints them to the report
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Static/Plots/resultOver_0_0.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Static/Plots/resultOver_0_0.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./Static/Plots/resultOver_0_0.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+## GPS PERFORMANCE ARM STATIC
+echo " " >> Report.txt
+echo "- MAX2769 Sampfreq:6864e6 52min ARM Static -------------------------------------" >> Report.txt
+echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
+sed -i 's/|//g' /6TB/nfsshare/nightly-results/resultOver_0_0.txt
+sed -i 's/"//g' /6TB/nfsshare/nightly-results/resultOver_0_0.txt 
+# Extracts the values needed and prints them to the report
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' /6TB/nfsshare/nightly-results/resultOver_0_0.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' /6TB/nfsshare/nightly-results/resultOver_0_0.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' /6TB/nfsshare/nightly-results/resultOver_0_0.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+## GPS PERFORMANCE STATICLONG
+echo " " >> Report.txt
+echo "- MAX2769 Sampfreq:6864e6 34hours x86 StaticLong -------------------------------" >> Report.txt
+echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
+sed -i 's/|//g' StaticLong/Plots/resultOver_0_0.txt
+sed -i 's/"//g' StaticLong/Plots/resultOver_0_0.txt
+# Extracts the values needed and prints them to the report
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticLong/Plots/resultOver_0_0.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./StaticLong/Plots/resultOver_0_0.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOver_0_0.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+## STATIC LONG CONTINUED 1859_518400
+echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
+echo "1859_518400" >> Report.txt
+sed -i 's/|//g' StaticLong/Plots/resultOver_1859_518400.txt
+sed -i 's/"//g' StaticLong/Plots/resultOver_1859_518400.txt 
+# Extracts the values needed and prints them to the report
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticLong/Plots/resultOver_1859_518400.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./StaticLong/Plots/resultOver_1859_518400.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOver_1859_518400.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+## STATIC LONG CONTINUED 1860_0
+echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
+echo "1860_0" >> Report.txt
+sed -i 's/|//g' StaticLong/Plots/resultOver_1860_0.txt
+sed -i 's/"//g' StaticLong/Plots/resultOver_1860_0.txt
+# Extracts the values needed and prints them to the report
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticLong/Plots/resultOver_1860_0.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./StaticLong/Plots/resultOver_1860_0.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOver_1860_0.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+## GPS PERFORMANCE DYNAMIC
+echo " " >> Report.txt
+echo "- URSP-N210 Sampfreq:4e6 54min x86 Dynamic -------------------------------------" >> Report.txt
+echo " " >> Report.txt
+# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
+echo "0_0" >> Report.txt
+sed -i 's/|//g' Dynamic/Plots/resultOver_0_0.txt
+sed -i 's/"//g' Dynamic/Plots/resultOver_0_0.txt
+# Extracts the values needed and prints them to the report
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./Dynamic/Plots/resultOver_0_0.txt`
+echo "Max 3D Error:		$max3dval" >> Report.txt
+mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}' ./Dynamic/Plots/resultOver_0_0.txt`
+echo "Mean 3D Error:		$mean3dval" >> Report.txt
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./Dynamic/Plots/resultOver_0_0.txt`
+echo "Availability:       	$availabilityval" >> Report.txt
+echo " " >> Report.txt
+
+
+
+echo " " >> Report.txt
+echo "############################   Code-Performance   #############################" >> Report.txt
+echo " " >> Report.txt
+echo "--------------------------------   Run Times   --------------------------------" >> Report.txt
+echo " " >> Report.txt
+echo "						Actual	Comp Yesterday	Comp Last Week" >> Report.txt
+## CODE PERFORMANCE STATICSIM
+echo -n "MAX2769 Sampfreq:6864e6 26min x86 StaticSim:	" >> Report.txt
+RunTime4='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' times.txt'
+RTf4=`../ShScripts/timeFormat.sh $RunTime4`
+RunTimeY4='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' ytimes.txt'
+diffyRunTime4=expr $RunTimeY4 - $RunTime4
+diffyRTf4=`../ShScripts/timeFormat.sh $diffyRunTime4`
+echo -n "$RTf4	$diffyRTf4      " >> Report.txt
+RunTimeW4='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' wtimes.txt'
+diffwRunTime4=expr $RunTimeW4 - $RunTime4
+diffwRTf4=`../ShScripts/timeFormat.sh $diffwRunTime4`
+echo "$diffwRTf4" >> Report.txt
+echo " " >> Report.txt
+## CODE PERFORMANCE STATIC
+echo -n "MAX2769 Sampfreq:6864e6 52min Static:	" >> Report.txt
+RunTime3='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' times.txt'
+RTf3=`../ShScripts/timeFormat.sh $RunTime3`
+RunTimeY3='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' ytimes.txt'
+diffyRunTime3=expr $RunTimeY3 - $RunTime3
+diffyRTf3=`../ShScripts/timeFormat.sh $diffyRunTime3`
+echo -n "$RTf3	$diffyRTf3      " >> Report.txt
+RunTimeW3='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' wtimes.txt'
+diffwRunTime3=expr $RunTimeW - $RunTime3
+diffwRTf3=`../ShScripts/timeFormat.sh $diffwRunTime3`
+echo "$diffwRTf3" >> Report.txt
+echo " " >> Report.txt
+## CODE PERFORMANCE ARM STATIC
+echo -n "MAX2769 Sampfreq:6864e6 52min ARM Static:	" >> Report.txt
+RunTime1='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' times.txt'
+RTf=`../ShScripts/timeFormat.sh $RunTime1`
+RunTimeY1='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' ytimes.txt'
+diffyRunTime1=expr $RunTimeY1 - $RunTime1
+diffyRTf1=`../ShScripts/timeFormat.sh $diffyRunTime1`
+echo -n "$RTf1	$diffyRTf1      " >> Report.txt
+RunTimeW1='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' wtimes.txt'
+diffwRunTime1=expr $RunTimeW1 - $RunTime1
+diffwRTf1=`../ShScripts/timeFormat.sh $diffwRunTime1`
+echo "$diffwRTf1" >> Report.txt
+echo " " >> Report.txt
+## CODE PERFORMANCE DYNAMIC
+echo -n "URSP-N210 Sampfreq:4e6 54min x86 Dynamic:	" >> Report.txt
+RunTime2='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' times.txt'
+RTf2=`../ShScripts/timeFormat.sh $RunTime2`
+RunTimeY2='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' ytimes.txt'
+diffyRunTime2=expr $RunTimeY2 - $RunTime2
+diffyRTf2=`../ShScripts/timeFormat.sh $diffyRunTime2`
+echo -n "$RTf2	$diffyRTf2      " >> Report.txt
+RunTimeW2='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' wtimes.txt'
+diffwRunTime2=expr $RunTimeW2 - $RunTime2
+diffwRTf2=`../ShScripts/timeFormat.sh $diffwRunTime2`
+echo "$diffwRTf2" >> Report.txt
+echo " " >> Report.txt
+##### NEED STATIC LONG
+
+
+
+echo " " >> Report.txt
+echo "------------------------------   Deterministic   ------------------------------" >> Report.txt
+echo " " >> Report.txt
+echo " Not deterministic tests are:" >> Report.txt
+echo " " >> Report.txt
+## DETERMINISTIC STATICSIM
+# Check if either rnx or apt are un-deterministic
+if [ -s StaticSim/DetermStatSim.txt ]
+	then 
+	if [ -s StaticSim/DetermStatSim2.txt ]
+		then
+		if [ grep -q -i "apt" StaticSim/DetermStatSim2.txt ] && [ grep -q -i "rnx" StaticSim/DetermStatSim2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" StaticSim/DetermStatSim2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	rnx" >> Report.txt
+		fi
+	fi
+fi
+## DETERMINISTIC STATIC
+if [ -s Static/DetermStat.txt ]
+	then 
+	if [ -s Static/DetermStat2.txt ]
+		then
+		if [ grep -q -i "apt" Static/DetermStat2.txt ] && [ grep -q -i "rnx" Static/DetermStat2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min x86 Static	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" Static/DetermStat2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min x86 Static	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 52min x86 Static	rnx" >> Report.txt
+		fi
+	fi
+fi
+## DETERMINISTIC ARM STATIC
+if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
+	then 
+	if [ -s /6TB/nfsshare/nightly-results/DetermARM2.txt ]
+		then
+		if [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM2.txt ] && [ grep -q -i "rnx" /6TB/nfsshare/nightly-results/DetermARM2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	rnx" >> Report.txt
+		fi
+	fi
+fi
+## DETERMINISTIC STATICLONG
+if [ -s StaticLong/DetermStatL.txt ]
+	then 
+	if [ -s StaticLong/DetermStatL2.txt ]
+		then
+		if [ grep -q -i "apt" StaticLong/DetermStatL2.txt ] && [ grep -q -i "rnx" StaticLong/DetermStatL2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" StaticLong/DetermStat2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	rnx" >> Report.txt
+		fi
+	fi
+fi
+## DETERMINSITIC DYNAMIC
+if [ -s Dynamic/DetermDyn.txt ]
+	then 
+	if [ -s Dynamic/DetermDyn2.txt ]
+		then
+		if [ grep -q -i "apt" Dynamic/DetermDyn2.txt ] && [ grep -q -i "rnx" Dynamic/DetermDyn2.txt ]
+			then
+			echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" Dynamic/DetermDyn2.txt ]
+			then
+			echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic	apt" >> Report.txt
+		else
+			echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic	rnx" >> Report.txt
+		fi
+	fi
+fi
+
+
+
+echo " " >> Report.txt
+echo "------------------------------   GCC Warnings   -------------------------------" >> Report.txt
+echo " " >> Report.txt
+
+
+
+echo " " >> Report.txt
+echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
+echo " " >> Report.txt
+## VALGRIND STATIC
+if [ grep -q -i "LEAK SUMMARY" Static/Valwar.txt ]
 	then
-	echo "No Dynamic Characteristics Found" >> PerfSummary.txt
+	echo "MAX2769 Sampfreq:6864e6 52min Static" >> Report.txt
 fi
-echo " " >> PerfSummary.txt
-
-## Check Performance vs Previous Test
-# Using two files, check performance of file 1 against file 2 and print out warning if exceeds tolerance
-File1=./Dynamic/Plots/results_0_0.txt
-File2=./Dynamic/Plots/ref.txt
-Tolerance=0.2 #meters
-# Gleans numbers from both files and compares them
-var=`awk '/Mean 3D/ {print $4}' $File1`
-mean3d=`echo $var | sed 's/.*|//'`
-varRef=`awk '/Mean 3D/ {print $4}' $File2`
-mean3dRef=`echo $varRef | sed 's/.*|//'`
-rv=`bc -l <<< "$mean3d > ($mean3dRef + $Tolerance)"`
-# If new file is greater than reference file by more than the tolerance, warning is printed
-if [ $rv -eq 1 ]
+## VALGRIND DYNAMIC
+if [ grep -q -i "LEAK SUMMARY" Dynamic/Valwar.txt ]
 	then
-	echo "***Warning: Mean 3D Error has increased by more than 20 cm***" >> PerfSummary.txt
-	echo " " >> PerfSummary.txt
+	echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
 fi
 
-## Obtains Dynamic Compiler Warnings from Wwarning.txt
-echo "---------------------   Dynamic Compiler Warnings   ---------------------" >> PerfSummary.txt
-# Search for Segmentation faults and print to PerfSummary.txt
-echo " " >> PerfSummary.txt
-grep 'Segmentation fault' ./Dynamic/Wwarning.txt >> PerfSummary.txt
-# Search for 'warning:' and print to PerfSummary.txt
-grep 'warning:' ./Dynamic/Wwarning.txt >> PerfSummary.txt
-# If there is no dynamic compiler warning, print that to PerfSummary.txt
-if [ $? -ne 0 ]
-	then 
-	echo "No Dynamic Compiler Warnings Found" >> PerfSummary.txt
-fi
-echo " " >> PerfSummary.txt
 
-## Obtains Dynamic Valgrind Information from valwar.txt
-echo "-------------------   Dynamic Valgrind Information   --------------------" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
-# Search for 'FILE DESCRIPTORS' and print out line to PerfSummary.txt
-grep 'FILE DESCRIPTORS' ./Dynamic/valwar.txt >> PerfSummary.txt
-# Search for line with "LEAK SUMMARY" and print out the following ten lines to PerfSummary.txt
-grep -A10 'LEAK SUMMARY' ./Dynamic/valwar.txt >> PerfSummary.txt
-# If there is no dynamic valgrind information, print that to PerfSummary.txt
-if [ $? -ne 0 ]
-then 
-echo "No Dynamic Valgrind Information Found" >> PerfSummary.txt
-fi
-echo " " >> PerfSummary.txt
 
-## Obtains Dynamic Deterministic Information from DetermDyn.txt
-echo "----------------   Dynamic Deterministic Information   ------------------" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
-# Search for 'apt' and print out the following four lines to PerfSummary.txt
-grep -A4 'apt' ./Dynamic/DetermDyn.txt >> PerfSummary.txt
-if [ $? -ne 0 ]
-	then 
-	echo "No Dynamic Deterministic Information Found" >> PerfSummary.txt
-fi
-echo " " >> PerfSummary.txt
-
-## Static Characteristics Summary
-echo "##########################   Static Test   ##############################" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
-
-## Obtains Static Characteristics from results_0_0.txt
-echo "--------------------   Static Characteristics   ------------------------" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
-# Tidies up information from results_0_0.txt and presents it in nice format
-max3dval2=`awk '/Max 3D Error/ {print $5}' ./Static/Plots/results_0_0.txt | sed 's/.*|//'`
-timemax3d2=`awk '/Max 3D Error/ {print $7 " " $8}' ./Static/Plots/results_0_0.txt`
-echo "Max 3D Error:       $max3dval2 meters $timemax3d2" >> PerfSummary.txt
-mean3dval2=`awk '/Mean 3D/ {print $4}' ./Static/Plots/results_0_0.txt | sed 's/.*|//'`
-echo "Mean 3D Error:      $mean3dval2 meters" >> PerfSummary.txt
-availabilityval2=`awk '/Availability/ {print $3}' ./Static/Plots/results_0_0.txt | sed 's/.*|//'`
-echo "Availability:       $availabilityval2 %" >> PerfSummary.txt
-# If there is no information from static characteristics, print that to PerfSummary.txt
-if ! [ -v availabilityval2 ]
-	then 
-	echo "No Static Characteristics Found" >> PerfSummary.txt
-fi
-echo " " >> PerfSummary.txt
-
-## Check Performance vs Previous Test
-# Using two files, check performance of file 1 against file 2 and print out warning if exceeds tolerance
-File1=./Static/Plots/results_0_0.txt
-File2=./Static/Plots/ref.txt
-Tolerance=0.2 #meters
-# Gleans numbers from both files and compares them
-var=`awk '/Mean 3D/ {print $4}' $File1`
-mean3d=`echo $var | sed 's/.*|//'`
-varRef=`awk '/Mean 3D/ {print $4}' $File2`
-mean3dRef=`echo $varRef | sed 's/.*|//'`
-rv=`bc -l <<< "$mean3d > ($mean3dRef + $Tolerance)"`
-# If new file is greater than reference file by more than the tolerance, warning is printed
-if [ $rv -eq 1 ]
-	then
-	echo "***Warning: Mean 3D Error has increased by more than 20 cm***" >> PerfSummary.txt
-	echo " " >> PerfSummary.txt
-fi
-
-## Obtains Static Compiler Warnings from Wwarning.txt
-echo "--------------------   Static Compiler Warnings   -----------------------" >> PerfSummary.txt
-# Search for Segmentation faults and print to PerfSummary.txt
-echo " " >> PerfSummary.txt
-grep 'Segmentation fault' ./Static/Wwarning.txt >> PerfSummary.txt
-# Search for 'warning:' and print to PerfSummary.txt
-grep 'warning:' ./Static/Wwarning.txt >> PerfSummary.txt
-# If there is no static compiler warning, print that to PerfSummary.txt
-if [ $? -ne 0 ]
-	then 
-	echo "No Static Compiler Warnings Found" >> PerfSummary.txt
-fi
-echo " " >> PerfSummary.txt
-
-## Obtains Static Valgrind Information from valwar.txt
-echo "------------------   Static Valgrind Information   ----------------------" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
-# Search for 'FILE DESCRIPTORS' and print out line to PerfSummary.txt
-grep 'FILE DESCRIPTORS' ./Static/valwar.txt >> PerfSummary.txt
-# Search for line with "LEAK SUMMARY" and print out the following ten lines to PerfSummary.txt
-grep -A10 'LEAK SUMMARY' ./Static/valwar.txt >> PerfSummary.txt
-# If there is no static valgrind information, print that to PerfSummary.txt
-if [ $? -ne 0 ]
-	then 
-	echo "No Static Valgrind Information Found" >> PerfSummary.txt
-fi
-echo " " >> PerfSummary.txt
-
-## Obtains Static Deterministic Information from DetermDyn.txt
-echo "----------------   Static Deterministic Information   -------------------" >> PerfSummary.txt
-echo " " >> PerfSummary.txt
-# Search for 'apt' and print out the following four lines to PerfSummary.txt
-grep -A4 'apt' ./Static/DetermStat.txt >> PerfSummary.txt
-if [ $? -ne 0 ]
-	then 
-	echo "No Static Deterministic Information Found" >> PerfSummary.txt
-fi
-echo " " >> PerfSummary.txt
-
-## Removes Summary.txt
-rm Summary.txt
-
+echo " " >> Report.txt
 ## Prints Completion Message
-echo "#########################################################################" >> PerfSummary.txt
-echo "###########   Performance Characteristics Summary Complete   ############" >> PerfSummary.txt
-echo "#########################################################################" >> PerfSummary.txt
+echo "########################   Short Weekend Report End   #########################" >> Report.txt
+
+sleep 5s
