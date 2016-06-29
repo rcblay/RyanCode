@@ -85,10 +85,11 @@ sed -i '/export OPTFLAGS/c\export OPTFLAGS= -O3 -funroll-loops -funit-at-a-time'
 cp ../../../../conf_swc/conf_staticARM.h ../../src/conf/conf_swc.h
 
 cd ..
+source /opt/Xilinx/SDK/2015.4/settings64.sh
 make clean
 make arm 2> /nfsshare/nightly-results/stderr.txt 1> /nfsshare/nightly-results/stdout.txt
 
-mv ../bin/rcv/pyxis /nfsshare/
+mv ../bin/rcv/pyxis /6TB/nfsshare/
 
 ## Build Pyxis for long test (make sure this is placed after Static so parameters can stay the same)
 cd ../src/conf
