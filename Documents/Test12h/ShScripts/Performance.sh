@@ -21,6 +21,7 @@ sed -i 's/|/ /g' Dynamic/Plots/resultOverV_0_0.txt
 sed -i 's/"/ /g' Dynamic/Plots/resultOverV_0_0.txt 
 Version=`awk '/Version/ {print $2,$3,$4}' ./Dynamic/Plots/resultOverV_0_0.txt`
 Compiler=`awk '/Compiler/ {print $6,$7,$8}' ./Dynamic/Plots/resultOverV_0_0.txt`
+echo " " >> Report.txt
 echo -n "Version: " >> Report.txt 
 echo "$Version" >> Report.txt
 echo -n "Compiler: " >> Report.txt
