@@ -183,6 +183,19 @@ diffwRunTime1=`expr $RunTimeW1 - $RunTime1`
 diffwRTf1=`../ShScripts/timeFormat.sh $diffwRunTime1`
 echo "$diffwRTf1" >> Report.txt
 echo " " >> Report.txt
+## CODE PERFORMANCE STATICLONG
+echo -n "MAX2769 Sampfreq:6864e6 34hours x86 StaticLong:	" >> Report.txt
+RunTime5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {getline; print}' times.txt`
+RTf5=`../ShScripts/timeFormat.sh $RunTime5`
+RunTimeY5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {getline; print}' ytimes.txt`
+diffyRunTime5=`expr $RunTimeY5 - $RunTime5`
+diffyRTf5=`../ShScripts/timeFormat.sh $diffyRunTime1`
+echo -n "$RTf5	$diffyRTf5      " >> Report.txt
+RunTimeW5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {getline; print}' wtimes.txt`
+diffwRunTime5=`expr $RunTimeW5 - $RunTime5`
+diffwRTf5=`../ShScripts/timeFormat.sh $diffwRunTime5`
+echo "$diffwRTf5" >> Report.txt
+echo " " >> Report.txt
 ## CODE PERFORMANCE DYNAMIC
 echo -n "URSP-N210 Sampfreq:4e6 54min x86 Dynamic:	" >> Report.txt
 RunTime2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' times.txt`
@@ -262,7 +275,7 @@ if [ -s StaticLong/DetermStatL.txt ]
 		if [ grep -q -i "apt" StaticLong/DetermStatL2.txt ] && [ grep -q -i "rnx" StaticLong/DetermStatL2.txt ]
 			then
 			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt & rnx" >> Report.txt
-		elif [ grep -q -i "apt" StaticLong/DetermStat2.txt ]
+		elif [ grep -q -i "apt" StaticLong/DetermStatL2.txt ]
 			then
 			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt" >> Report.txt
 		else
@@ -302,7 +315,7 @@ if [ -s Static/Wwarning.txt ]
 fi
 
 grep "warning:" /6TB/nfsshare/nightly-results/stderr.txt > /6TB/nfsshare/nightly-results/Wwarning.txt
-if [ -s Static/Wwarning.txt ]
+if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt ]
 	then
 	echo "	MAX2769 Sampfreq:6864e6 52min ARM Static" >> Report.txt
 fi
@@ -312,6 +325,7 @@ if [ -s Dynamic/Wwarning.txt ]
 	then
 	echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
 fi
+
 
 echo " " >> Report.txt
 echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
