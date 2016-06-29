@@ -26,7 +26,7 @@ echo "$Version" >> Report.txt
 echo -n "Compiler: " >> Report.txt
 echo "$Compiler" >> Report.txt
 # Takes start and stop information located in Summary.txt 
-grep -A8 'Pyxis Test' Summary.txt >> PerfSummary.txt
+grep -A8 'Pyxis Test' Summary.txt >> Report.txt
 echo " " >> Report.txt
 rm Summary.txt
 echo "Performance: " >> Report.txt # NEEDS TO BE FILLED IN

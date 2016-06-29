@@ -36,7 +36,7 @@ while [ true ]
 		echo "Pyxis results different than Reference, running again"
 		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
 		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
-		./pyxis
+		./pyxis &> /dev/null
 		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermDyn2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermDyn2.txt
 		if [ -s DetermDyn2.txt ]
@@ -84,7 +84,7 @@ while [ true ]
 		echo "Pyxis results different than Reference, running again"
 		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
 		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
-		./pyxis
+		./pyxis &> /dev/null
 		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStat2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStat2.txt
 		if [ -s DetermStat2.txt ]
