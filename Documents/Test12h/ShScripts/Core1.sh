@@ -16,39 +16,44 @@
 loc=`pwd`
 
 cd /6TB/nfsshare
+# Configuring ARM for pyxis test
+my_ip=128.138.253.168
+arm_ip=128.138.253.167
+path_to_largeFiles=/home/jimi/PYXIS/largeFiles
+password="root"
+mount_command="mount $my_ip:$path_to_nfsshare /archive"
+
+echo 'cleaning up old keys'
+ssh-keygen -R $arm_ip
+ssh-keyscan $arm_ip
+
+echo 'connecting to arm, creating archive'
+sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'mkdir /archive'
+
+echo 'linking nfsshare to archive'
+sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'umount -f /archive'
+sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip $mount_command
+
+echo 'creating lookup tables'
+sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'mkdir /tmp/largeFiles'
+sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'mkdir /tmp/largeFiles/LookupTables'
+
+echo 'copying lookup tables over to arm'
+sshpass -p $password scp $path_to_largeFiles/LookupTables/* root@$arm_ip:/tmp/largeFiles/LookupTables/
+echo 'running pyxis on zed board'
 
 # Save run time to times.txt
 STARTTIME=$(date +%s)
-./pyxis
+sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip '/archive/pyxis > /archive/screenout.txt'
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
 cd $loc
 echo "MAX2769 Sampfreq:6864e6 52min ARM Static: $diff" >> ../output/times.txt
 cd /6TB/nfsshare
-while [ true ]
-	do
-	cmp nightly-results/REFtimingaptBinaries_0_0.bin nightly-results/timingaptBinaries_0_0.bin > nightly-results/DetermARM.txt
-	cmp nightly-results/REFtimingrnxBinaries_0_0.bin nightly-results/timingrnxBinaries_0_0.bin >> nightly-results/DetermARM.txt
-	if ! [ -s nightly-results/DetermARM.txt ]
-		then
-		break
-	else
-		echo "Pyxis results different than Reference, running again"
-		mv nightly-results/timingaptBinaries_0_0.bin nightly-results/REVISEDtimingaptBinaries_0_0.bin
-		mv nightly-results/timingrnxBinaries_0_0.bin nightly-results/REVISEDtimingrnxBinaries_0_0.bin
-		./pyxis
-		cmp nightly-results/REVISEDtimingaptBinaries_0_0.bin nightly-results/timingaptBinaries_0_0.bin > nightly-results/DetermARM2.txt
-		cmp nightly-results/REVISEDtimingrnxBinaries_0_0.bin nightly-results/timingrnxBinaries_0_0.bin >> nightly-results/DetermARM2.txt
-		if ! [ -s nightly-results/DetermARM2.txt ]
-			then
-			echo "Not Deterministic!"
-			echo " " >> nightly-results/DetermARM.txt
-			echo "New Pyxis Run not Deterministic with itself" >> nightly-results/DetermARM.txt
-			sleep 2s
-		fi
-		break
-	fi
-done
+
+cmp nightly-results/REFtimingaptBinaries_0_0.bin nightly-results/timingaptBinaries_0_0.bin > nightly-results/DetermARM.txt
+cmp nightly-results/REFtimingrnxBinaries_0_0.bin nightly-results/timingrnxBinaries_0_0.bin >> nightly-results/DetermARM.txt
+
 cd $loc
 cd ../MATLAB
 
