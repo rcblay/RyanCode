@@ -36,10 +36,10 @@ sed -i '/FILETYPE/c\FILETYPE=2' conf.mk
 sed -i '/USEL2C/c\USEL2C=FALSE' conf.mk
 sed -i '/LINKING=/c\LINKING=DYNAMIC' conf.mk
 
-## Build Pyxis for Dynamic and send warnings to Wwarning.txt
+## Build Pyxis for Dynamic and save stderr and stdout
 cd ..
 make clean
-make 2> ../../../output/Dynamic/Wwarning.txt
+make 2> ../../../output/Dynamic/stderr.txt 1> ../../../output/Dynamic/stdout.txt
 
 ## Move pyxis into Dynamic output directory
 mv ../bin/rcv/pyxis ../../../output/Dynamic/
@@ -60,7 +60,7 @@ sed -i '/FILETYPE/c\FILETYPE=1' conf.mk
 ## Build Pyxis for Static and send warnings to Wwarning.txt
 cd ..
 make clean
-make 2> ../../../output/Static/Wwarning.txt
+make 2> ../../../output/Static/stderr.txt >1 ../../../output/Static/stdout.txt
 
 ## Move pyxis into Static output directory
 mv ../bin/rcv/pyxis ../../../output/Static/
@@ -86,7 +86,7 @@ cp ../../../../conf_swc/conf_staticARM.h ../../src/conf/conf_swc.h
 
 cd ..
 make clean
-make arm 2> /nfsshare/nightly-results/Wwarning.txt
+make arm 2> /nfsshare/nightly-results/stderr.txt 1> /nfsshare/nightly-results/stdout.txt
 
 mv ../bin/rcv/pyxis /nfsshare/
 
