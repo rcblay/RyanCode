@@ -23,10 +23,14 @@ echo "Compiler:" >> Report.txt # NEEDS TO BE FILLED IN
 grep -A8 'Pyxis Test' ./Summary.txt >> PerfSummary.txt
 echo " " >> Report.txt
 echo "Performance: " >> Report.txt # NEEDS TO BE FILLED IN
+
+
+
 echo " " >> Report.txt
 echo "#############################   GPS-Performance   #############################" >> Report.txt
 echo " " >> Report.txt
 echo "			Actual			Comp Yesterday		Comp 2 Weekend" >> Report.txt
+## GPS PERFORMANCE STATICSIM
 echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 26min x86 StaticSim ----------------------------------" >> Report.txt
 echo " " >> Report.txt
@@ -40,7 +44,7 @@ mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}'
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
 availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' /StaticSim/Plots/resultOver_0_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
-
+## GPS PERFORMANCE STATIC
 echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 52min x86 Static -------------------------------------" >> Report.txt
 echo " " >> Report.txt
@@ -54,7 +58,7 @@ mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}'
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
 availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./Static/Plots/resultOver_0_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
-
+## GPS PERFORMANCE ARM STATIC
 echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 52min ARM Static -------------------------------------" >> Report.txt
 echo " " >> Report.txt
@@ -68,7 +72,7 @@ mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}'
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
 availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' /6TB/nfsshare/nightly-results/resultOver_0_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
-
+## GPS PERFORMANCE STATICLONG
 echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 34hours x86 StaticLong -------------------------------" >> Report.txt
 echo " " >> Report.txt
@@ -82,7 +86,7 @@ mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}'
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
 availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOver_0_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
-
+## STATIC LONG CONTINUED 1859_518400
 echo " " >> Report.txt
 # Cleans out the expanded resultOver_-_-.txt file of | and " symbols
 echo "1859_518400" >> Report.txt
@@ -95,7 +99,7 @@ mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}'
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
 availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOver_1859_518400.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
-
+## STATIC LONG CONTINUED 1860_0
 echo " " >> Report.txt
 # Cleans out the expanded resultOver_-_-.txt file of | and " symbols
 echo "1860_0" >> Report.txt
@@ -108,7 +112,7 @@ mean3dval=`awk '/Mean 3D/ {print $3, " meters	", $5, " meters	", $7, " meters"}'
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
 availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOver_1860_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
-
+## GPS PERFORMANCE DYNAMIC
 echo " " >> Report.txt
 echo "- URSP-N210 Sampfreq:4e6 54min x86 Dynamic -------------------------------------" >> Report.txt
 echo " " >> Report.txt
@@ -125,73 +129,76 @@ availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}'
 echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 
+
+
 echo " " >> Report.txt
 echo "############################   Code-Performance   #############################" >> Report.txt
-
 echo " " >> Report.txt
 echo "--------------------------------   Run Times   --------------------------------" >> Report.txt
 echo " " >> Report.txt
-# NEEDS TO BE FILLED IN
-
-echo -n "MAX2769 Sampfreq:6864e6 52min ARM Static:		" >> Report.txt
-RunTime='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' times.txt'
-RTf=`../ShScripts/timeFormat.sh $RunTime`
-RunTimeY='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' ytimes.txt'
-diffyRunTime=expr $RunTimeY - $RunTime
-diffyRTf=`../ShScripts/timeFormat.sh $diffyRunTime`
-echo -n "$RTf		$diffyRTf		" >> Report.txt
-RunTimeW='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' wtimes.txt'
-diffwRunTime=expr $RunTimeW - $RunTime
-diffwRTf=`../ShScripts/timeFormat.sh $diffwRunTime`
-echo "$diffwRTf" >> Report.txt
+echo "						Actual	Comp Yesterday	Comp Last Week" >> Report.txt
+## CODE PERFORMANCE STATICSIM
+echo -n "MAX2769 Sampfreq:6864e6 26min x86 StaticSim:	" >> Report.txt
+RunTime4='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' times.txt'
+RTf4=`../ShScripts/timeFormat.sh $RunTime4`
+RunTimeY4='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' ytimes.txt'
+diffyRunTime4=expr $RunTimeY4 - $RunTime4
+diffyRTf4=`../ShScripts/timeFormat.sh $diffyRunTime4`
+echo -n "$RTf4	$diffyRTf4      " >> Report.txt
+RunTimeW4='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' wtimes.txt'
+diffwRunTime4=expr $RunTimeW4 - $RunTime4
+diffwRTf4=`../ShScripts/timeFormat.sh $diffwRunTime4`
+echo "$diffwRTf4" >> Report.txt
 echo " " >> Report.txt
-
-echo -n "URSP-N210 Sampfreq:4e6 54min x86 Dynamic:		" >> Report.txt
-RunTime='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' times.txt'
-RTf=`../ShScripts/timeFormat.sh $RunTime`
-RunTimeY='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' ytimes.txt'
-diffyRunTime=expr $RunTimeY - $RunTime
-diffyRTf=`../ShScripts/timeFormat.sh $diffyRunTime`
-echo -n "$RTf		$diffyRTf		" >> Report.txt
-RunTimeW='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' wtimes.txt'
-diffwRunTime=expr $RunTimeW - $RunTime
-diffwRTf=`../ShScripts/timeFormat.sh $diffwRunTime`
-echo "$diffwRTf" >> Report.txt
+## CODE PERFORMANCE STATIC
+echo -n "MAX2769 Sampfreq:6864e6 52min Static:	" >> Report.txt
+RunTime3='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' times.txt'
+RTf3=`../ShScripts/timeFormat.sh $RunTime3`
+RunTimeY3='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' ytimes.txt'
+diffyRunTime3=expr $RunTimeY3 - $RunTime3
+diffyRTf3=`../ShScripts/timeFormat.sh $diffyRunTime3`
+echo -n "$RTf3	$diffyRTf3      " >> Report.txt
+RunTimeW3='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' wtimes.txt'
+diffwRunTime3=expr $RunTimeW - $RunTime3
+diffwRTf3=`../ShScripts/timeFormat.sh $diffwRunTime3`
+echo "$diffwRTf3" >> Report.txt
 echo " " >> Report.txt
-
-echo -n "MAX2769 Sampfreq:6864e6 52min Static:		" >> Report.txt
-RunTime='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' times.txt'
-RTf=`../ShScripts/timeFormat.sh $RunTime`
-RunTimeY='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' ytimes.txt'
-diffyRunTime=expr $RunTimeY - $RunTime
-diffyRTf=`../ShScripts/timeFormat.sh $diffyRunTime`
-echo -n "$RTf		$diffyRTf		" >> Report.txt
-RunTimeW='awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' wtimes.txt'
-diffwRunTime=expr $RunTimeW - $RunTime
-diffwRTf=`../ShScripts/timeFormat.sh $diffwRunTime`
-echo "$diffwRTf" >> Report.txt
+## CODE PERFORMANCE ARM STATIC
+echo -n "MAX2769 Sampfreq:6864e6 52min ARM Static:	" >> Report.txt
+RunTime1='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' times.txt'
+RTf=`../ShScripts/timeFormat.sh $RunTime1`
+RunTimeY1='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' ytimes.txt'
+diffyRunTime1=expr $RunTimeY1 - $RunTime1
+diffyRTf1=`../ShScripts/timeFormat.sh $diffyRunTime1`
+echo -n "$RTf1	$diffyRTf1      " >> Report.txt
+RunTimeW1='awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' wtimes.txt'
+diffwRunTime1=expr $RunTimeW1 - $RunTime1
+diffwRTf1=`../ShScripts/timeFormat.sh $diffwRunTime1`
+echo "$diffwRTf1" >> Report.txt
 echo " " >> Report.txt
-
-echo -n "MAX2769 Sampfreq:6864e6 26min x86 StaticSim:		" >> Report.txt
-RunTime='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' times.txt'
-RTf=`../ShScripts/timeFormat.sh $RunTime`
-RunTimeY='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' ytimes.txt'
-diffyRunTime=expr $RunTimeY - $RunTime
-diffyRTf=`../ShScripts/timeFormat.sh $diffyRunTime`
-echo -n "$RTf		$diffyRTf		" >> Report.txt
-RunTimeW='awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' wtimes.txt'
-diffwRunTime=expr $RunTimeW - $RunTime
-diffwRTf=`../ShScripts/timeFormat.sh $diffwRunTime`
-echo "$diffwRTf" >> Report.txt
+## CODE PERFORMANCE DYNAMIC
+echo -n "URSP-N210 Sampfreq:4e6 54min x86 Dynamic:	" >> Report.txt
+RunTime2='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' times.txt'
+RTf2=`../ShScripts/timeFormat.sh $RunTime2`
+RunTimeY2='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' ytimes.txt'
+diffyRunTime2=expr $RunTimeY2 - $RunTime2
+diffyRTf2=`../ShScripts/timeFormat.sh $diffyRunTime2`
+echo -n "$RTf2	$diffyRTf2      " >> Report.txt
+RunTimeW2='awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' wtimes.txt'
+diffwRunTime2=expr $RunTimeW2 - $RunTime2
+diffwRTf2=`../ShScripts/timeFormat.sh $diffwRunTime2`
+echo "$diffwRTf2" >> Report.txt
 echo " " >> Report.txt
-
 ##### NEED STATIC LONG
+
+
 
 echo " " >> Report.txt
 echo "------------------------------   Deterministic   ------------------------------" >> Report.txt
 echo " " >> Report.txt
 echo " Not deterministic tests are:" >> Report.txt
 echo " " >> Report.txt
+## DETERMINISTIC STATICSIM
 # Check if either rnx or apt are un-deterministic
 if [ -s StaticSim/DetermStatSim.txt ]
 	then 
@@ -208,7 +215,7 @@ if [ -s StaticSim/DetermStatSim.txt ]
 		fi
 	fi
 fi
-
+## DETERMINISTIC STATIC
 if [ -s Static/DetermStat.txt ]
 	then 
 	if [ -s Static/DetermStat2.txt ]
@@ -224,7 +231,7 @@ if [ -s Static/DetermStat.txt ]
 		fi
 	fi
 fi
-
+## DETERMINISTIC ARM STATIC
 if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
 	then 
 	if [ -s /6TB/nfsshare/nightly-results/DetermARM2.txt ]
@@ -240,7 +247,7 @@ if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
 		fi
 	fi
 fi
-
+## DETERMINISTIC STATICLONG
 if [ -s StaticLong/DetermStatL.txt ]
 	then 
 	if [ -s StaticLong/DetermStatL2.txt ]
@@ -256,7 +263,7 @@ if [ -s StaticLong/DetermStatL.txt ]
 		fi
 	fi
 fi
-
+## DETERMINSITIC DYNAMIC
 if [ -s Dynamic/DetermDyn.txt ]
 	then 
 	if [ -s Dynamic/DetermDyn2.txt ]
@@ -272,6 +279,8 @@ if [ -s Dynamic/DetermDyn.txt ]
 		fi
 	fi
 fi
+
+
 
 echo " " >> Report.txt
 echo "------------------------------   GCC Warnings   -------------------------------" >> Report.txt
@@ -300,9 +309,21 @@ fi
 echo " " >> Report.txt
 echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
 echo " " >> Report.txt
-# NEEDS TO BE FILLED IN
+## VALGRIND STATIC
+if [ grep -q -i "LEAK SUMMARY" Static/Valwar.txt ]
+	then
+	echo "MAX2769 Sampfreq:6864e6 52min Static" >> Report.txt
+fi
+## VALGRIND DYNAMIC
+if [ grep -q -i "LEAK SUMMARY" Dynamic/Valwar.txt ]
+	then
+	echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
+fi
+
+
+
 echo " " >> Report.txt
 ## Prints Completion Message
-echo "###########   Performance Characteristics Summary Complete   ############" >> Report.txt
+echo "########################   Short Weekend Report End   #########################" >> Report.txt
 
 sleep 5s
