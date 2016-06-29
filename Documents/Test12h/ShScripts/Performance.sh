@@ -26,7 +26,7 @@ echo "$Version" >> Report.txt
 echo -n "Compiler: " >> Report.txt
 echo "$Compiler" >> Report.txt
 # Takes start and stop information located in Summary.txt 
-grep -A8 'Pyxis Test' ./Summary.txt >> PerfSummary.txt
+grep -A8 'Pyxis Test' Summary.txt >> PerfSummary.txt
 echo " " >> Report.txt
 rm Summary.txt
 echo "Performance: " >> Report.txt # NEEDS TO BE FILLED IN
@@ -205,23 +205,7 @@ echo "------------------------------   Deterministic   -------------------------
 echo " " >> Report.txt
 echo " Not deterministic tests are:" >> Report.txt
 echo " " >> Report.txt
-## DETERMINISTIC STATICSIM
 # Check if either rnx or apt are un-deterministic
-if [ -s StaticSim/DetermStatSim.txt ]
-	then 
-	if [ -s StaticSim/DetermStatSim2.txt ]
-		then
-		if [ grep -q -i "apt" StaticSim/DetermStatSim2.txt ] && [ grep -q -i "rnx" StaticSim/DetermStatSim2.txt ]
-			then
-			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	apt & rnx" >> Report.txt
-		elif [ grep -q -i "apt" StaticSim/DetermStatSim2.txt ]
-			then
-			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	apt" >> Report.txt
-		else
-			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	rnx" >> Report.txt
-		fi
-	fi
-fi
 ## DETERMINISTIC STATIC
 if [ -s Static/DetermStat.txt ]
 	then 
@@ -315,6 +299,8 @@ fi
 
 echo " " >> Report.txt
 echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
+echo " " >> Report.txt
+echo "Files with leaks or other Valgrind warnings:" >> Report.txt
 echo " " >> Report.txt
 ## VALGRIND STATIC
 if [ grep -q -i "LEAK SUMMARY" Static/Valwar.txt ]
