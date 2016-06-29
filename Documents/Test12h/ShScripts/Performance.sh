@@ -209,9 +209,6 @@ diffwRunTime2=`expr $RunTimeW2 - $RunTime2`
 diffwRTf2=`../ShScripts/timeFormat.sh $diffwRunTime2`
 echo "$diffwRTf2" >> Report.txt
 echo " " >> Report.txt
-##### NEED STATIC LONG
-
-
 
 echo " " >> Report.txt
 echo "------------------------------   Deterministic   ------------------------------" >> Report.txt
@@ -253,18 +250,15 @@ if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
 fi
 ## DETERMINISTIC STATICLONG
 if [ -s StaticLong/DetermStatL.txt ]
-	then 
-	if [ -s StaticLong/DetermStatL2.txt ]
+	then
+	if [ grep -q -i "apt" StaticLong/DetermStatL.txt ] && [ grep -q -i "rnx" StaticLong/DetermStatL.txt ]
 		then
-		if [ grep -q -i "apt" StaticLong/DetermStatL2.txt ] && [ grep -q -i "rnx" StaticLong/DetermStatL2.txt ]
-			then
-			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt & rnx" >> Report.txt
-		elif [ grep -q -i "apt" StaticLong/DetermStatL2.txt ]
-			then
-			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt" >> Report.txt
-		else
-			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	rnx" >> Report.txt
-		fi
+		echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt & rnx" >> Report.txt
+	elif [ grep -q -i "apt" StaticLong/DetermStatL.txt ]
+		then
+		echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt" >> Report.txt
+	else
+		echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	rnx" >> Report.txt
 	fi
 fi
 ## DETERMINISTIC DYNAMIC

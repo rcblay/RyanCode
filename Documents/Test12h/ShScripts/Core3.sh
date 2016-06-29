@@ -22,31 +22,8 @@ diff=$(($ENDTIME-$STARTTIME))
 echo "MAX2769 Sampfreq:6864e6 26min x86 StaticSim: $diff" >> ../times.txt
 
 ## Checks whether the Pyxis results are the same as the previous test, if they are then it breaks. If not, then it runs the test again and confirms that its deterministic.
-while [ true ]
-	do
-	cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatSim.txt
-	cmp ./REFaptrnx/REFtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStatSim.txt
-	if ! [ -s DetermStatSim.txt ]
-		then
-		break
-	else
-		echo "Pyxis results different than Reference, running again"
-		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
-		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
-		#./pyxis
-		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatSim2.txt
-		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStatSim2.txt
-		if [ -s DetermStatSim2.txt ]
-			then
-			echo "Not Deterministic!"
-			echo " " >> DetermStatSim.txt
-			echo "New Pyxis Run not Deterministic with itself" >> DetermStatSim.txt
-			sleep 2s
-		fi
-		break
-	fi
-done
-
+cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatSim.txt
+cmp ./REFaptrnx/REFtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStatSim.txt
 
 ## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
 cd ../../MATLAB
@@ -67,30 +44,8 @@ diff=$(($ENDTIME-$STARTTIME))
 echo "MAX2769 Sampfreq:6864e6 34hours x86 StaticLong: $diff" >> ../times.txt
 
 ## Checks whether the Pyxis results are the same as the previous test, if they are then it breaks. If not, then it runs the test again and confirms that its deterministic.
-while [ true ]
-	do
-	cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatL.txt
-	cmp ./REFaptrnx/REFtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStatL.txt
-	if ! [ -s DetermStatL.txt ]
-		then
-		break
-	else
-		echo "Pyxis results different than Reference, running again"
-		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
-		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
-		#./pyxis
-		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatL2.txt
-		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStatL2.txt
-		if [ -s DetermStatL2.txt ]
-			then
-			echo "Not Deterministic!"
-			echo " " >> DetermStatL.txt
-			echo "New Pyxis Run not Deterministic with itself" >> DetermStatL.txt
-			sleep 2s
-		fi
-		break
-	fi
-done
+cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatL.txt
+cmp ./REFaptrnx/REFtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStatL.txt
 
 ## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
 cd ../../MATLAB
