@@ -14,6 +14,7 @@
 cd ../output
 
 rm times.txt
+rm error.txt
 
 cd Dynamic
 
