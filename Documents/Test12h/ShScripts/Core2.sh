@@ -17,13 +17,12 @@
 
 ## Execute Pyxis with Valgrind
 cd ../output/Dynamic
-echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> ../times.txt
 STARTTIME=$(date +%s)
 #valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
 ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
-echo "$diff" >> ../times.txt
+echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic: $diff" >> ../times.txt
 
 ## Checks whether the Pyxis results are the same as the previous test, if they are then it breaks. If not, then it runs the test again and confirms that its deterministic.
 while [ true ]
@@ -65,13 +64,12 @@ matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
 
 ## Execute Pyxis with Valgrind
 cd ../output/Static
-echo "MAX2769 Sampfreq:6864e6 52min Static" >> ../times.txt
 STARTTIME=$(date +%s)
 #valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
 ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
-echo "$diff" >> ../times.txt
+echo "MAX2769 Sampfreq:6864e6 52min Static: $diff" >> ../times.txt
 
 while [ true ]
 	do

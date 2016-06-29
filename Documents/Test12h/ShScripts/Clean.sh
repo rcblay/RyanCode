@@ -59,16 +59,15 @@ rm timingrnxBinaries_1859_518400.bin
 rm timingaptBinaries_1859_518400.bin
 rm timingrnxBinaries_1860_0.bin
 rm timingaptBinaries_1860_0.bin
-rm timingrnxBinaries_1860_86400.bin
-rm timingaptBinaries_1860_86400.bin
 rm screenout.txt
 rm Wwarning.txt
+rm DetermStatL.txt
+rm DetermStatL2.txt
 
 cd Plots
 rm results_0_0.txt
 rm results_1859_518400.bin
 rm results_1860_0.bin
-rm results_1860_86400.bin
 
 cd ../../StaticSim
 
@@ -78,16 +77,13 @@ rm timingrnxBinaries_0_0.bin
 rm timingaptBinaries_0_0.bin
 rm screenout.txt
 rm Wwarning.txt
-
-## Clean matlab files
-cd ../../../MATLAB
-rm AnalysisRNXScript1.m
-rm AnalysisRNXScript2.m
-rm AnalysisRNXScript3.m
+rm DetermStatSim.txt
+rm DetermStatSim2.txt
 
 ## Will need to do same for arm test
-cd /nfsshare
+cd ../../nfsshare
 rm pyxis
+
 cd nightly-results
 rm REVISEDtimingrnxBinaries_0_0.bin
 rm REVISEDtimingaptBinaries_0_0.bin
@@ -97,6 +93,12 @@ rm screenout.txt
 rm Wwarning.txt
 rm DetermARM.txt
 rm DetermARM2.txt
+
+## Clean matlab files
+cd ../../../MATLAB
+rm AnalysisRNXScript1.m
+rm AnalysisRNXScript2.m
+rm AnalysisRNXScript3.m
 
 ## Clean completion message printed to terminal
 echo "Clean is finished"

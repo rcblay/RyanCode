@@ -146,65 +146,65 @@ echo " " >> Report.txt
 echo "						Actual	Comp Yesterday	Comp Last Week" >> Report.txt
 ## CODE PERFORMANCE STATICSIM
 echo -n "MAX2769 Sampfreq:6864e6 26min x86 StaticSim:	" >> Report.txt
-RunTime4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' times.txt`
+RunTime4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {print $6}' times.txt`
 RTf4=`../ShScripts/timeFormat.sh $RunTime4`
-RunTimeY4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' ytimes.txt`
+RunTimeY4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {print $6}' ytimes.txt`
 diffyRunTime4=`expr $RunTimeY4 - $RunTime4`
 diffyRTf4=`../ShScripts/timeFormat.sh $diffyRunTime4`
 echo -n "$RTf4	$diffyRTf4      " >> Report.txt
-RunTimeW4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' wtimes.txt`
+RunTimeW4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {print $6}' wtimes.txt`
 diffwRunTime4=`expr $RunTimeW4 - $RunTime4`
 diffwRTf4=`../ShScripts/timeFormat.sh $diffwRunTime4`
 echo "$diffwRTf4" >> Report.txt
 echo " " >> Report.txt
 ## CODE PERFORMANCE STATIC
 echo -n "MAX2769 Sampfreq:6864e6 52min Static:		" >> Report.txt
-RunTime3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' times.txt`
+RunTime3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {print $5}' times.txt`
 RTf3=`../ShScripts/timeFormat.sh $RunTime3`
-RunTimeY3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' ytimes.txt`
+RunTimeY3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {print $5}' ytimes.txt`
 diffyRunTime3=`expr $RunTimeY3 - $RunTime3`
 diffyRTf3=`../ShScripts/timeFormat.sh $diffyRunTime3`
 echo -n "$RTf3	$diffyRTf3      " >> Report.txt
-RunTimeW3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' wtimes.txt`
+RunTimeW3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {print $5}' wtimes.txt`
 diffwRunTime3=`expr $RunTimeW3 - $RunTime3`
 diffwRTf3=`../ShScripts/timeFormat.sh $diffwRunTime3`
 echo "$diffwRTf3" >> Report.txt
 echo " " >> Report.txt
 ## CODE PERFORMANCE ARM STATIC
 echo -n "MAX2769 Sampfreq:6864e6 52min ARM Static:	" >> Report.txt
-RunTime1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' times.txt`
+RunTime1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {print $6}' times.txt`
 RTf1=`../ShScripts/timeFormat.sh $RunTime1`
-RunTimeY1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' ytimes.txt`
+RunTimeY1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {print $6}' ytimes.txt`
 diffyRunTime1=`expr $RunTimeY1 - $RunTime1`
 diffyRTf1=`../ShScripts/timeFormat.sh $diffyRunTime1`
 echo -n "$RTf1	$diffyRTf1      " >> Report.txt
-RunTimeW1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' wtimes.txt`
+RunTimeW1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {print $6}' wtimes.txt`
 diffwRunTime1=`expr $RunTimeW1 - $RunTime1`
 diffwRTf1=`../ShScripts/timeFormat.sh $diffwRunTime1`
 echo "$diffwRTf1" >> Report.txt
 echo " " >> Report.txt
 ## CODE PERFORMANCE STATICLONG
 echo -n "MAX2769 Sampfreq:6864e6 34hours x86 StaticLong:	" >> Report.txt
-RunTime5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {getline; print}' times.txt`
+RunTime5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {print $6}' times.txt`
 RTf5=`../ShScripts/timeFormat.sh $RunTime5`
-RunTimeY5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {getline; print}' ytimes.txt`
+RunTimeY5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {print $6}' ytimes.txt`
 diffyRunTime5=`expr $RunTimeY5 - $RunTime5`
 diffyRTf5=`../ShScripts/timeFormat.sh $diffyRunTime1`
 echo -n "$RTf5	$diffyRTf5      " >> Report.txt
-RunTimeW5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {getline; print}' wtimes.txt`
+RunTimeW5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {print $6}' wtimes.txt`
 diffwRunTime5=`expr $RunTimeW5 - $RunTime5`
 diffwRTf5=`../ShScripts/timeFormat.sh $diffwRunTime5`
 echo "$diffwRTf5" >> Report.txt
 echo " " >> Report.txt
 ## CODE PERFORMANCE DYNAMIC
 echo -n "URSP-N210 Sampfreq:4e6 54min x86 Dynamic:	" >> Report.txt
-RunTime2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' times.txt`
+RunTime2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {print $6}' times.txt`
 RTf2=`../ShScripts/timeFormat.sh $RunTime2`
-RunTimeY2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' ytimes.txt`
+RunTimeY2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {print $6}' ytimes.txt`
 diffyRunTime2=`expr $RunTimeY2 - $RunTime2`
 diffyRTf2=`../ShScripts/timeFormat.sh $diffyRunTime2`
 echo -n "$RTf2	$diffyRTf2      " >> Report.txt
-RunTimeW2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' wtimes.txt`
+RunTimeW2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {print $6}' wtimes.txt`
 diffwRunTime2=`expr $RunTimeW2 - $RunTime2`
 diffwRTf2=`../ShScripts/timeFormat.sh $diffwRunTime2`
 echo "$diffwRTf2" >> Report.txt

@@ -15,12 +15,11 @@
 
 ## Execute Pyxis
 cd ../output/StaticSim
-echo "MAX2769 Sampfreq:6864e6 26min x86 StaticSim" >> ../times.txt
 STARTTIME=$(date +%s)
 ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
-echo "$diff" >> ../times.txt
+echo "MAX2769 Sampfreq:6864e6 26min x86 StaticSim: $diff" >> ../times.txt
 
 ## Checks whether the Pyxis results are the same as the previous test, if they are then it breaks. If not, then it runs the test again and confirms that its deterministic.
 while [ true ]
@@ -34,7 +33,7 @@ while [ true ]
 		echo "Pyxis results different than Reference, running again"
 		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
 		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
-		./pyxis
+		#./pyxis
 		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatSim2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStatSim2.txt
 		if [ -s DetermStatSim2.txt ]
@@ -61,12 +60,11 @@ matlab -nodesktop -r "run AnalysisRNXScript3.m; exit;"
 
 ## Execute Pyxis
 cd ../output/StaticLong
-echo "MAX2769 Sampfreq:6864e6 34hours x86 StaticLong" >> ../times.txt
 STARTTIME=$(date +%s)
 ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
-echo "$diff" >> ../times.txt
+echo "MAX2769 Sampfreq:6864e6 34hours x86 StaticLong: $diff" >> ../times.txt
 
 ## Checks whether the Pyxis results are the same as the previous test, if they are then it breaks. If not, then it runs the test again and confirms that its deterministic.
 while [ true ]
@@ -80,7 +78,7 @@ while [ true ]
 		echo "Pyxis results different than Reference, running again"
 		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
 		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
-		./pyxis
+		#./pyxis
 		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatL2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStatL2.txt
 		if [ -s DetermStatL2.txt ]
