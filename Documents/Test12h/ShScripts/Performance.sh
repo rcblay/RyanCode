@@ -293,7 +293,25 @@ echo " " >> Report.txt
 echo "------------------------------   GCC Warnings   -------------------------------" >> Report.txt
 echo " " >> Report.txt
 
+echo " Files with GCC warnings:" >> Report.txt
+echo "" >> Report.txt
+grep "warning:" Static/stderr.txt > Static/Wwarning.txt
+if [ -s Static/Wwarning.txt ]
+	then
+	echo "	MAX2769 Sampfreq:6864e6 52min x86 Static" >> Report.txt
+fi
 
+grep "warning:" /6TB/nfsshare/nightly-results/stderr.txt > /6TB/nfsshare/nightly-results/Wwarning.txt
+if [ -s Static/Wwarning.txt ]
+	then
+	echo "	MAX2769 Sampfreq:6864e6 52min ARM Static" >> Report.txt
+fi
+
+grep "warning:" Dynamic/stderr.txt > Dynamic/Wwarning.txt
+if [ -s Dynamic/Wwarning.txt ]
+	then
+	echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
+fi
 
 echo " " >> Report.txt
 echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
