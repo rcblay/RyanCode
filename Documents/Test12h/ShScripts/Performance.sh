@@ -136,7 +136,14 @@ availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}'
 echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 
-
+# Change yestedays resluts for todays results
+mv StaticSim/Plots/Results_0_0.txt StaticSim/Plots/ResY.txt
+mv Static/Plots/Results_0_0.txt Static/Plots/ResY.txt
+mv /6TB/nfsshare/nightly-results/Plots/Results_0_0.txt /6TB/nfsshare/nightly-results/Plots/ResY.txt
+mv StaticLong/Plots/Results_0_0.bin StaticLong/Plots/ResY1.txt
+mv StaticLong/Plots/Results_1859_518400.bin StaticLong/Plots/ResY2.txt
+mv StaticLong/Plots/Results_1860_0.bin StaticLong/Plots/ResY3.txt
+mv Dynamic/Plots/Results_0_0.txt Dynamic/Plots/ResY.txt
 
 echo " " >> Report.txt
 echo "############################   Code-Performance   #############################" >> Report.txt
@@ -209,6 +216,8 @@ diffwRunTime2=`expr $RunTimeW2 - $RunTime2`
 diffwRTf2=`../ShScripts/timeFormat.sh $diffwRunTime2`
 echo "$diffwRTf2" >> Report.txt
 echo " " >> Report.txt
+
+mv times.txt ytimes.txt
 
 echo " " >> Report.txt
 echo "------------------------------   Deterministic   ------------------------------" >> Report.txt
