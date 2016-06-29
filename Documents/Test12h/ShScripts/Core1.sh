@@ -59,8 +59,6 @@ sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript1.m
 # Run matlab
 matlab -nodesktop -r "run AnalysisRNXScript1.m; exit;"
 
-
-
 ## Time when Core 1 was finished is printed to Summary.txt
 cd ../output
 echo 'Core 1 was done at the local time of:' >> Summary.txt
