@@ -84,6 +84,9 @@ rm Wwarning.txt
 rm DetermStatSim.txt
 rm DetermStatSim2.txt
 
+cd Plots
+rm results_0_0.txt
+
 ## Will need to do same for arm test
 cd ../../nfsshare
 rm pyxis
