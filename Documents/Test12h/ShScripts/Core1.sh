@@ -16,6 +16,13 @@
 loc=`pwd`
 
 cd /6TB/nfsshare
+# Configuring ARM for pyxis test
+my_ip=128.138.253.168
+arm_ip=128.138.253.167
+path_to_largeFiles=/home/jimi/PYXIS/largeFiles
+password="root"
+show_build_output=false
+mount_command="mount $my_ip:$path_to_nfsshare /archive"
 
 # Save run time to times.txt
 STARTTIME=$(date +%s)
