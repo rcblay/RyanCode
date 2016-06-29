@@ -60,7 +60,7 @@ sed -i '/FILETYPE/c\FILETYPE=1' conf.mk
 ## Build Pyxis for Static and send warnings to Wwarning.txt
 cd ..
 make clean
-make 2> ../../../output/Static/stderr.txt >1 ../../../output/Static/stdout.txt
+make 2> ../../../output/Static/stderr.txt 1> ../../../output/Static/stdout.txt
 
 ## Move pyxis into Static output directory
 mv ../bin/rcv/pyxis ../../../output/Static/
