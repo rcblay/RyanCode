@@ -153,6 +153,7 @@ echo " " >> Report.txt
 echo "--------------------------------   Run Times   --------------------------------" >> Report.txt
 echo " " >> Report.txt
 echo "						Actual	Comp Yesterday	Comp Last Week" >> Report.txt
+echo " " >> Report.txt
 ## CODE PERFORMANCE STATICSIM
 echo -n "MAX2769 Sampfreq:6864e6 26min x86 StaticSim:	" >> Report.txt
 RunTime4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {print $6}' times.txt`

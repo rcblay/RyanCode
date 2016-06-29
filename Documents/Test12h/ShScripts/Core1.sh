@@ -44,7 +44,7 @@ echo 'running pyxis on zed board'
 
 # Save run time to times.txt
 STARTTIME=$(date +%s)
-sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip '/archive/pyxis > /archive/screenout.txt'
+sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip '/archive/pyxis &> /archive/screenout.txt'
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
 cd $loc
