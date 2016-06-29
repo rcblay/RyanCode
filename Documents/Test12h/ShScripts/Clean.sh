@@ -15,7 +15,7 @@ cd ../output
 
 rm times.txt
 
-cd ./Dynamic
+cd Dynamic
 
 ## Remove all unnecessary files
 rm pyxis
@@ -28,6 +28,8 @@ rm valwar.txt
 rm Wwarning.txt
 rm DetermDyn.txt
 rm DetermDyn2.txt
+rm stdout.txt
+rm stderr.txt
 
 cd Plots
 rm results_0_0.txt
@@ -45,6 +47,8 @@ rm valwar.txt
 rm Wwarning.txt
 rm DetermStat.txt
 rm DetermStat2.txt
+rm stdout.txt
+rm stderr.txt
 
 cd Plots
 rm results_0_0.txt
@@ -96,6 +100,8 @@ rm screenout.txt
 rm Wwarning.txt
 rm DetermARM.txt
 rm DetermARM2.txt
+rm stdout.txt
+rm stderr.txt
 
 ## Clean matlab files
 cd ../../../MATLAB
