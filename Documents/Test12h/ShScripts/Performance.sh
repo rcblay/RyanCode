@@ -299,12 +299,14 @@ echo " " >> Report.txt
 echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
 echo " " >> Report.txt
 ## VALGRIND STATIC
-if [ grep -q -i "LEAK SUMMARY" Static/Valwar.txt ]
+FileDes1=`awk '/FILE DESCRIPTORS/ {print $4}' Static/valwar.txt`
+if [ grep -q -i "LEAK SUMMARY" Static/valwar.txt ] || [ $FileDes1 -ne 4 ]
 	then
 	echo "MAX2769 Sampfreq:6864e6 52min Static" >> Report.txt
 fi
 ## VALGRIND DYNAMIC
-if [ grep -q -i "LEAK SUMMARY" Dynamic/Valwar.txt ]
+FileDes2=`awk '/FILE DESCRIPTORS/ {print $4}' Dynamic/valwar.txt`
+if [ grep -q -i "LEAK SUMMARY" Dynamic/valwar.txt ] || [ $FileDes2 -ne 4 ]
 	then
 	echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
 fi
