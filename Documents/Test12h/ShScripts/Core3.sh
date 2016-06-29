@@ -31,6 +31,8 @@ sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript3.
 sed -i "/parentpath =/c\parentpath = '..\/output\/StaticSim\/';" AnalysisRNXScript3.m
 sed -i "/plotpath =/c\plotpath = '..\/output\/StaticSim\/Plots\/';" AnalysisRNXScript3.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript3.m
+sed -i "/ResY = /c\ResY = importWeek('..\/output\/StaticSim\/Plots/ResY.txt');" SaveResultsDHT.m
+sed -i "/ResW = /c\ResW = importWeek('..\/output\/StaticSim\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
 matlab -nodesktop -r "run AnalysisRNXScript3.m; exit;"
@@ -53,6 +55,8 @@ sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript3.
 sed -i "/parentpath =/c\parentpath = '..\/output\/StaticLong\/';" AnalysisRNXScript3.m
 sed -i "/plotpath =/c\plotpath = '..\/output\/StaticLong\/Plots\/';" AnalysisRNXScript3.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript3.m
+sed -i "/ResY = /c\ResY = importWeek('..\/output\/StaticLong\/Plots/ResY1.txt');" SaveResultsDHT.m
+sed -i "/ResW = /c\ResW = importWeek('..\/output\/StaticLong\/Plots/ResW1.txt');" SaveResultsDHT.m
 
 # Run matlab
 matlab -nodesktop -r "run AnalysisRNXScript3.m; exit;"
@@ -61,6 +65,8 @@ sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_1859_518400.bin';" AnalysisRNX
 sed -i "/parentpath =/c\parentpath = '..\/output\/StaticLong\/';" AnalysisRNXScript3.m
 sed -i "/plotpath =/c\plotpath = '..\/output\/StaticLong\/Plots\/';" AnalysisRNXScript3.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript3.m
+sed -i "/ResY = /c\ResY = importWeek('..\/output\/StaticLong\/Plots/ResY2.txt');" SaveResultsDHT.m
+sed -i "/ResW = /c\ResW = importWeek('..\/output\/StaticLong\/Plots/ResW2.txt');" SaveResultsDHT.m
 
 # Run matlab
 matlab -nodesktop -r "run AnalysisRNXScript3.m; exit;"
@@ -69,6 +75,8 @@ sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_1860_0.bin';" AnalysisRNXScrip
 sed -i "/parentpath =/c\parentpath = '..\/output\/StaticLong\/';" AnalysisRNXScript3.m
 sed -i "/plotpath =/c\plotpath = '..\/output\/StaticLong\/Plots\/';" AnalysisRNXScript3.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript3.m
+sed -i "/ResY = /c\ResY = importWeek('..\/output\/StaticLong\/Plots/ResY3.txt');" SaveResultsDHT.m
+sed -i "/ResW = /c\ResW = importWeek('..\/output\/StaticLong\/Plots/ResW3.txt');" SaveResultsDHT.m
 
 # Run matlab
 matlab -nodesktop -r "run AnalysisRNXScript3.m; exit;"

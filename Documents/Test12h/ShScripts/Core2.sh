@@ -56,6 +56,8 @@ sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript2.
 sed -i "/parentpath =/c\parentpath = '..\/output\/Dynamic\/';" AnalysisRNXScript2.m
 sed -i "/plotpath =/c\plotpath = '..\/output\/Dynamic\/Plots\/';" AnalysisRNXScript2.m
 sed -i "/truthStr = /c\truthStr = 'DriveTruth.txt';" AnalysisRNXScript2.m
+sed -i "/ResY = /c\ResY = importWeek('..\/output\/Dynamic\/Plots/ResY.txt');" SaveResultsDHT.m
+sed -i "/ResW = /c\ResW = importWeek('..\/output\/Dynamic\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
 matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
@@ -102,6 +104,8 @@ sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript2.
 sed -i "/parentpath =/c\parentpath = '..\/output\/Static\/';" AnalysisRNXScript2.m
 sed -i "/plotpath =/c\plotpath = '..\/output\/Static\/Plots\/';" AnalysisRNXScript2.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript2.m
+sed -i "/ResY = /c\ResY = importWeek('..\/output\/Static\/Plots/ResY.txt');" SaveResultsDHT.m
+sed -i "/ResW = /c\ResW = importWeek('..\/output\/Static\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
 matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
