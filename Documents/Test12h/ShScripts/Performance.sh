@@ -136,7 +136,7 @@ availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}'
 echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 
-# Change yestedays resluts for todays results
+# Change yestedays results for todays results
 mv StaticSim/Plots/Results_0_0.txt StaticSim/Plots/ResY.txt
 mv Static/Plots/Results_0_0.txt Static/Plots/ResY.txt
 mv /6TB/nfsshare/nightly-results/Plots/Results_0_0.txt /6TB/nfsshare/nightly-results/Plots/ResY.txt
@@ -295,19 +295,34 @@ echo "" >> Report.txt
 grep "warning:" Static/stderr.txt > Static/Wwarning.txt
 if [ -s Static/Wwarning.txt ]
 	then
-	echo "	MAX2769 Sampfreq:6864e6 52min x86 Static" >> Report.txt
+	if [ grep -q -i "Segmentation Fault" Static/Wwarning.txt ]
+		then
+		echo " MAX2769 Sampfreq:6864e6 52min x86 Static   Segmentation Fault" >> Report.txt
+	else
+		echo "	MAX2769 Sampfreq:6864e6 52min x86 Static" >> Report.txt
+	fi
 fi
 
 grep "warning:" /6TB/nfsshare/nightly-results/stderr.txt > /6TB/nfsshare/nightly-results/Wwarning.txt
 if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt ]
 	then
-	echo "	MAX2769 Sampfreq:6864e6 52min ARM Static" >> Report.txt
+	if [ grep -q -i "Segmentation Fault" /6TB/nfsshare/nightly-results/Wwarning.txt ]
+		then
+		echo " MAX2769 Sampfreq:6864e6 52min ARM Static   Segmentation Fault" >> Report.txt
+	else
+		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static" >> Report.txt
+	fi
 fi
 
 grep "warning:" Dynamic/stderr.txt > Dynamic/Wwarning.txt
 if [ -s Dynamic/Wwarning.txt ]
 	then
-	echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
+	if [ grep -q -i "Segmentation Fault" Dynamic/Wwarning.txt ]
+		then
+		echo " URSP-N210 Sampfreq:4e6 54min x86 Dynamic   Segmentation Fault" >> Report.txt
+	else
+		echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
+	fi
 fi
 
 
