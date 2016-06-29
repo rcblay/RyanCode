@@ -61,6 +61,8 @@ sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript1.
 sed -i "/parentpath =/c\parentpath = '\/nfsshare\/nightly-results\/';" AnalysisRNXScript1.m
 sed -i "/plotpath =/c\plotpath = '\/nfsshare\/nightly-results\/Plots\/';" AnalysisRNXScript1.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript1.m
+sed -i "/ResY = /c\ResY = importWeek('\/nfsshare\/nightly-results\/Plots/ResY.txt');" SaveResultsDHT.m
+sed -i "/ResW = /c\ResW = importWeek('\/nfsshare\/nightly-results\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
 matlab -nodesktop -r "run AnalysisRNXScript1.m; exit;"
