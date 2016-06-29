@@ -17,8 +17,14 @@
 cd ../output
 echo "###########################   Small Weekend Report   ##########################" > Report.txt
 echo " " >> Report.txt
-echo "Version:" >> Report.txt # NEEDS TO BE FILLED IN
-echo "Compiler:" >> Report.txt # NEEDS TO BE FILLED IN
+sed -i 's/|//g' Dynamic/Plots/resultOverV_0_0.txt
+sed -i 's/"//g' Dynamic/Plots/resultOverV_0_0.txt 
+Version=`awk '/Version/ {print $1,$2,$3,$4}' ./Dynamic/Plots/resultOverV_0_0.txt`
+Compiler=`awk '/Compiler/ {print $5,$6,$7,$8}' ./Dynamic/Plots/resultOverV_0_0.txt`
+echo -n "Version: " >> Report.txt 
+echo "$Version" >> Report.txt
+echo "Compiler: " >> Report.txt
+echo "$Compiler" >> Report.txt
 # Takes start and stop information located in Summary.txt 
 grep -A8 'Pyxis Test' ./Summary.txt >> PerfSummary.txt
 echo " " >> Report.txt
@@ -263,7 +269,7 @@ if [ -s StaticLong/DetermStatL.txt ]
 		fi
 	fi
 fi
-## DETERMINSITIC DYNAMIC
+## DETERMINISTIC DYNAMIC
 if [ -s Dynamic/DetermDyn.txt ]
 	then 
 	if [ -s Dynamic/DetermDyn2.txt ]
