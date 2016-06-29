@@ -69,7 +69,7 @@ mv ../bin/rcv/pyxis ../../../output/Static/
 
 cp ../../../conf_swc/conf_staticLong.h ../src/conf/conf_swc.h
 make clean
-make
+make 2> ../../../output/StaticLong/stderr.txt 1> ../../../output/StaticLong/stdout.txt
 
 mv ../bin/rcv/pyxis ../../../output/StaticLong/
 
@@ -98,7 +98,8 @@ cp ../../../../conf_swc/conf_staticsim.h conf_swc.h
 # Build Pyxis for StaticSim
 cd ../../build
 make clean
-make
+make 2> ../../../output/StaticSim/stderr.txt 1> ../../../output/StaticSim/stdout.txt
+
 # Move Pyxis into StaticSim output directory
 mv ../bin/rcv/pyxis ../../../output/StaticSim/
 
