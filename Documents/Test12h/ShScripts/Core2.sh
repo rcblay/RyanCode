@@ -18,8 +18,7 @@
 ## Execute Pyxis with Valgrind
 cd ../output/Dynamic
 STARTTIME=$(date +%s)
-#valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
-./pyxis &> screenout.txt
+valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
 echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic: $diff" >> ../times.txt
@@ -39,13 +38,6 @@ while [ true ]
 		./pyxis &> /dev/null
 		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermDyn2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermDyn2.txt
-		if [ -s DetermDyn2.txt ]
-			then
-			echo "Not Deterministic!"
-			echo " " >> DetermDyn.txt
-			echo "New Pyxis Run not Deterministic with itself" >> DetermDyn.txt
-			sleep 2s
-		fi
 		break
 	fi
 done
@@ -65,8 +57,7 @@ matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
 ## Execute Pyxis with Valgrind
 cd ../output/Static
 STARTTIME=$(date +%s)
-#valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
-./pyxis &> screenout.txt
+valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
 echo "MAX2769 Sampfreq:6864e6 52min Static: $diff" >> ../times.txt
@@ -85,13 +76,6 @@ while [ true ]
 		./pyxis &> /dev/null
 		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStat2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStat2.txt
-		if [ -s DetermStat2.txt ]
-			then
-			echo "Not Deterministic!"
-			echo " " >> DetermStat.txt
-			echo "New Pyxis Run not Deterministic with itself" >> DetermStat.txt
-			sleep 2s
-		fi
 		break
 	fi
 done

@@ -38,7 +38,7 @@ sed -i '/LINKING=/c\LINKING=DYNAMIC' conf.mk
 
 ## Build Pyxis for Dynamic and save stderr and stdout
 cd ..
-make clean
+make clean &> /dev/null
 make 2> ../../../output/Dynamic/stderr.txt 1> ../../../output/Dynamic/stdout.txt
 
 ## Move pyxis into Dynamic output directory
@@ -59,7 +59,7 @@ sed -i '/FILETYPE/c\FILETYPE=1' conf.mk
 
 ## Build Pyxis for Static and send warnings to Wwarning.txt
 cd ..
-make clean
+make clean &> /dev/null
 make 2> ../../../output/Static/stderr.txt 1> ../../../output/Static/stdout.txt
 
 ## Move pyxis into Static output directory
@@ -68,7 +68,7 @@ mv ../bin/rcv/pyxis ../../../output/Static/
 ## BUILDING STATIC LONG
 
 cp ../../../conf_swc/conf_staticLong.h ../src/conf/conf_swc.h
-make clean
+make clean &> /dev/null
 make 2> ../../../output/StaticLong/stderr.txt 1> ../../../output/StaticLong/stdout.txt
 
 mv ../bin/rcv/pyxis ../../../output/StaticLong/
@@ -86,7 +86,7 @@ cp ../../../../conf_swc/conf_staticARM.h ../../src/conf/conf_swc.h
 
 cd ..
 source /opt/Xilinx/SDK/2015.4/settings64.sh
-make clean
+make clean &> /dev/null
 make arm 2> /nfsshare/nightly-results/stderr.txt 1> /nfsshare/nightly-results/stdout.txt
 
 mv ../bin/rcv/pyxis /6TB/nfsshare/
@@ -97,7 +97,7 @@ cd ../src/conf
 cp ../../../../conf_swc/conf_staticsim.h conf_swc.h
 # Build Pyxis for StaticSim
 cd ../../build
-make clean
+make clean &> /dev/null
 make 2> ../../../output/StaticSim/stderr.txt 1> ../../../output/StaticSim/stdout.txt
 
 # Move Pyxis into StaticSim output directory
