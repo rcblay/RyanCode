@@ -51,8 +51,22 @@ cd $loc
 echo "MAX2769 Sampfreq:6864e6 52min ARM Static: $diff" >> ../output/times.txt
 cd /6TB/nfsshare
 
-cmp nightly-results/REFtimingaptBinaries_0_0.bin nightly-results/timingaptBinaries_0_0.bin > nightly-results/DetermARM.txt
-cmp nightly-results/REFtimingrnxBinaries_0_0.bin nightly-results/timingrnxBinaries_0_0.bin >> nightly-results/DetermARM.txt
+while [ true ]
+	do
+	cmp nightly-results/REFtimingaptBinaries_0_0.bin nightly-results/timingaptBinaries_0_0.bin > nightly-results/DetermARM.txt
+	cmp nightly-results/REFtimingrnxBinaries_0_0.bin nightly-results/timingrnxBinaries_0_0.bin >> nightly-results/DetermARM.txt
+	if ! [ -s nightly-results/DetermARM.txt ]
+		then
+		break
+	else
+		mv nightly-results/timingaptBinaries_0_0.bin nightly-results/REVISEDtimingaptBinaries_0_0.bin
+		mv nightly-results/timingrnxBinaries_0_0.bin nightly-results/REVISEDtimingrnxBinaries_0_0.bin
+		sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip '/archive/pyxis &> /dev/null'
+		cmp nightly-results/REVISEDtimingaptBinaries_0_0.bin nightly-results/timingaptBinaries_0_0.bin > nightly-results/DetermARM2.txt
+		cmp nightly-results/REVISEDtimingrnxBinaries_0_0.bin nightly-results/timingrnxBinaries_0_0.bin >> nightly-results/DetermARM2.txt
+		break
+	fi
+done
 
 cd $loc
 cd ../MATLAB

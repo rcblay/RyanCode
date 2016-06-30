@@ -39,13 +39,6 @@ while [ true ]
 		./pyxis &> /dev/null
 		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermDyn2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermDyn2.txt
-		if [ -s DetermDyn2.txt ]
-			then
-			echo "Not Deterministic!"
-			echo " " >> DetermDyn.txt
-			echo "New Pyxis Run not Deterministic with itself" >> DetermDyn.txt
-			sleep 2s
-		fi
 		break
 	fi
 done
@@ -87,13 +80,6 @@ while [ true ]
 		./pyxis &> /dev/null
 		cmp REVISEDtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStat2.txt
 		cmp REVISEDtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStat2.txt
-		if [ -s DetermStat2.txt ]
-			then
-			echo "Not Deterministic!"
-			echo " " >> DetermStat.txt
-			echo "New Pyxis Run not Deterministic with itself" >> DetermStat.txt
-			sleep 2s
-		fi
 		break
 	fi
 done

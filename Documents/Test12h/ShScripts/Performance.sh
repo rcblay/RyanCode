@@ -250,10 +250,10 @@ fi
 ## DETERMINISTIC ARM STATIC
 if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
 	then 
-	if [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM.txt ] && [ grep -q -i "rnx" /6TB/nfsshare/nightly-results/DetermARM.txt ]
+	if [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM2.txt ] && [ grep -q -i "rnx" /6TB/nfsshare/nightly-results/DetermARM2.txt ]
 		then
 		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt & rnx" >> Report.txt
-	elif [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM.txt ]
+	elif [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM2.txt ]
 		then
 		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt" >> Report.txt
 	else
