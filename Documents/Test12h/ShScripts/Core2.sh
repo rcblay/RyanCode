@@ -55,8 +55,6 @@ sed -i "/ResW = /c\ResW = importWeek('..\/output\/Dynamic\/Plots/ResW.txt');" Sa
 # Run matlab
 matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
 
-
-
 ## Execute Pyxis with Valgrind
 cd ../output/Static
 STARTTIME=$(date +%s)

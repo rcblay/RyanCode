@@ -45,7 +45,7 @@ ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
 echo "MAX2769 Sampfreq:6864e6 34hours x86 StaticLong: $diff" >> ../times.txt
 
-## Checks whether the Pyxis results are the same as the previous test, if they are then it breaks. If not, then it runs the test again and confirms that its deterministic.
+## Checks whether the Pyxis results are the same as the previous test.
 cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatL.txt
 cmp ./REFaptrnx/REFtimingrnxBinaries_0_0.bin timingrnxBinaries_0_0.bin >> DetermStatL.txt
 

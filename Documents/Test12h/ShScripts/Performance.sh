@@ -21,6 +21,7 @@ sed -i 's/|/ /g' Dynamic/Plots/resultOverV_0_0.txt
 sed -i 's/"/ /g' Dynamic/Plots/resultOverV_0_0.txt 
 Version=`awk '/Version/ {print $2,$3,$4}' ./Dynamic/Plots/resultOverV_0_0.txt`
 Compiler=`awk '/Compiler/ {print $6,$7,$8}' ./Dynamic/Plots/resultOverV_0_0.txt`
+echo " " >> Report.txt
 echo -n "Version: " >> Report.txt 
 echo "$Version" >> Report.txt
 echo -n "Compiler: " >> Report.txt
@@ -244,7 +245,7 @@ if [ -s Static/DetermStat.txt ]
 		else
 			echo "	MAX2769 Sampfreq:6864e6 52min x86 Static	rnx" >> Report.txt
 		fi
-		echo "error" >> error.txt
+		echo "error" > error.txt
 	fi
 fi
 ## DETERMINISTIC ARM STATIC
@@ -259,7 +260,7 @@ if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
 	else
 		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	rnx" >> Report.txt
 	fi
-	echo "error" >> error.txt
+	echo "error" > error.txt
 fi
 ## DETERMINISTIC STATICLONG
 if [ -s StaticLong/DetermStatL.txt ]
@@ -273,7 +274,7 @@ if [ -s StaticLong/DetermStatL.txt ]
 	else
 		echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	rnx" >> Report.txt
 	fi
-	echo "error" >> error.txt
+	echo "error" > error.txt
 fi
 ## DETERMINISTIC DYNAMIC
 if [ -s Dynamic/DetermDyn.txt ]
@@ -289,7 +290,7 @@ if [ -s Dynamic/DetermDyn.txt ]
 		else
 			echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic	rnx" >> Report.txt
 		fi
-		echo "error" >> error.txt
+		echo "error" > error.txt
 	fi
 fi
 
@@ -304,7 +305,7 @@ echo "" >> Report.txt
 if [ tail StaticSim/screenout.txt | grep -q -i "Segmentation Fault" ]
 	then 
 	echo " MAX2769 Sampfreq:6864e6 26min x86 StaticSim	Segmentation Fault" >> Report.txt
-	echo "error" >> error.txt
+	echo "error" > error.txt
 fi
 ## GCC WARNINGS STATIC
 grep "warning:" Static/stderr.txt > Static/Wwarning.txt
@@ -316,7 +317,7 @@ if [ -s Static/Wwarning.txt || tail Static/screenout.txt | grep -q -i "Segmentat
 	else
 		echo "	MAX2769 Sampfreq:6864e6 52min x86 Static" >> Report.txt
 	fi
-	echo "error" >> error.txt
+	echo "error" > error.txt
 fi
 ## GCC WARNINGS STATIC ARM
 grep "warning:" /6TB/nfsshare/nightly-results/stderr.txt > /6TB/nfsshare/nightly-results/Wwarning.txt
@@ -328,13 +329,13 @@ if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt || tail /6TB/nfsshare/nightly
 	else
 		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static" >> Report.txt
 	fi
-	echo "error" >> error.txt
+	echo "error" > error.txt
 fi
 ## GCC WARNINGS STATICLONG
 if [ tail StaticLong/screenout.txt | grep -q -i "Segmentation Fault" ]
 	then 
 	echo " MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	Segmentation Fault" >> Report.txt
-	echo "error" >> error.txt
+	echo "error" > error.txt
 fi
 ## GCC WARNINGS DYNAMIC
 grep "warning:" Dynamic/stderr.txt > Dynamic/Wwarning.txt
@@ -346,7 +347,7 @@ if [ -s Dynamic/Wwarning.txt || tail Dynamic/screenout.txt | grep -q -i "Segment
 	else
 		echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
 	fi
-	echo "error" >> error.txt
+	echo "error" > error.txt
 fi
 
 
@@ -361,14 +362,14 @@ FileDes1=`awk '/FILE DESCRIPTORS/ {print $4}' Static/valwar.txt`
 if [ grep -q -i "LEAK SUMMARY" Static/valwar.txt ] || [ $FileDes1 -ne 4 ]
 	then
 	echo "MAX2769 Sampfreq:6864e6 52min Static" >> Report.txt
-	echo "error" >> error.txt
+	echo "error" > error.txt
 fi
 ## VALGRIND DYNAMIC
 FileDes2=`awk '/FILE DESCRIPTORS/ {print $4}' Dynamic/valwar.txt`
 if [ grep -q -i "LEAK SUMMARY" Dynamic/valwar.txt ] || [ $FileDes2 -ne 4 ]
 	then
 	echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
-	echo "error" >> error.txt
+	echo "error" > error.txt
 fi
 
 if [ -s error.txt ]

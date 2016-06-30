@@ -67,6 +67,8 @@ rm timingaptBinaries_1860_0.bin
 rm screenout.txt
 rm Wwarning.txt
 rm DetermStatL.txt
+rm stdout.txt
+rm stderr.txt
 
 cd Plots
 rm results_0_0.txt
@@ -82,6 +84,8 @@ rm timingaptBinaries_0_0.bin
 rm screenout.txt
 rm Wwarning.txt
 rm DetermStatSim.txt
+rm stdout.txt
+rm stderr.txt
 
 cd Plots
 rm results_0_0.txt
