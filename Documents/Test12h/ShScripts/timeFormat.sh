@@ -1,8 +1,11 @@
-#STARTTIME=$(date +%s)
-#ENDTIME=$(date +%s)
-#diff=$(($ENDTIME-$STARTTIME))
 diff=$1
 plmi=$2
+
+if [ $diff -lt 0 ]
+	then
+	diff=`expr -1 \* $diff`
+	plmi=-
+fi
 hours=$(($diff / 3600))
 min=$(($(($diff / 60)) % 60))
 sec=$(($diff % 60))

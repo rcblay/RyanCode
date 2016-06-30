@@ -25,9 +25,8 @@ echo -n "Version: " >> Report.txt
 echo "$Version" >> Report.txt
 echo -n "Compiler: " >> Report.txt
 echo "$Compiler" >> Report.txt
-echo " " >> Report.txt
 # Takes start and stop information located in Summary.txt 
-grep -A8 'Pyxis Test' Summary.txt >> Report.txt
+grep -A8 'Pyxis Test' ./Summary.txt >> PerfSummary.txt
 echo " " >> Report.txt
 rm Summary.txt
 echo "Performance: " >> Report.txt # NEEDS TO BE FILLED IN
@@ -137,15 +136,6 @@ availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}'
 echo "Availability:       	$availabilityval" >> Report.txt
 echo " " >> Report.txt
 
-# Change yestedays results for todays results
-mv StaticSim/Plots/Results_0_0.txt StaticSim/Plots/ResY.txt
-mv Static/Plots/Results_0_0.txt Static/Plots/ResY.txt
-mv /6TB/nfsshare/nightly-results/Plots/Results_0_0.txt /6TB/nfsshare/nightly-results/Plots/ResY.txt
-mv StaticLong/Plots/Results_0_0.bin StaticLong/Plots/ResY1.txt
-mv StaticLong/Plots/Results_1859_518400.bin StaticLong/Plots/ResY2.txt
-mv StaticLong/Plots/Results_1860_0.bin StaticLong/Plots/ResY3.txt
-mv Dynamic/Plots/Results_0_0.txt Dynamic/Plots/ResY.txt
-
 
 
 echo " " >> Report.txt
@@ -156,71 +146,57 @@ echo " " >> Report.txt
 echo "						Actual	Comp Yesterday	Comp Last Week" >> Report.txt
 ## CODE PERFORMANCE STATICSIM
 echo -n "MAX2769 Sampfreq:6864e6 26min x86 StaticSim:	" >> Report.txt
-RunTime4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {print $6}' times.txt`
+RunTime4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' times.txt`
 RTf4=`../ShScripts/timeFormat.sh $RunTime4`
-RunTimeY4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {print $6}' ytimes.txt`
+RunTimeY4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' ytimes.txt`
 diffyRunTime4=`expr $RunTimeY4 - $RunTime4`
 diffyRTf4=`../ShScripts/timeFormat.sh $diffyRunTime4`
 echo -n "$RTf4	$diffyRTf4      " >> Report.txt
-RunTimeW4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {print $6}' wtimes.txt`
+RunTimeW4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {getline; print}' wtimes.txt`
 diffwRunTime4=`expr $RunTimeW4 - $RunTime4`
 diffwRTf4=`../ShScripts/timeFormat.sh $diffwRunTime4`
 echo "$diffwRTf4" >> Report.txt
 echo " " >> Report.txt
 ## CODE PERFORMANCE STATIC
 echo -n "MAX2769 Sampfreq:6864e6 52min Static:		" >> Report.txt
-RunTime3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {print $5}' times.txt`
+RunTime3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' times.txt`
 RTf3=`../ShScripts/timeFormat.sh $RunTime3`
-RunTimeY3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {print $5}' ytimes.txt`
+RunTimeY3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' ytimes.txt`
 diffyRunTime3=`expr $RunTimeY3 - $RunTime3`
 diffyRTf3=`../ShScripts/timeFormat.sh $diffyRunTime3`
 echo -n "$RTf3	$diffyRTf3      " >> Report.txt
-RunTimeW3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {print $5}' wtimes.txt`
+RunTimeW3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {getline; print}' wtimes.txt`
 diffwRunTime3=`expr $RunTimeW3 - $RunTime3`
 diffwRTf3=`../ShScripts/timeFormat.sh $diffwRunTime3`
 echo "$diffwRTf3" >> Report.txt
 echo " " >> Report.txt
 ## CODE PERFORMANCE ARM STATIC
 echo -n "MAX2769 Sampfreq:6864e6 52min ARM Static:	" >> Report.txt
-RunTime1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {print $6}' times.txt`
+RunTime1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' times.txt`
 RTf1=`../ShScripts/timeFormat.sh $RunTime1`
-RunTimeY1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {print $6}' ytimes.txt`
+RunTimeY1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' ytimes.txt`
 diffyRunTime1=`expr $RunTimeY1 - $RunTime1`
 diffyRTf1=`../ShScripts/timeFormat.sh $diffyRunTime1`
 echo -n "$RTf1	$diffyRTf1      " >> Report.txt
-RunTimeW1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {print $6}' wtimes.txt`
+RunTimeW1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {getline; print}' wtimes.txt`
 diffwRunTime1=`expr $RunTimeW1 - $RunTime1`
 diffwRTf1=`../ShScripts/timeFormat.sh $diffwRunTime1`
 echo "$diffwRTf1" >> Report.txt
 echo " " >> Report.txt
-## CODE PERFORMANCE STATICLONG
-echo -n "MAX2769 Sampfreq:6864e6 34hours x86 StaticLong:	" >> Report.txt
-RunTime5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {print $6}' times.txt`
-RTf5=`../ShScripts/timeFormat.sh $RunTime5`
-RunTimeY5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {print $6}' ytimes.txt`
-diffyRunTime5=`expr $RunTimeY5 - $RunTime5`
-diffyRTf5=`../ShScripts/timeFormat.sh $diffyRunTime1`
-echo -n "$RTf5	$diffyRTf5      " >> Report.txt
-RunTimeW5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {print $6}' wtimes.txt`
-diffwRunTime5=`expr $RunTimeW5 - $RunTime5`
-diffwRTf5=`../ShScripts/timeFormat.sh $diffwRunTime5`
-echo "$diffwRTf5" >> Report.txt
-echo " " >> Report.txt
 ## CODE PERFORMANCE DYNAMIC
 echo -n "URSP-N210 Sampfreq:4e6 54min x86 Dynamic:	" >> Report.txt
-RunTime2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {print $6}' times.txt`
+RunTime2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' times.txt`
 RTf2=`../ShScripts/timeFormat.sh $RunTime2`
-RunTimeY2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {print $6}' ytimes.txt`
+RunTimeY2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' ytimes.txt`
 diffyRunTime2=`expr $RunTimeY2 - $RunTime2`
 diffyRTf2=`../ShScripts/timeFormat.sh $diffyRunTime2`
 echo -n "$RTf2	$diffyRTf2      " >> Report.txt
-RunTimeW2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {print $6}' wtimes.txt`
+RunTimeW2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {getline; print}' wtimes.txt`
 diffwRunTime2=`expr $RunTimeW2 - $RunTime2`
 diffwRTf2=`../ShScripts/timeFormat.sh $diffwRunTime2`
 echo "$diffwRTf2" >> Report.txt
 echo " " >> Report.txt
-# Move current times.txt and make it new ytimes.txt
-mv times.txt ytimes.txt
+##### NEED STATIC LONG
 
 
 
@@ -229,7 +205,23 @@ echo "------------------------------   Deterministic   -------------------------
 echo " " >> Report.txt
 echo " Not deterministic tests are:" >> Report.txt
 echo " " >> Report.txt
+## DETERMINISTIC STATICSIM
 # Check if either rnx or apt are un-deterministic
+if [ -s StaticSim/DetermStatSim.txt ]
+	then 
+	if [ -s StaticSim/DetermStatSim2.txt ]
+		then
+		if [ grep -q -i "apt" StaticSim/DetermStatSim2.txt ] && [ grep -q -i "rnx" StaticSim/DetermStatSim2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" StaticSim/DetermStatSim2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	rnx" >> Report.txt
+		fi
+	fi
+fi
 ## DETERMINISTIC STATIC
 if [ -s Static/DetermStat.txt ]
 	then 
@@ -244,36 +236,39 @@ if [ -s Static/DetermStat.txt ]
 		else
 			echo "	MAX2769 Sampfreq:6864e6 52min x86 Static	rnx" >> Report.txt
 		fi
-		echo "error" > error.txt
 	fi
 fi
 ## DETERMINISTIC ARM STATIC
 if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
 	then 
-	if [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM.txt ] && [ grep -q -i "rnx" /6TB/nfsshare/nightly-results/DetermARM.txt ]
+	if [ -s /6TB/nfsshare/nightly-results/DetermARM2.txt ]
 		then
-		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt & rnx" >> Report.txt
-	elif [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM.txt ]
-		then
-		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt" >> Report.txt
-	else
-		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	rnx" >> Report.txt
+		if [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM2.txt ] && [ grep -q -i "rnx" /6TB/nfsshare/nightly-results/DetermARM2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" /6TB/nfsshare/nightly-results/DetermARM2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	rnx" >> Report.txt
+		fi
 	fi
-	echo "error" > error.txt
 fi
 ## DETERMINISTIC STATICLONG
 if [ -s StaticLong/DetermStatL.txt ]
-	then
-	if [ grep -q -i "apt" StaticLong/DetermStatL.txt ] && [ grep -q -i "rnx" StaticLong/DetermStatL.txt ]
+	then 
+	if [ -s StaticLong/DetermStatL2.txt ]
 		then
-		echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt & rnx" >> Report.txt
-	elif [ grep -q -i "apt" StaticLong/DetermStatL.txt ]
-		then
-		echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt" >> Report.txt
-	else
-		echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	rnx" >> Report.txt
+		if [ grep -q -i "apt" StaticLong/DetermStatL2.txt ] && [ grep -q -i "rnx" StaticLong/DetermStatL2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt & rnx" >> Report.txt
+		elif [ grep -q -i "apt" StaticLong/DetermStat2.txt ]
+			then
+			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	apt" >> Report.txt
+		else
+			echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	rnx" >> Report.txt
+		fi
 	fi
-	echo "error" > error.txt
 fi
 ## DETERMINISTIC DYNAMIC
 if [ -s Dynamic/DetermDyn.txt ]
@@ -289,7 +284,6 @@ if [ -s Dynamic/DetermDyn.txt ]
 		else
 			echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic	rnx" >> Report.txt
 		fi
-		echo "error" > error.txt
 	fi
 fi
 
@@ -298,85 +292,26 @@ fi
 echo " " >> Report.txt
 echo "------------------------------   GCC Warnings   -------------------------------" >> Report.txt
 echo " " >> Report.txt
-echo " Files with GCC warnings:" >> Report.txt
-echo "" >> Report.txt
-## GCC WARNINGS STATICSIM
-if [ tail StaticSim/screenout.txt | grep -q -i "Segmentation Fault" ]
-	then 
-	echo " MAX2769 Sampfreq:6864e6 26min x86 StaticSim	Segmentation Fault" >> Report.txt
-	echo "error" > error.txt
-fi
-## GCC WARNINGS STATIC
-grep "warning:" Static/stderr.txt > Static/Wwarning.txt
-if [ -s Static/Wwarning.txt || tail Static/screenout.txt | grep -q -i "Segmentation Fault" ]
-	then
-	if [ tail Static/screenout.txt | grep -q -i "Segmentation Fault" ]
-		then
-		echo " MAX2769 Sampfreq:6864e6 52min x86 Static		Segmentation Fault" >> Report.txt
-	else
-		echo "	MAX2769 Sampfreq:6864e6 52min x86 Static" >> Report.txt
-	fi
-	echo "error" > error.txt
-fi
-## GCC WARNINGS STATIC ARM
-grep "warning:" /6TB/nfsshare/nightly-results/stderr.txt > /6TB/nfsshare/nightly-results/Wwarning.txt
-if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt || tail /6TB/nfsshare/nightly-results/screenout.txt | grep -q -i "Segmentation Fault" ]
-	then
-	if [ tail /6TB/nfsshare/nightly-results/screenout.txt | grep -q -i "Segmentation Fault" ]
-		then
-		echo " MAX2769 Sampfreq:6864e6 52min ARM Static		Segmentation Fault" >> Report.txt
-	else
-		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static" >> Report.txt
-	fi
-	echo "error" > error.txt
-fi
-## GCC WARNINGS STATICLONG
-if [ tail StaticLong/screenout.txt | grep -q -i "Segmentation Fault" ]
-	then 
-	echo " MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	Segmentation Fault" >> Report.txt
-	echo "error" > error.txt
-fi
-## GCC WARNINGS DYNAMIC
-grep "warning:" Dynamic/stderr.txt > Dynamic/Wwarning.txt
-if [ -s Dynamic/Wwarning.txt || tail Dynamic/screenout.txt | grep -q -i "Segmentation Fault" ]
-	then
-	if [ tail Dynamic/screenout.txt | grep -q -i "Segmentation Fault" ]
-		then
-		echo " URSP-N210 Sampfreq:4e6 54min x86 Dynamic		Segmentation Fault" >> Report.txt
-	else
-		echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
-	fi
-	echo "error" > error.txt
-fi
 
 
 
 echo " " >> Report.txt
 echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
 echo " " >> Report.txt
-echo " Files with leaks or other Valgrind warnings:" >> Report.txt
-echo " " >> Report.txt
 ## VALGRIND STATIC
 FileDes1=`awk '/FILE DESCRIPTORS/ {print $4}' Static/valwar.txt`
 if [ grep -q -i "LEAK SUMMARY" Static/valwar.txt ] || [ $FileDes1 -ne 4 ]
 	then
 	echo "MAX2769 Sampfreq:6864e6 52min Static" >> Report.txt
-	echo "error" > error.txt
 fi
 ## VALGRIND DYNAMIC
 FileDes2=`awk '/FILE DESCRIPTORS/ {print $4}' Dynamic/valwar.txt`
 if [ grep -q -i "LEAK SUMMARY" Dynamic/valwar.txt ] || [ $FileDes2 -ne 4 ]
 	then
 	echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
-	echo "error" > error.txt
 fi
 
-if [ -s error.txt ]
-	then
-	sed -i "/Performance:/c\Performance: Errors!" Report.txt
-else
-	sed -i "/Performance:/c\Performance: No Errors." Report.txt
-fi
+
 
 echo " " >> Report.txt
 ## Prints Completion Message
