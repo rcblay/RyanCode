@@ -18,8 +18,7 @@
 ## Execute Pyxis with Valgrind
 cd ../output/Dynamic
 STARTTIME=$(date +%s)
-#valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
-./pyxis &> screenout.txt
+valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
 echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic: $diff" >> ../times.txt
@@ -58,8 +57,7 @@ matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
 ## Execute Pyxis with Valgrind
 cd ../output/Static
 STARTTIME=$(date +%s)
-#valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
-./pyxis &> screenout.txt
+valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
 echo "MAX2769 Sampfreq:6864e6 52min Static: $diff" >> ../times.txt
