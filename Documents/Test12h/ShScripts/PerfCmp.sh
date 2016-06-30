@@ -5,6 +5,11 @@ availability=$2
 mean3dval=`echo ${mean3dval} | sed -e 's/[eE]+*/\\*10\\^/'`
 availability=`echo ${availability} | sed -e 's/[eE]+*/\\*10\\^/'`
 
+if [ $(echo "$mean3dval < 0.2" | bc -l) -eq 1 ] && [ $(echo "$mean3dval > 0" | bc -l) -eq 1 ]
+	then
+	mean3dval=0
+fi
+
 if [ $(echo "$mean3dval < 0" | bc -l) -eq 1 ]
 	then
 	if [ $(echo "$availability <= 0" | bc -l) -eq 1 ]
