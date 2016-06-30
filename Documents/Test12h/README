@@ -13,8 +13,8 @@ The directory structure is:
 
 Before you begin:
 
-	Make sure that all the directories are changed in the shell scripts. It is set up so that you
-	only need to change the first cd command in Start12h.sh.
+	Make sure that all the directories are changed in the shell scripts. It is set up so that 
+	you only need to change the first cd command in Start12h.sh.
 
 Instructions:
 
@@ -22,13 +22,15 @@ Instructions:
 
 Explanation:
 
-	After cleaning all old files, Start12h.sh begins the testing by first compiling/making pyxis
-	and distributing it to the appropriate folders. This process is encapsulated in Build.sh. 
+	After cleaning all old files, Start12h.sh begins the testing by first compiling/making 
+	pyxis and distributing it to the appropriate folders. This process is encapsulated in 
+	Build.sh. 
 
-	Once Build.sh is finished, Core1.sh, Core2.sh, and Core3.sh are started. They run pyxis and then run 
-	matlab. The first core deals with the ARM test while the second core deals with the static/dynamic test. 
-	The third core deals with the StaticSim and StaticLong tests.
+	Once Build.sh is finished, Core1.sh, Core2.sh, and Core3.sh are started. They run pyxis 
+	and then run matlab. The first core deals with the ARM test while the second core deals 
+	with the static/dynamic test. The third core deals with the StaticSim and StaticLong 
+	tests.
 
-	After all cores are completed, then Performance.sh is ran, which extracts the important information 
-	and condenses it into one file named Report.txt.
+	After all cores are completed, then Performance.sh is ran, which extracts the important 
+	information and condenses it into one file named Report.txt.
 
