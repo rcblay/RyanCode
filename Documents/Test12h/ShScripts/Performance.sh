@@ -272,7 +272,7 @@ diffwRTf2=`../ShScripts/timeFormat.sh $diffwRunTime2`
 echo "$diffwRTf2" >> Report.txt
 echo " " >> Report.txt
 # Move current times.txt and make it new ytimes.txt
-#mv times.txt ytimes.txt
+mv times.txt ytimes.txt
 
 
 
