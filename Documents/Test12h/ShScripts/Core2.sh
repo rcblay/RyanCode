@@ -52,7 +52,7 @@ sed -i "/ResY = /c\ResY = importWeek('..\/output\/Dynamic\/Plots/ResY.txt');" Sa
 sed -i "/ResW = /c\ResW = importWeek('..\/output\/Dynamic\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
-matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
+/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
 
 ## Execute Pyxis with Valgrind
 cd ../output/Static
@@ -90,7 +90,7 @@ sed -i "/ResY = /c\ResY = importWeek('..\/output\/Static\/Plots/ResY.txt');" Sav
 sed -i "/ResW = /c\ResW = importWeek('..\/output\/Static\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
-matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
+/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
 
 ## Time when Core 2 was finished is printed to Summary.txt
 cd ../output

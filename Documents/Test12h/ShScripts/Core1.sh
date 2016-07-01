@@ -79,7 +79,7 @@ sed -i "/ResY = /c\ResY = importWeek('\/nfsshare\/nightly-results\/Plots/ResY.tx
 sed -i "/ResW = /c\ResW = importWeek('\/nfsshare\/nightly-results\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
-matlab -nodesktop -r "run AnalysisRNXScript1.m; exit;"
+/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript1.m; exit;"
 
 ## Time when Core 1 was finished is printed to Summary.txt
 cd ../output
