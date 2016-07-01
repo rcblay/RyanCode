@@ -17,9 +17,10 @@ loc=`pwd`
 
 cd /6TB/nfsshare
 # Configuring ARM for pyxis test
-my_ip=128.138.253.168
+my_ip=128.138.253.34
 arm_ip=128.138.253.167
-path_to_largeFiles=/home/jimi/PYXIS/largeFiles
+path_to_nfsshare=/6TB/nfsshare
+path_to_largeFiles=/tmp/largeFiles
 password="root"
 mount_command="mount $my_ip:$path_to_nfsshare /archive"
 
@@ -67,7 +68,6 @@ while [ true ]
 		break
 	fi
 done
-
 cd $loc
 cd ../MATLAB
 

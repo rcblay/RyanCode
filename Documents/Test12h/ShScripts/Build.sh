@@ -87,7 +87,7 @@ cp ../../../../conf_swc/conf_staticARM.h ../../src/conf/conf_swc.h
 cd ..
 source /opt/Xilinx/SDK/2015.4/settings64.sh
 make clean &> /dev/null
-make arm 2> /nfsshare/nightly-results/stderr.txt 1> /nfsshare/nightly-results/stdout.txt
+make arm 2> /6TB/nfsshare/nightly-results/stderr.txt 1> /6TB/nfsshare/nightly-results/stdout.txt
 
 mv ../bin/rcv/pyxis /6TB/nfsshare/
 
