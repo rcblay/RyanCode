@@ -353,16 +353,16 @@ echo " " >> Report.txt
 echo " Files with GCC warnings:" >> Report.txt
 echo " " >> Report.txt
 ## GCC WARNINGS STATICSIM
-if [ "$(tail StaticSim/screenout.txt | grep -q -i 'Segmentation Fault')" == "Segmentation Fault" ]
+if tail StaticSim/screenout.txt | grep -q -i "Segmentation Fault";
 	then 
 	echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	Segmentation Fault" >> Report.txt
 	echo "error" > error.txt
 fi
 ## GCC WARNINGS STATIC
 grep "warning:" Static/stderr.txt > Static/Wwarning.txt
-if [ -s Static/Wwarning.txt ] || [ "$(tail Static/screenout.txt | grep -q -i 'Segmentation Fault')" == "Segmentation Fault" ]
+if [ -s Static/Wwarning.txt ] || tail Static/screenout.txt | grep -q -i "Segmentation Fault";
 	then
-	if [ "$(tail Static/screenout.txt | grep -q -i 'Segmentation Fault')" == "Segmentation Fault" ]
+	if tail Static/screenout.txt | grep -q -i "Segmentation Fault";
 		then
 		echo " MAX2769 Sampfreq:6864e6 52min x86 Static		Segmentation Fault" >> Report.txt
 	else
@@ -372,9 +372,9 @@ if [ -s Static/Wwarning.txt ] || [ "$(tail Static/screenout.txt | grep -q -i 'Se
 fi
 ## GCC WARNINGS STATIC ARM
 grep "warning:" /6TB/nfsshare/nightly-results/stderr.txt > /6TB/nfsshare/nightly-results/Wwarning.txt
-if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt ] || [ "$(tail /6TB/nfsshare/nightly-results/screenout.txt | grep -q -i 'Segmentation Fault')" == "Segmentation Fault" ]
+if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt ] || tail /6TB/nfsshare/nightly-results/screenout.txt | grep -q -i "Segmentation Fault";
 	then
-	if [ "$(tail /6TB/nfsshare/nightly-results/screenout.txt | grep -q -i 'Segmentation Fault')" == "Segmentation Fault" ]
+	if tail /6TB/nfsshare/nightly-results/screenout.txt | grep -q -i "Segmentation Fault";
 		then
 		echo "	MAX2769 Sampfreq:6864e6 52min ARM Static	Segmentation Fault" >> Report.txt
 	else
@@ -383,16 +383,16 @@ if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt ] || [ "$(tail /6TB/nfsshare/
 	echo "error" > error.txt
 fi
 ## GCC WARNINGS STATICLONG
-if [ "$(tail StaticLong/screenout.txt | grep -q -i 'Segmentation Fault')" == "Segmentation Fault" ]
+if tail StaticLong/screenout.txt | grep -q -i "Segmentation Fault";
 	then 
 	echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	Segmentation Fault" >> Report.txt
 	echo "error" > error.txt
 fi
 ## GCC WARNINGS DYNAMIC
 grep "warning:" Dynamic/stderr.txt > Dynamic/Wwarning.txt
-if [ -s Dynamic/Wwarning.txt ] || [ "$(tail Dynamic/screenout.txt | grep -i 'Segmentation Fault')" == "Segmentation Fault" ]
+if [ -s Dynamic/Wwarning.txt ] || tail Dynamic/screenout.txt | grep -i -q "Segmentation Fault";
 	then
-	if [ "$(tail Dynamic/screenout.txt | grep -i 'Segmentation Fault')" == "Segmentation Fault" ]
+	if tail Dynamic/screenout.txt | grep -q -i "Segmentation Fault";
 		then
 		echo "	URSP-N210 Sampfreq:4e6 54min x86 Dynamic	Segmentation Fault" >> Report.txt
 	else
@@ -410,14 +410,14 @@ echo " Files with leaks or other Valgrind warnings:" >> Report.txt
 echo " " >> Report.txt
 ## VALGRIND STATIC
 FileDes1=`awk '/FILE DESCRIPTORS/ {print $4}' Static/valwar.txt`
-if [ "$(grep -q -i 'LEAK SUMMARY' Static/valwar.txt)" == "LEAK SUMMARY" ] || [ $FileDes1 -ne 4 ]
+if [ $FileDes1 -ne 4 ] || grep -q -i "LEAK SUMMARY" Static/valwar.txt
 	then
 	echo " MAX2769 Sampfreq:6864e6 52min Static" >> Report.txt
 	echo "error" > error.txt
 fi
 ## VALGRIND DYNAMIC
 FileDes2=`awk '/FILE DESCRIPTORS/ {print $4}' Dynamic/valwar.txt`
-if [ "$(grep -q -i 'LEAK SUMMARY' Dynamic/valwar.txt)" == "LEAK SUMMARY" ] || [ $FileDes2 -ne 4 ]
+if [ $FileDes2 -ne 4 ] || grep -q -i "LEAK SUMMARY" Dynamic/valwar.txt;
 	then
 	echo " URSP-N210 Sampfreq:4e6 54min x86 Dynamic" >> Report.txt
 	echo "error" > error.txt
