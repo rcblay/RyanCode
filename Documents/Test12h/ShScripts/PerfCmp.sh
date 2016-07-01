@@ -1,6 +1,12 @@
 mean3dval=$1
 availability=$2
 
+if [ -v $mean3dval ] || [ -v $availability ]
+	then
+	echo "Test Not Run"
+	exit
+fi
+
 # Gets rid of scientific notation
 mean3dval=`echo ${mean3dval} | sed -e 's/[eE]+*/\\*10\\^/'`
 availability=`echo ${availability} | sed -e 's/[eE]+*/\\*10\\^/'`

@@ -1,6 +1,12 @@
 diff=$1
 plmi=$2
 
+if [ -v $diff ] || [ $diff == "-" ]
+	then
+	echo "--------"
+	exit
+fi
+
 if [ $diff -lt 0 ]
 	then
 	diff=`expr -1 \* $diff`
