@@ -21,9 +21,6 @@
 # Output: Summary.txt and performance plots	#
 #################################################
 
-# Change to Test directory
-cd /home/dma/Documents/Test12h
-
 ## Print time of starting operation to Summary.txt and terminal
 echo 'Pyxis Test was started at the local time of:' > output/Summary.txt
 date >> output/Summary.txt
@@ -31,9 +28,9 @@ echo 'Pyxis Test was started at the local time of:' `date`
 
 ## Change to ShScripts directory and start Clean.sh then Build.sh
 cd ./ShScripts
-gnome-terminal -x ./Clean.sh
+./Clean.sh &
 sleep 5s
-gnome-terminal -x ./Build.sh
+./Build.sh &
 sleep 5s
 
 echo "Waiting for Build.sh to finish..."
@@ -45,13 +42,13 @@ done
 echo "Pyxis builds are complete"
 
 ## Starts PyxisTestCore1.sh
-gnome-terminal -x ./Core1.sh
+nice -10 ./Core1.sh &
 
 ## Starts Core2.sh
-gnome-terminal -x ./Core2.sh
+nice -10 ./Core2.sh &
 
 ## Starts Core3.sh
-gnome-terminal -x ./Core3.sh
+nice -10 ./Core3.sh &
 
 sleep 3s
 

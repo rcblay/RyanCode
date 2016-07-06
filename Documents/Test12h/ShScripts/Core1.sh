@@ -18,7 +18,7 @@ loc=`pwd`
 cd /6TB/nfsshare
 # Configuring ARM for pyxis test
 my_ip=128.138.253.34
-arm_ip=128.138.253.167
+arm_ip=128.138.253.182
 path_to_nfsshare=/6TB/nfsshare
 path_to_largeFiles=/tmp/largeFiles
 password="root"
@@ -72,11 +72,11 @@ cd $loc
 cd ../MATLAB
 
 sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript1.m
-sed -i "/parentpath =/c\parentpath = '\/nfsshare\/nightly-results\/';" AnalysisRNXScript1.m
-sed -i "/plotpath =/c\plotpath = '\/nfsshare\/nightly-results\/Plots\/';" AnalysisRNXScript1.m
+sed -i "/parentpath =/c\parentpath = '\/6TB\/nfsshare\/nightly-results\/';" AnalysisRNXScript1.m
+sed -i "/plotpath =/c\plotpath = '\/6TB\/nfsshare\/nightly-results\/Plots\/';" AnalysisRNXScript1.m
 sed -i "/truthStr = /c\truthStr = {};" AnalysisRNXScript1.m
-sed -i "/ResY = /c\ResY = importWeek('\/nfsshare\/nightly-results\/Plots/ResY.txt');" SaveResultsDHT.m
-sed -i "/ResW = /c\ResW = importWeek('\/nfsshare\/nightly-results\/Plots/ResW.txt');" SaveResultsDHT.m
+sed -i "/ResY = /c\ResY = importWeek('\/6TB\/nfsshare\/nightly-results\/Plots/ResY.txt');" SaveResultsDHT.m
+sed -i "/ResW = /c\ResW = importWeek('\/6TB\/nfsshare\/nightly-results\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
 /usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript1.m; exit;"
