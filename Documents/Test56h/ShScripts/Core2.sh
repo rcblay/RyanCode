@@ -14,8 +14,8 @@
 #          DetermStat.txt			#
 #################################################
 
-
-## Execute Pyxis with Valgrind
+###################   Dynamic x86 Complex 4MS/s   ###########################
+# Execute Pyxis with Valgrind
 cd ../output/Dynamic
 STARTTIME=$(date +%s)
 valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
@@ -23,7 +23,7 @@ ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
 echo "URSP-N210 Sampfreq:4e6 54min x86 Dynamic: $diff" >> ../times.txt
 
-## Checks whether the Pyxis results are the same as the previous test, if they are then it breaks. If not, then it runs the test again and confirms that its deterministic.
+# Checks whether the Pyxis results are the same as the previous test, if they are then it breaks. If not, then it runs the test again and confirms that its deterministic.
 while [ true ]
 	do
 	cmp ./REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermDyn.txt
@@ -42,7 +42,7 @@ while [ true ]
 	fi
 done
 
-## Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
+# Set input, execute matlab code and save output (Make sure that the path is saved, even at restart).
 cd ../../MATLAB
 sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_0_0.bin';" AnalysisRNXScript2.m
 sed -i "/parentpath =/c\parentpath = '..\/output\/Dynamic\/';" AnalysisRNXScript2.m
@@ -54,7 +54,7 @@ sed -i "/ResW = /c\ResW = importWeek('..\/output\/Dynamic\/Plots/ResW.txt');" Sa
 # Run matlab
 /usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "disp('Core2: Processing Dynamic x86'); run AnalysisRNXScript2.m; exit;"
 
-## Execute Pyxis with Valgrind
+###################   Static x86 Real 6.864MS/s   ##############################
 cd ../output/Static
 STARTTIME=$(date +%s)
 valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
@@ -91,6 +91,20 @@ sed -i "/ResW = /c\ResW = importWeek('..\/output\/Static\/Plots/ResW.txt');" Sav
 
 # Run matlab
 /usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "disp('Core2: Processing Static x86'); run AnalysisRNXScript2.m; exit;"
+
+##################   Static Complex 2MS/s   ############################
+cd ../output/StaticC
+
+
+##################   Static Complex L2C 2MS/s   ###########################
+
+
+##################   Dynamic Real x86 6.864MS/s   #########################
+
+
+##################   Static Simulation   ################################
+
+##################   Car Simulation   ##################################
 
 ## Time when Core 2 was finished is printed to Summary.txt
 cd ../output
