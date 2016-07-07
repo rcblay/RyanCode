@@ -32,7 +32,7 @@ while [ true ]
 		then
 		break
 	else
-		echo "Pyxis results different than Reference, running again"
+		echo "Core2: Pyxis dynamic x86 results different than Reference, running again"
 		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
 		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
 		./pyxis &> /dev/null
@@ -52,7 +52,7 @@ sed -i "/ResY = /c\ResY = importWeek('..\/output\/Dynamic\/Plots/ResY.txt');" Sa
 sed -i "/ResW = /c\ResW = importWeek('..\/output\/Dynamic\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
-/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
+/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "disp('Core2: Processing Dynamic x86'); run AnalysisRNXScript2.m; exit;"
 
 ## Execute Pyxis with Valgrind
 cd ../output/Static
@@ -70,7 +70,7 @@ while [ true ]
 		then
 		break
 	else
-		echo "Pyxis results different than Reference, running again"
+		echo "Core2: Pyxis static x86 results different than Reference, running again"
 		mv timingaptBinaries_0_0.bin REVISEDtimingaptBinaries_0_0.bin
 		mv timingrnxBinaries_0_0.bin REVISEDtimingrnxBinaries_0_0.bin
 		./pyxis &> /dev/null
@@ -90,7 +90,7 @@ sed -i "/ResY = /c\ResY = importWeek('..\/output\/Static\/Plots/ResY.txt');" Sav
 sed -i "/ResW = /c\ResW = importWeek('..\/output\/Static\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
-/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript2.m; exit;"
+/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "disp('Core2: Processing Static x86'); run AnalysisRNXScript2.m; exit;"
 
 ## Time when Core 2 was finished is printed to Summary.txt
 cd ../output

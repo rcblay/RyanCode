@@ -35,7 +35,7 @@ sed -i "/ResY = /c\ResY = importWeek('..\/output\/StaticSim\/Plots/ResY.txt');" 
 sed -i "/ResW = /c\ResW = importWeek('..\/output\/StaticSim\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
-/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript3.m; exit;"
+/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "disp('Core3: Processing StaticSim x86'); run AnalysisRNXScript3.m; exit;"
 
 ## Execute Pyxis
 cd ../output/StaticLong
@@ -61,7 +61,7 @@ sed -i "/ResY = /c\ResY = importWeek('..\/output\/StaticLong\/Plots/ResY1.txt');
 sed -i "/ResW = /c\ResW = importWeek('..\/output\/StaticLong\/Plots/ResW1.txt');" SaveResultsDHT.m
 
 # Run matlab
-/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript3.m; exit;"
+/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "disp('Core3: Processing StaticLong1 x86'); run AnalysisRNXScript3.m; exit;"
 
 sed -i "/fileStr =/c\fileStr = 'timingrnxBinaries_1860_0.bin';" AnalysisRNXScript3.m
 sed -i "/parentpath =/c\parentpath = '..\/output\/StaticLong\/';" AnalysisRNXScript3.m
@@ -71,7 +71,7 @@ sed -i "/ResY = /c\ResY = importWeek('..\/output\/StaticLong\/Plots/ResY2.txt');
 sed -i "/ResW = /c\ResW = importWeek('..\/output\/StaticLong\/Plots/ResW2.txt');" SaveResultsDHT.m
 
 # Run matlab
-/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript3.m; exit;"
+/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "disp('Core3: Processing StaticLong2 x86'); run AnalysisRNXScript3.m; exit;"
 
 ## Time when Core 3 was finished is printed to Summary.txt
 cd ../output

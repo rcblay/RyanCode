@@ -24,24 +24,24 @@ path_to_largeFiles=/tmp/largeFiles
 password="root"
 mount_command="mount $my_ip:$path_to_nfsshare /archive"
 
-echo 'cleaning up old keys'
+echo 'Core1: cleaning up old keys'
 ssh-keygen -R $arm_ip
 ssh-keyscan $arm_ip
 
-echo 'connecting to arm, creating archive'
+echo 'Core1: connecting to arm, creating archive'
 sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'mkdir /archive'
 
-echo 'linking nfsshare to archive'
+echo 'Core1: linking nfsshare to archive'
 sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'umount -f /archive'
 sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip $mount_command
 
-echo 'creating lookup tables'
+echo 'Core1: creating lookup tables'
 sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'mkdir /tmp/largeFiles'
 sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'mkdir /tmp/largeFiles/LookupTables'
 
-echo 'copying lookup tables over to arm'
+echo 'Core1: copying lookup tables over to arm'
 sshpass -p $password scp $path_to_largeFiles/LookupTables/* root@$arm_ip:/tmp/largeFiles/LookupTables/
-echo 'running pyxis on zed board'
+echo 'Core1: running pyxis on zed board'
 
 # Save run time to times.txt
 STARTTIME=$(date +%s)
@@ -79,7 +79,7 @@ sed -i "/ResY = /c\ResY = importWeek('\/6TB\/nfsshare\/nightly-results\/Plots/Re
 sed -i "/ResW = /c\ResW = importWeek('\/6TB\/nfsshare\/nightly-results\/Plots/ResW.txt');" SaveResultsDHT.m
 
 # Run matlab
-/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "run AnalysisRNXScript1.m; exit;"
+/usr/local/MATLAB/R2016a/bin/matlab -nodesktop -r "disp('Core1: Processing Static ARM'); run AnalysisRNXScript1.m; exit;"
 
 ## Time when Core 1 was finished is printed to Summary.txt
 cd ../output
