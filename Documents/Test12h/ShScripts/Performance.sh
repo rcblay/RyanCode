@@ -13,7 +13,7 @@
 # Output: PerfSummary.txt			#
 #################################################
 
-## Test Characteristics Summary
+################################### Test Characteristics Summary ##################################
 cd ../output
 echo "###########################   Small OverNight Report   ##########################" > Report.txt
 echo " " >> Report.txt
@@ -40,6 +40,8 @@ echo "MAX2769 Sampfreq-6864e6 52min ARM Static:		" >> Report.txt
 echo "MAX2769 Sampfreq-6864e6 34hours x86 StaticLong:	" >> Report.txt
 echo "URSP-N210 Sampfreq-4e6 54min x86 Dynamic:		" >> Report.txt
 
+
+##################################### GPS Performance ####################################
 echo " " >> Report.txt
 echo "#############################   GPS-Performance   #############################" >> Report.txt
 echo " " >> Report.txt
@@ -193,12 +195,11 @@ mv StaticSim/Plots/results_0_0.txt StaticSim/Plots/ResY.txt
 mv Static/Plots/results_0_0.txt Static/Plots/ResY.txt
 mv /6TB/nfsshare/nightly-results/Plots/results_0_0.txt /6TB/nfsshare/nightly-results/Plots/ResY.txt
 mv StaticLong/Plots/results_0_0.bin StaticLong/Plots/ResY1.txt
-mv StaticLong/Plots/results_1859_518400.bin StaticLong/Plots/ResY2.txt
-mv StaticLong/Plots/results_1860_0.bin StaticLong/Plots/ResY3.txt
+mv StaticLong/Plots/results_1860_0.bin StaticLong/Plots/ResY2.txt
 mv Dynamic/Plots/results_0_0.txt Dynamic/Plots/ResY.txt
 
 
-
+######################################## Code Performance ##########################################
 echo " " >> Report.txt
 echo "############################   Code-Performance   #############################" >> Report.txt
 echo " " >> Report.txt
@@ -206,6 +207,7 @@ echo "--------------------------------   Run Times   ---------------------------
 echo " " >> Report.txt
 echo "						Actual	 Comp Yesterday	 Comp Last Week" >> Report.txt
 echo " " >> Report.txt
+
 ## CODE PERFORMANCE STATICSIM
 echo -n "MAX2769 Sampfreq:6864e6 26min x86 StaticSim:	" >> Report.txt
 RunTime4=`awk '/MAX2769 Sampfreq:6864e6 26min x86 StaticSim/ {print $6}' times.txt`
@@ -219,6 +221,7 @@ diffwRunTime4=`expr $RunTime4 - $RunTimeW4`
 diffwRTf4=`../ShScripts/timeFormat.sh $diffwRunTime4`
 echo "$diffwRTf4" >> Report.txt
 echo " " >> Report.txt
+
 ## CODE PERFORMANCE STATIC
 echo -n "MAX2769 Sampfreq:6864e6 52min Static:		" >> Report.txt
 RunTime3=`awk '/MAX2769 Sampfreq:6864e6 52min Static/ {print $5}' times.txt`
@@ -232,6 +235,7 @@ diffwRunTime3=`expr $RunTime3 - $RunTimeW3`
 diffwRTf3=`../ShScripts/timeFormat.sh $diffwRunTime3`
 echo "$diffwRTf3" >> Report.txt
 echo " " >> Report.txt
+
 ## CODE PERFORMANCE ARM STATIC
 echo -n "MAX2769 Sampfreq:6864e6 52min ARM Static:	" >> Report.txt
 RunTime1=`awk '/MAX2769 Sampfreq:6864e6 52min ARM Static/ {print $6}' times.txt`
@@ -245,6 +249,7 @@ diffwRunTime1=`expr $RunTime1 - $RunTimeW1`
 diffwRTf1=`../ShScripts/timeFormat.sh $diffwRunTime1`
 echo "$diffwRTf1" >> Report.txt
 echo " " >> Report.txt
+
 ## CODE PERFORMANCE STATICLONG
 echo -n "MAX2769 Sampfreq:6864e6 34hours x86 StaticLong:	" >> Report.txt
 RunTime5=`awk '/MAX2769 Sampfreq:6864e6 34hours x86 StaticLong/ {print $6}' times.txt`
@@ -258,6 +263,7 @@ diffwRunTime5=`expr $RunTime5 - $RunTimeW5`
 diffwRTf5=`../ShScripts/timeFormat.sh $diffwRunTime5`
 echo "$diffwRTf5" >> Report.txt
 echo " " >> Report.txt
+
 ## CODE PERFORMANCE DYNAMIC
 echo -n "URSP-N210 Sampfreq:4e6 54min x86 Dynamic:	" >> Report.txt
 RunTime2=`awk '/URSP-N210 Sampfreq:4e6 54min x86 Dynamic/ {print $6}' times.txt`
@@ -275,7 +281,7 @@ echo " " >> Report.txt
 mv times.txt ytimes.txt
 
 
-
+######################################### Deterministic ############################################
 echo " " >> Report.txt
 echo "------------------------------   Deterministic   ------------------------------" >> Report.txt
 echo " " >> Report.txt
@@ -299,6 +305,7 @@ if [ -s Static/DetermStat.txt ]
 		echo "error" > error.txt
 	fi
 fi
+
 ## DETERMINISTIC ARM STATIC
 if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
 	then 
@@ -313,6 +320,7 @@ if [ -s /6TB/nfsshare/nightly-results/DetermARM.txt ]
 	fi
 	echo "error" > error.txt
 fi
+
 ## DETERMINISTIC STATICLONG
 if [ -s StaticLong/DetermStatL.txt ]
 	then
@@ -327,6 +335,7 @@ if [ -s StaticLong/DetermStatL.txt ]
 	fi
 	echo "error" > error.txt
 fi
+
 ## DETERMINISTIC DYNAMIC
 if [ -s Dynamic/DetermDyn.txt ]
 	then 
@@ -346,18 +355,20 @@ if [ -s Dynamic/DetermDyn.txt ]
 fi
 
 
-
+######################################## GCC Warnings ##############################################
 echo " " >> Report.txt
 echo "------------------------------   GCC Warnings   -------------------------------" >> Report.txt
 echo " " >> Report.txt
 echo " Files with GCC warnings:" >> Report.txt
 echo " " >> Report.txt
+
 ## GCC WARNINGS STATICSIM
 if tail StaticSim/screenout.txt | grep -q -i "Segmentation Fault";
 	then 
 	echo "	MAX2769 Sampfreq:6864e6 26min x86 StaticSim	Segmentation Fault" >> Report.txt
 	echo "error" > error.txt
 fi
+
 ## GCC WARNINGS STATIC
 grep "warning:" Static/stderr.txt > Static/Wwarning.txt
 if [ -s Static/Wwarning.txt ] || tail Static/screenout.txt | grep -q -i "Segmentation Fault";
@@ -370,6 +381,7 @@ if [ -s Static/Wwarning.txt ] || tail Static/screenout.txt | grep -q -i "Segment
 	fi
 	echo "error" > error.txt
 fi
+
 ## GCC WARNINGS STATIC ARM
 grep "warning:" /6TB/nfsshare/nightly-results/stderr.txt > /6TB/nfsshare/nightly-results/Wwarning.txt
 if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt ] || tail /6TB/nfsshare/nightly-results/screenout.txt | grep -q -i "Segmentation Fault";
@@ -382,12 +394,14 @@ if [ -s /6TB/nfsshare/nightly-results/Wwarning.txt ] || tail /6TB/nfsshare/night
 	fi
 	echo "error" > error.txt
 fi
+
 ## GCC WARNINGS STATICLONG
 if tail StaticLong/screenout.txt | grep -q -i "Segmentation Fault";
 	then 
 	echo "	MAX2769 Sampfreq:6864e6 34hours x86 StaticLong	Segmentation Fault" >> Report.txt
 	echo "error" > error.txt
 fi
+
 ## GCC WARNINGS DYNAMIC
 grep "warning:" Dynamic/stderr.txt > Dynamic/Wwarning.txt
 if [ -s Dynamic/Wwarning.txt ] || tail Dynamic/screenout.txt | grep -i -q "Segmentation Fault";
@@ -402,12 +416,13 @@ if [ -s Dynamic/Wwarning.txt ] || tail Dynamic/screenout.txt | grep -i -q "Segme
 fi
 
 
-
+########################################## Valgrind ##############################################
 echo " " >> Report.txt
 echo "---------------------------------   Valgrind   --------------------------------" >> Report.txt
 echo " " >> Report.txt
 echo " Files with leaks or other Valgrind warnings:" >> Report.txt
 echo " " >> Report.txt
+
 ## VALGRIND STATIC
 FileDes1=`awk '/FILE DESCRIPTORS/ {print $4}' Static/valwar.txt`
 if [ $FileDes1 -ne 4 ] || grep -q -i "LEAK SUMMARY" Static/valwar.txt
@@ -415,6 +430,7 @@ if [ $FileDes1 -ne 4 ] || grep -q -i "LEAK SUMMARY" Static/valwar.txt
 	echo " MAX2769 Sampfreq:6864e6 52min Static" >> Report.txt
 	echo "error" > error.txt
 fi
+
 ## VALGRIND DYNAMIC
 FileDes2=`awk '/FILE DESCRIPTORS/ {print $4}' Dynamic/valwar.txt`
 if [ $FileDes2 -ne 4 ] || grep -q -i "LEAK SUMMARY" Dynamic/valwar.txt;
@@ -423,6 +439,7 @@ if [ $FileDes2 -ne 4 ] || grep -q -i "LEAK SUMMARY" Dynamic/valwar.txt;
 	echo "error" > error.txt
 fi
 
+# Checks whether error.txt exists
 if [ -s error.txt ]
 	then
 	sed -i "/Run Performance:/c\Run Performance: Errors!" Report.txt
