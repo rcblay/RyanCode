@@ -39,10 +39,10 @@ sed -i '/LINKING=/c\LINKING=DYNAMIC' conf.mk
 ## Build Pyxis for Dynamic and save stderr and stdout
 cd ..
 make clean &> /dev/null
-make 2> ../../../output/Dynamic/stderr.txt 1> ../../../output/Dynamic/stdout.txt
+make 2> ../../../output/DynamicComplex/stderr.txt 1> ../../../output/DynamicComplex/stdout.txt
 
 ## Move pyxis into Dynamic output directory
-mv ../bin/rcv/pyxis ../../../output/Dynamic/
+mv ../bin/rcv/pyxis ../../../output/DynamicComplex/
 
 ## Set correct input values and replace conf_swc.h with Static's conf_swc.h file # BUILDING STATIC
 cd ../src/conf
@@ -61,18 +61,18 @@ sed -i '/USEL2C/c\USEL2C=FALSE' conf.mk
 ## Build Pyxis for Static and send warnings to Wwarning.txt
 cd ..
 make clean &> /dev/null
-make 2> ../../../output/Static/stderr.txt 1> ../../../output/Static/stdout.txt
+make 2> ../../../output/StaticReal/stderr.txt 1> ../../../output/StaticReal/stdout.txt
 
 ## Move pyxis into Static output directory
-mv ../bin/rcv/pyxis ../../../output/Static/
+mv ../bin/rcv/pyxis ../../../output/StaticReal/
 
 ## BUILDING STATIC LONG
 
-cp ../../../conf_swc/conf_staticLong.h ../src/conf/conf_swc.h
+cp ../../../conf_swc/conf_static100.h ../src/conf/conf_swc.h
 make clean &> /dev/null
-make 2> ../../../output/StaticLong/stderr.txt 1> ../../../output/StaticLong/stdout.txt
+make 2> ../../../output/Static100/stderr.txt 1> ../../../output/Static100/stdout.txt
 
-mv ../bin/rcv/pyxis ../../../output/StaticLong/
+mv ../bin/rcv/pyxis ../../../output/Static100/
 
 # Set File usage, real, no L2 and linking in conf.mk file # BUILDING STATIC ARM
 cd conf

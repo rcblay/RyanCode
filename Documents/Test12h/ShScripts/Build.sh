@@ -119,6 +119,7 @@ sed -i "/performOutageAnalysis =     /c\performOutageAnalysis =     1;" Analysis
 sed -i "/savePlots =                 /c\savePlots =                 1;" AnalysisRNXScript.m
 sed -i "/saveResultsandSendEmail =   /c\saveResultsandSendEmail =   1;" AnalysisRNXScript.m
 sed -i "/generateKMLfile =           /c\generateKMLfile =           0;" AnalysisRNXScript.m
+sed -i "/format =/c\format = 'nmea'; %available FORMATS = {'nmea', 'drive'}"  AnalysisRNXScript.m
 
 cp AnalysisRNXScript.m AnalysisRNXScript1.m
 cp AnalysisRNXScript.m AnalysisRNXScript2.m
