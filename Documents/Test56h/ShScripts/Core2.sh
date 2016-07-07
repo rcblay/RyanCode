@@ -16,7 +16,7 @@
 
 ###################   Dynamic x86 Complex 4MS/s   ###########################
 # Execute Pyxis with Valgrind
-cd ../output/Dynamic
+cd ../output/DynamicComplex
 STARTTIME=$(date +%s)
 valgrind --tool=memcheck --leak-check=yes --show-reachable=yes --num-callers=20 --track-fds=yes --log-file="valwar.txt" ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
