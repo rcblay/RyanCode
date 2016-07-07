@@ -44,6 +44,33 @@ make 2> ../../../output/DynamicComplex/stderr.txt 1> ../../../output/DynamicComp
 ## Move pyxis into Dynamic output directory
 mv ../bin/rcv/pyxis ../../../output/DynamicComplex/
 
+
+## Set correct input values and replace conf_swc.h with DynamicReal's conf_swc.h file # BUILDING DYNAMICREAL
+cd ../src/conf
+
+sed -i '/#define SAMPLINGRATE/c\#define SAMPLINGRATE (ui64 )6.864e6       \/*Sampling frequency, default is a 40MHz sampling rate*\/' conf.h
+sed -i '/#define CARRFREQ/c\#define CARRFREQ 20e3		\/*Intermediate frequency*\/' conf.h
+sed -i '/NUMSAMPLEINBUFF/c\#define NUMSAMPLEINBUFF ( (NUMSAMPLE1MSEC \/ 10) * 9)\/\/6178 65536 \/\/2^16, should be more than 1msec of data (depends on sampling freq), more has more latency' conf.h
+sed -i '/ACQTHRESHOLD/c\#define ACQTHRESHOLD (ui64) 9e7\/\/2.5e8\/\/9e7\/\/2e8 for all the other ones.' conf_chn.h
+
+# Replace conf_swc.h with Dynamic's conf_swc.h file (already preset with correct values)
+cp ../../../../conf_swc/conf_dynamicreal.h conf_swc.h
+# Set File usage, complex, L2, linking in conf.mk file
+cd ../../build/conf
+sed -i '/FRONTENDTYPE=/c\FRONTENDTYPE=FILE#USB\/FILE' conf.mk
+sed -i '/FILETYPE/c\FILETYPE=2' conf.mk
+sed -i '/USEL2C/c\USEL2C=FALSE' conf.mk
+sed -i '/LINKING=/c\LINKING=DYNAMIC' conf.mk
+
+## Build Pyxis for DynamicReal and save stderr and stdout
+cd ..
+make clean &> /dev/null
+make 2> ../../../output/DynamicReal/stderr.txt 1> ../../../output/DynamicReal/stdout.txt
+
+## Move pyxis into Dynamic output directory
+mv ../bin/rcv/pyxis ../../../output/DynamicReal/
+
+
 ## Set correct input values and replace conf_swc.h with Static's conf_swc.h file # BUILDING STATIC
 cd ../src/conf
 # Exchange for testing sampling rate and carrier frequency
