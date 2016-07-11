@@ -54,15 +54,15 @@ echo " " >> Report.txt
 sed -i 's/|//g' StaticSim/Plots/resultOverV_0_0.txt
 sed -i 's/"//g' StaticSim/Plots/resultOverV_0_0.txt 
 # Extracts the values needed and prints them to the report
-max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticSim/Plots/resultOverV_0_0.txt`
+max3dval=`awk '/Max 3D Error/ {print $4, " meters		", $8, " meters	", $10, " meters"}' ./StaticSim/Plots/resultOverV_0_0.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
 mean3dval=`awk '/Mean 3D/ {print $3, " meters		", $5, " meters	", $7, " meters"}' ./StaticSim/Plots/resultOverV_0_0.txt`
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
-availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' /StaticSim/Plots/resultOverV_0_0.txt`
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticSim/Plots/resultOverV_0_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
 # Checks Performance using yesterday's results
 mean3dvalY1=`awk '/Mean 3D/ {print $5}' ./StaticSim/Plots/resultOverV_0_0.txt`
-availabilityvalY1=`awk '/Availability/ {print $4}' /StaticSim/Plots/resultOverV_0_0.txt`
+availabilityvalY1=`awk '/Availability/ {print $4}' ./StaticSim/Plots/resultOverV_0_0.txt`
 PerfMess1=`../ShScripts/PerfCmp.sh $mean3dvalY1 $availabilityvalY1`
 sed -i "/MAX2769 Sampfreq-6864e6 26min x86 StaticSim:/c\MAX2769 Sampfreq-6864e6 26min x86 StaticSim:		$PerfMess1" Report.txt
 
@@ -91,18 +91,18 @@ echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 52min ARM Static -------------------------------------" >> Report.txt
 echo " " >> Report.txt
 # Cleans out the expanded resultOver_-_-.txt file of | and " symbols
-sed -i 's/|//g' /6TB/nfsshare/nightly-results/resultOverV_0_0.txt
-sed -i 's/"//g' /6TB/nfsshare/nightly-results/resultOverV_0_0.txt 
+sed -i 's/|//g' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt
+sed -i 's/"//g' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt 
 # Extracts the values needed and prints them to the report
-max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' /6TB/nfsshare/nightly-results/resultOverV_0_0.txt`
+max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
-mean3dval=`awk '/Mean 3D/ {print $3, " meters		", $5, " meters	", $7, " meters"}' /6TB/nfsshare/nightly-results/resultOverV_0_0.txt`
+mean3dval=`awk '/Mean 3D/ {print $3, " meters		", $5, " meters	", $7, " meters"}' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt`
 echo "Mean 3D Error:		$mean3dval" >> Report.txt
-availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' /6TB/nfsshare/nightly-results/resultOverV_0_0.txt`
+availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
 # Checks Performance using yesterday's results
-mean3dvalY3=`awk '/Mean 3D/ {print $5}' /6TB/nfsshare/nightly-results/resultOverV_0_0.txt`
-availabilityvalY3=`awk '/Availability/ {print $4}' /6TB/nfsshare/nightly-results/resultOverV_0_0.txt`
+mean3dvalY3=`awk '/Mean 3D/ {print $5}' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt`
+availabilityvalY3=`awk '/Availability/ {print $4}' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt`
 PerfMess3=`../ShScripts/PerfCmp.sh $mean3dvalY3 $availabilityvalY3`
 sed -i "/MAX2769 Sampfreq-6864e6 52min ARM Static:/c\MAX2769 Sampfreq-6864e6 52min ARM Static:		$PerfMess3" Report.txt
 
@@ -126,24 +126,6 @@ mean3dvalY4a=`awk '/Mean 3D/ {print $5}' ./StaticLong/Plots/resultOverV_0_0.txt`
 availabilityvalY4a=`awk '/Availability/ {print $4}' ./StaticLong/Plots/resultOverV_0_0.txt`
 PerfMess4a=`../ShScripts/PerfCmp.sh $mean3dvalY4a $availabilityvalY4a`
 
-## STATIC LONG CONTINUED 1859_518400
-echo " " >> Report.txt
-# Cleans out the expanded resultOver_-_-.txt file of | and " symbols
-echo "1859_518400" >> Report.txt
-sed -i 's/|//g' StaticLong/Plots/resultOverV_1859_518400.txt
-sed -i 's/"//g' StaticLong/Plots/resultOverV_1859_518400.txt 
-# Extracts the values needed and prints them to the report
-max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' ./StaticLong/Plots/resultOverV_1859_518400.txt`
-echo "Max 3D Error:		$max3dval" >> Report.txt
-mean3dval=`awk '/Mean 3D/ {print $3, " meters		", $5, " meters	", $7, " meters"}' ./StaticLong/Plots/resultOverV_1859_518400.txt`
-echo "Mean 3D Error:		$mean3dval" >> Report.txt
-availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOverV_1859_518400.txt`
-echo "Availability:       	$availabilityval" >> Report.txt
-# Checks Performance using yesterday's results
-mean3dvalY4b=`awk '/Mean 3D/ {print $5}' ./StaticLong/Plots/resultOverV_1859_518400.txt`
-availabilityvalY4b=`awk '/Availability/ {print $4}' ./StaticLong/Plots/resultOverV_1859_518400.txt`
-PerfMess4b=`../ShScripts/PerfCmp.sh $mean3dvalY4b $availabilityvalY4b`
-
 ## STATIC LONG CONTINUED 1860_0
 echo " " >> Report.txt
 # Cleans out the expanded resultOver_-_-.txt file of | and " symbols
@@ -158,16 +140,14 @@ echo "Mean 3D Error:		$mean3dval" >> Report.txt
 availabilityval=`awk '/Availability/ {print $2, " %			", $4, " %			", $6, " %"}' ./StaticLong/Plots/resultOverV_1860_0.txt`
 echo "Availability:       	$availabilityval" >> Report.txt
 # Checks Performance using yesterday's results
-mean3dvalY4c=`awk '/Mean 3D/ {print $5}' ./StaticLong/Plots/resultOverV_1860_0.txt`
-availabilityvalY4c=`awk '/Availability/ {print $4}' ./StaticLong/Plots/resultOverV_1860_0.txt`
-PerfMess4c=`../ShScripts/PerfCmp.sh $mean3dvalY4c $availabilityvalY4c`
+mean3dvalY4b=`awk '/Mean 3D/ {print $5}' ./StaticLong/Plots/resultOverV_1860_0.txt`
+availabilityvalY4b=`awk '/Availability/ {print $4}' ./StaticLong/Plots/resultOverV_1860_0.txt`
+PerfMess4b=`../ShScripts/PerfCmp.sh $mean3dvalY4b $availabilityvalY4b`
 if [ "$PerfMess4a" == "Test Not Run" ]
 	then
-	#echo "Hi"
 	PerfMess4b=" "
-	PerfMess4c=" "
 fi
-sed -i "/MAX2769 Sampfreq-6864e6 34hours x86 StaticLong:/c\MAX2769 Sampfreq-6864e6 34hours x86 StaticLong:		$PerfMess4a $PerfMess4b $PerfMess4c" Report.txt
+sed -i "/MAX2769 Sampfreq-6864e6 34hours x86 StaticLong:/c\MAX2769 Sampfreq-6864e6 34hours x86 StaticLong:		$PerfMess4a $PerfMess4b" Report.txt
 
 ## GPS PERFORMANCE DYNAMIC
 echo " " >> Report.txt
@@ -194,8 +174,8 @@ echo " " >> Report.txt
 mv StaticSim/Plots/results_0_0.txt StaticSim/Plots/ResY.txt
 mv Static/Plots/results_0_0.txt Static/Plots/ResY.txt
 mv /6TB/nfsshare/nightly-results/Plots/results_0_0.txt /6TB/nfsshare/nightly-results/Plots/ResY.txt
-mv StaticLong/Plots/results_0_0.bin StaticLong/Plots/ResY1.txt
-mv StaticLong/Plots/results_1860_0.bin StaticLong/Plots/ResY2.txt
+mv StaticLong/Plots/results_0_0.txt StaticLong/Plots/ResY1.txt
+mv StaticLong/Plots/results_1860_0.txt StaticLong/Plots/ResY2.txt
 mv Dynamic/Plots/results_0_0.txt Dynamic/Plots/ResY.txt
 
 
