@@ -32,6 +32,8 @@ echo 'Core1: connecting to arm, creating archive'
 sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'mkdir /archive'
 
 echo 'Core1: linking nfsshare to archive'
+
+sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'killall pyxis'
 sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip 'umount -f /archive'
 sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip $mount_command
 
