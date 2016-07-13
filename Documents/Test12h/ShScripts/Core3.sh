@@ -43,7 +43,7 @@ STARTTIME=$(date +%s)
 ./pyxis &> screenout.txt
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
-echo "MAX2769 Sampfreq:6864e6 34hours x86 StaticLong: $diff" >> ../times.txt
+echo "MAX2769 Sampfreq:6864e6 24hours x86 StaticLong: $diff" >> ../times.txt
 
 ## Checks whether the Pyxis results are the same as the previous test.
 cmp REFaptrnx/REFtimingaptBinaries_0_0.bin timingaptBinaries_0_0.bin > DetermStatL.txt

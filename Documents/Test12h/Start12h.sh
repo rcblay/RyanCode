@@ -21,6 +21,9 @@
 # Output: Summary.txt and performance plots	#
 #################################################
 
+## Saving start time for Performance.sh
+Teststart=$(date +%s)
+
 ## Print time of starting operation to Summary.txt and terminal
 echo 'Pyxis Test was started at the local time of:' > output/Summary.txt
 date >> output/Summary.txt
@@ -67,7 +70,7 @@ echo 'Pyxis Test was finished at the local time of:' >> ../output/Summary.txt
 date >> ../output/Summary.txt
 
 ## Run Performance.sh once all cores are completed # What is it? Some echo regarding what is happening?
-./Performance.sh
+./Performance.sh $Teststart
 
 ## Print finished Pyxis test message to terminal
 echo "Test is finished"
