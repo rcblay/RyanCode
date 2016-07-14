@@ -274,8 +274,8 @@ echo " " >> Report.txt
 echo "- MAX2769 Sampfreq:6864e6 52min ARM Static -------------------------------------" >> Report.txt
 echo " " >> Report.txt
 # Cleans out the expanded resultOver_-_-.txt file of | and " symbols
-sed -i 's/|//g' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt
-sed -i 's/"//g' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt 
+sed -i 's/|/ /g' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt
+sed -i 's/"/ /g' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt 
 # Extracts the values needed and prints them to the report
 max3dval=`awk '/Max 3D Error/ {print $4, " meters	", $8, " meters	", $10, " meters"}' /6TB/nfsshare/nightly-results/Plots/resultOverV_0_0.txt`
 echo "Max 3D Error:		$max3dval" >> Report.txt
@@ -467,7 +467,7 @@ echo "$sizernx2			$diffrnxy2			$diffrnxw2" >> Report.txt
 
 # MB/hr
 echo -n "MB/hr			" >> Report.txt
-bytesInput2=`awk '/MAX2769 Sampfreq:6864e6 52min x86 Static/ {print $5}' inputSize.txt`
+bytesInput2=`awk '/MAX2769 Sampfreq:6864e6 52min x86 Static/ {print $6}' inputSize.txt`
 mbhr2=`echo "($bytesInput2 / $RunTime2) * 3600 / 1000000" | bc`
 mbhrY2=`echo "($bytesInput2 / $RunTimeY2) * 3600 / 1000000" | bc`
 diffmbhrY2=`echo "$mbhr2 - $mbhrY2" | bc` 
@@ -668,4 +668,4 @@ echo " " >> Report.txt
 ## Prints Completion Message
 echo "########################   Short OverNight Report End   #########################" >> Report.txt
 
-sleep 2s
+sleep 2m

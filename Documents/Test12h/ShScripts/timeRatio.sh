@@ -24,7 +24,7 @@ echo "$timeRatioS" >> tratio.txt
 
 # ARM Static
 echo -n "MAX2769 Sampfreq:6864e6 52min ARM Static: " >> tratio.txt
-timeRatioAS=`grep 'times as fast as' /6TB/nfsshare/nightly-results/screenout.txt | tail -1`
+timeRatioAS=`grep 'times as fast as' /6TB/nfsshare/screenout.txt | tail -1`
 echo "$timeRatioAS" >> tratio.txt
 
 # Static Long
