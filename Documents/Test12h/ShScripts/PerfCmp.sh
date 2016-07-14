@@ -26,7 +26,7 @@ mean3dval=`echo ${mean3dval} | sed -e 's/[eE]+*/\\*10\\^/'`
 availability=`echo ${availability} | sed -e 's/[eE]+*/\\*10\\^/'`
 
 # If mean3dval is less than 0.2 but positive then it is set to zero since it is not that bad
-if [ $(echo "$mean3dval < 0.2" | bc -l) -eq 1 ] && [ $(echo "$mean3dval > 0" | bc -l) -eq 1 ]
+if [ $(echo "$mean3dval < 0.2" | bc -l) -eq 1 ] && [ $(echo "$mean3dval > -0.2" | bc -l) -eq 1 ]
 	then
 	mean3dval=0
 fi
