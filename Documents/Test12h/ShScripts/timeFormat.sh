@@ -13,6 +13,9 @@
 # Takes in arguments
 diff=$1
 plmi=$2
+h="h"
+m="m"
+s="s"
 
 # If there is nothing inputted then it returns dashed line
 if [ -v $diff ] || [ $diff == "-" ]
@@ -45,4 +48,4 @@ if [ $sec -lt 10 ]
 	sec=0$sec
 fi
 # Returns it in the correct format
-echo "$plmi$hours:$min:$sec"
+echo "$plmi$hours$h:$min$m:$sec$s"

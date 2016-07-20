@@ -46,13 +46,13 @@ tic
 %% Check arguments and sort them ==========================================
 [hAxis, args, nargs] = axescheck(varargin{:});
 
-if nargs < 3 || nargs > 4
+if nargs < 3 || nargs > 5
     error('Requires 3 or 4 data arguments.')
 elseif nargs == 3
     [az, el, prn]   = deal(args{1:3});
     line_style      = 'auto';
 else
-    [az, el, prn, line_style] = deal(args{1:4});
+    [az, el, prn, line_style, animateBool] = deal(args{1:5});
 end
 
 if ischar(az) || ischar(el) || ischar(prn)
@@ -167,9 +167,13 @@ plot(xx(end), yy(end), ['o' line_style(2)], 'MarkerSize', 7);
         % The empthy space is used to place the text a side of the last
         % point. This solution results in constant offset even if a zoom
         % is used.
+if animateBool == 0
         text(xx(floor(length(xx)/3)), yy(floor(length(yy)/3)), [' ', int2str(prn(1))], 'color', line_style(2),'FontWeight','bold','FontSize',14);
         text(xx(floor(2*length(xx)/3)), yy(floor(2*length(yy)/3)), [' ', int2str(prn(1))], 'color', line_style(2),'FontWeight','bold','FontSize',14);
         text(xx(floor(length(xx))), yy(floor(length(yy))), [' ', int2str(prn(1))], 'color', line_style(2),'FontWeight','bold','FontSize',14);
+else
+        text(xx(floor(length(xx))), yy(floor(length(yy))), [' ', int2str(prn(1))], 'color', line_style(2),'FontWeight','bold','FontSize',14);
+end
 %--- Make sure both axis have the same data aspect ratio ------------------
 axis('equal');
 

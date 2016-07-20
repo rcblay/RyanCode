@@ -12,11 +12,11 @@ close all;
 % Set File String
 fileStr = 'timingrnxBinaries_0_0.bin';
 % (OPTIONAL) set truth file or set it to empty if no truth file
-truthStr = 'test2.txt';
-format = 'drive'; %available FORMATS = {'nmea', 'drive'}
+truthStr = {};
+format = 'nmea'; %available FORMATS = {'nmea', 'drive'}
 % Set Path for Plots and Files
-parentpath = '/home/dma/Documents/Test/output/Dynamic1/';
-plotpath = '/home/dma/Documents/Test/output/Dynamic1/Plots/';
+parentpath = '/6TB/nfsshare/nightly-results/';
+plotpath = '/6TB/nfsshare/nightly-results/Plots/';
 %% Analysis Settings
 plotWholePos =              1;
 plotIntervalPos =           1;
@@ -111,7 +111,8 @@ if saveResultsandSendEmail ~= 0
     if performOutageAnalysis == 0
         [ Outagestr ] = OutageAnalysis( Results );
     end
-    SaveResultsSendEmail( Results, Outagestr, attachments, recipients, fileStr, plotpath );
+    SaveResultsDHT( Results, Outagestr, attachments, recipients, fileStr, plotpath );
+    %SaveResultsSendEmail( Results, Outagestr, attachments, recipients, fileStr, plotpath );
 end
 
 %% Generate KML file

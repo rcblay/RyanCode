@@ -57,7 +57,7 @@ bodyTable = cell2table(bodyCell);
 writetable(bodyTable,[plotFolder 'results' dateStr '.txt'],'Delimiter','|','WriteVariableNames',0);
 
 %% Send Rnx Email
-sendLssRnxEmail(recipients,subject,body,attachments);
+%sendLssRnxEmail(recipients,subject,body,attachments);
 
 
 end

@@ -10,13 +10,13 @@ clear all;
 close all;
 %% Set File Details
 % Set File String
-fileStr = 'timingrnxBinaries_0_0.bin';
+fileStr = 'timingrnxBinaries_1860_0.bin';
 % (OPTIONAL) set truth file or set it to empty if no truth file
 truthStr = {};
 format = 'nmea'; %available FORMATS = {'nmea', 'drive'}
 % Set Path for Plots and Files
-parentpath = '/home/dma/Documents/Test/output/StaticSim/';
-plotpath = '/home/dma/Documents/Test/output/StaticSim/Plots/';
+parentpath = '../output/StaticLong/';
+plotpath = '../output/StaticLong/Plots/';
 %% Analysis Settings
 plotWholePos =              1;
 plotIntervalPos =           1;
@@ -111,7 +111,8 @@ if saveResultsandSendEmail ~= 0
     if performOutageAnalysis == 0
         [ Outagestr ] = OutageAnalysis( Results );
     end
-    SaveResultsSendEmail( Results, Outagestr, attachments, recipients, fileStr, plotpath );
+    SaveResultsDHT( Results, Outagestr, attachments, recipients, fileStr, plotpath );
+    %SaveResultsSendEmail( Results, Outagestr, attachments, recipients, fileStr, plotpath );
 end
 
 %% Generate KML file

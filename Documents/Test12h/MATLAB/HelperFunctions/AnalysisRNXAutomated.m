@@ -7,6 +7,7 @@ function [Results] = AnalysisRNXAutomated(fileStr, truthStr, format, parentpath,
 %   - Analysis Settings = customize which plots should be created and/or
 %   saved
 %% Analysis Settings
+checkIfPyxisStillRunning =  1;
 plotWholePos =              1;
 plotIntervalPos =           1;
 plotSigParams =             1;
@@ -18,9 +19,9 @@ plot3DSky =                 0;
 performOutageAnalysis =     1;
 savePlots =                 1;
 saveResultsandSendEmail =   1;
-generateKMLfile =           1;
+generateKMLfile =           0;
 
-recipients = {'griffin.esposito@colorado.edu'};
+recipients = {'griffin.esposito@colorado.edu', 'dma@colorado.edu'};
 
 
 
@@ -34,6 +35,16 @@ cd(currentpathinitial);
 %% Process/Parse file
 Results  = ProcessResultsRNX( fileStr,truthStr, format, parentpath );
 handleIndex =  1;
+%% Check OUTPUT to Ensure Pyxis is still running
+if checkIfPyxisStillRunning ~= 0
+    [status] = CheckPyxisRunning( Results );
+    if ~isempty(find(status == 0,1))
+        SendErrorNotification( Results, status, recipients, fileStr )
+        return
+    end
+    
+end
+
 %% 1. Whole position solutions
 if plotWholePos ~= 0
     handles(handleIndex) = PlotWholePos( Results );

@@ -37,9 +37,9 @@ for i = 1:32
             Azumith(indexBelowThres) = [];
         end
         if i == firstvalidPRN
-            skyPlot(Azumith, Elev, i*ones(length(Azumith)),colors{w});
+            skyPlot(Azumith, Elev, i*ones(length(Azumith)),colors{w}, 0);
         else
-            hpol = skyPlot(Azumith, Elev, i*ones(length(Azumith)),colors{w});
+            hpol = skyPlot(Azumith, Elev, i*ones(length(Azumith)),colors{w}, 0);
         end
     else
         firstvalidPRN = firstvalidPRN + 1;

@@ -10,13 +10,13 @@ clear all;
 close all;
 %% Set File Details
 % Set File String
-fileStr = 'timingrnxBinaries_0_0.bin';
+fileStr = 'REFtimingrnxBinaries_0_0.bin';
 % (OPTIONAL) set truth file or set it to empty if no truth file
 truthStr = {};
-format = 'drive'; %available FORMATS = {'nmea', 'drive'}
+format = 'nmea'; %available FORMATS = {'nmea', 'drive'}
 % Set Path for Plots and Files
-parentpath = '/home/dlc257/Documents/RyanCode/Documents/Test12h/output/Dynamic/';
-plotpath = '/home/dlc257/Documents/';
+parentpath = '/6TB/nfsshare/nightly-results/';
+plotpath = '/6TB/nfsshare/nightly-results/Plots/';
 %% Analysis Settings
 plotWholePos =              1;
 plotIntervalPos =           1;

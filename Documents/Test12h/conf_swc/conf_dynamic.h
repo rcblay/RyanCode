@@ -9,10 +9,10 @@ extern int make_ISO_compiler_happy;
 #define SWC_MILLISEC 2
 
 // DATAFILEIN for Virtualbox
-#define DATAFILEIN "../../input/Dynamic/L1_201510161135_fs_4e6_if20e3_schar1bit.bin"
+#define DATAFILEIN "../../input/L1_201510161135_fs_4e6_if20e3_schar1bit.bin"
 
 //L2DATAFILEIN
-#define L2DATAFILEIN "/home/dma/Documents/Test/input/Dynamic/L2_201510161135_fs_4e6_if20e3_schar1bit.bin"
+//#define L2DATAFILEIN "/home/dma/Documents/Test/input/Dynamic/L2_201510161135_fs_4e6_if20e3_schar1bit.bin"
 
 
 //DATAFILEOUT

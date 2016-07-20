@@ -1,0 +1,9 @@
+ Version v1.0-452-ge4b4-dirty branch master      Compiler gcc version 4.8.4 timingrnxBinaries_0_0.bin               
+   Max 2D Error        554.4913 meters (0.46994 hours)          0.82686 meters                           0.82686 meters                          
+   Max 3D Error        1355.7467 meters (0.15411 hours)         -2.4962e-06 meters                       -2.4962e-06 meters                      
+   Max Height Error    718.9384 meters (0.53994 hours)          0.17216 meters                           0.17216 meters                          
+   Mean 2D             6.1835 meters                            -0.059709 meters                         -0.059709 meters                        
+   1 Std 2D            17.1363 meters                           -0.081325 meters                         -0.081325 meters                        
+   Mean 3D             20.7089 meters                           -0.1705 meters                           -0.1705 meters                          
+   1 Std 3D            48.5766 meters                           -0.15422 meters                          -0.15422 meters                         
+   Availability        69.8 %                                   0.5 %                                    0.5 %                                   

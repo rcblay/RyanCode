@@ -19,8 +19,7 @@ bodyStr = ['Max 2D Error: ', num2str(Results.maxError2D), ' meters ', ...
         Outagestr];
 body = bodyStr;
 
-ResY = importWeek('/home/dma/Documents/Test12h/output/Dynamic/Refaptrnx/ResY.txt');
-ResW = importWeek('/home/dma/Documents/Test12h/output/Dynamic/Refaptrnx/ResW.txt');
+Res = importWeek('../output/Static/Plots/ResW.txt');
 
 %% Save results in table to output text file
 resultsstr = sprintf('%-20s','| Results');
@@ -61,33 +60,25 @@ writetable(bodyTable,[plotFolder 'results' dateStr '.txt'],'Delimiter','|','Writ
 
 %% Comparison with older runs
 
-max2DstrdataY = sprintf('%-40s',[num2str(Results.maxError2D - ResY(1)) ' meters']);
-max3DstrdataY = sprintf('%-40s',[num2str(Results.maxError3D - ResY(2)) ' meters']);
-maxHeightstrdataY = sprintf('%-40s',[num2str(Results.maxHeightError - ResY(3)) ' meters']);
-mean2DstrdataY = sprintf('%-40s',[num2str(Results.mean2D - ResY(4)) ' meters']);
-std2DstrdataY = sprintf('%-40s',[num2str(Results.std2D - ResY(5)) ' meters']);
-mean3DstrdataY = sprintf('%-40s',[num2str(Results.mean3D - ResY(6)) ' meters']);
-std3DstrdataY = sprintf('%-40s',[num2str(Results.std3D - ResY(7)) ' meters']);
-availstrdataY = sprintf('%-40s',[num2str(str2double(Results.percentAvailStr) - ResY(8)), ' %']);
+max2DstrdataR = sprintf('%-40s',[num2str(Results.maxError2D - Res(1)) ' meters']);
+max3DstrdataR = sprintf('%-40s',[num2str(Results.maxError3D - Res(2)) ' meters']);
+maxHeightstrdataR = sprintf('%-40s',[num2str(Results.maxHeightError - Res(3)) ' meters']);
+mean2DstrdataR = sprintf('%-40s',[num2str(Results.mean2D - Res(4)) ' meters']);
+std2DstrdataR = sprintf('%-40s',[num2str(Results.std2D - Res(5)) ' meters']);
+mean3DstrdataR = sprintf('%-40s',[num2str(Results.mean3D - Res(6)) ' meters']);
+std3DstrdataR = sprintf('%-40s',[num2str(Results.std3D - Res(7)) ' meters']);
+availstrdataR = sprintf('%-40s',[num2str(str2double(Results.percentAvailStr) - Res(8)), ' %']);
 
-max2DstrdataW = sprintf('%-40s',[num2str(Results.maxError2D - ResW(1)) ' meters']);
-max3DstrdataW = sprintf('%-40s',[num2str(Results.maxError3D - ResW(2)) ' meters']);
-maxHeightstrdataW = sprintf('%-40s',[num2str(Results.maxHeightError - ResW(3)) ' meters']);
-mean2DstrdataW = sprintf('%-40s',[num2str(Results.mean2D - ResW(4)) ' meters']);
-std2DstrdataW = sprintf('%-40s',[num2str(Results.std2D - ResW(5)) ' meters']);
-mean3DstrdataW = sprintf('%-40s',[num2str(Results.mean3D - ResW(6)) ' meters']);
-std3DstrdataW = sprintf('%-40s',[num2str(Results.std3D - ResW(7)) ' meters']);
-availstrdataW = sprintf('%-40s',[num2str(str2double(Results.percentAvailStr) - ResW(8)), ' %']);
 
-bodyCell = {Results.metadata(2) , '   ' , Results.metadata(3), resultsstrdata; ...
-        max2Dstr, max2Dstrdata, max2DstrdataY, max2DstrdataW; ...
-        max3Dstr, max3Dstrdata, max3DstrdataY, max3DstrdataW; ...
-        maxHeightstr, maxHeightstrdata, maxHeightstrdataY, maxHeightstrdataW; ...
-        mean2Dstr, mean2Dstrdata, mean2DstrdataY, mean2DstrdataW; ...
-        std2Dstr, std2Dstrdata, std2DstrdataY, std2DstrdataW; ...
-        mean3Dstr, mean3Dstrdata, mean3DstrdataY, mean3DstrdataW; ...
-        std3Dstr, std3Dstrdata, std3DstrdataY, std3DstrdataW; ...
-        availstr, availstrdata, availstrdataY, availstrdataW};
+bodyCell = {Results.metadata(2) , '   ' , Results.metadata(3); ...
+        max2Dstr, max2Dstrdata, max2DstrdataR; ...
+        max3Dstr, max3Dstrdata, max3DstrdataR; ...
+        maxHeightstr, maxHeightstrdata, maxHeightstrdataR; ...
+        mean2Dstr, mean2Dstrdata, mean2DstrdataR; ...
+        std2Dstr, std2Dstrdata, std2DstrdataR; ...
+        mean3Dstr, mean3Dstrdata, mean3DstrdataR; ...
+        std3Dstr, std3Dstrdata, std3DstrdataR; ...
+        availstr, availstrdata, availstrdataR};
 bodyTable = cell2table(bodyCell);     
 writetable(bodyTable,[plotFolder 'resultOverV' dateStr '.txt'],'Delimiter','|','WriteVariableNames',0);
 %% Send Rnx Email

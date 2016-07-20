@@ -1,0 +1,5 @@
+MAX2769 Sampfreq:6864e6 26min x86 StaticSim: 1539
+MAX2769 Sampfreq:6864e6 30min ARM Static: 1800
+URSP-N210 Sampfreq:4e6 54min x86 Dynamic: 3218
+MAX2769 Sampfreq:6864e6 24hours x86 StaticLong: 86400
+MAX2769 Sampfreq:6864e6 52min Static: 3129

@@ -51,7 +51,7 @@ sshpass -p $password ssh -o StrictHostKeyChecking=no root@$arm_ip '/archive/pyxi
 ENDTIME=$(date +%s)
 diff=$(($ENDTIME-$STARTTIME))
 cd $loc
-echo "MAX2769 Sampfreq:6864e6 52min ARM Static: $diff" >> ../output/times.txt
+echo "MAX2769 Sampfreq:6864e6 30min ARM Static: $diff" >> ../output/times.txt
 cd /6TB/nfsshare
 
 while [ true ]

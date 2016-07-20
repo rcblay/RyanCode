@@ -1,0 +1,8 @@
+MAX2769 Sampfreq:6864e6 26min x86 StaticSim:  
+URSP-N210 L2C Sampfreq:4e6 54min x86 Dynamic: 4105516	Dynamic/timingrnxBinaries_0_0.bin
+ 
+MAX2769 Sampfreq:6864e6 52min Static: 4115204	Static/timingrnxBinaries_0_0.bin
+ 
+MAX2769 Sampfreq:6864e6 24hours x86 StaticLong1:  
+MAX2769 Sampfreq:6864e6 24hours x86 StaticLong2:  
+MAX2769 Sampfreq:6864e6 30min ARM Static: 
