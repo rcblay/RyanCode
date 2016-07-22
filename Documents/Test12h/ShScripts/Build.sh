@@ -36,6 +36,9 @@ sed -i '/FILETYPE/c\FILETYPE=2' conf.mk
 sed -i '/USEL2C/c\USEL2C=TRUE' conf.mk
 sed -i '/LINKING=/c\LINKING=DYNAMIC' conf.mk
 
+sed -i '/#export DEBUGFLAGS/d' ../Makefile
+sed -i '/export DEBUGFLAGS/c\export DEBUGFLAGS=-g' ../Makefile
+
 ## Build Pyxis for Dynamic and save stderr and stdout
 cd ..
 make clean &> /dev/null
@@ -57,6 +60,9 @@ cp ../../../../conf_swc/conf_static.h conf_swc.h
 cd ../../build/conf
 sed -i '/FILETYPE/c\FILETYPE=1' conf.mk
 sed -i '/USEL2C/c\USEL2C=FALSE' conf.mk
+
+sed -i '/#export DEBUGFLAGS/d' ../Makefile
+sed -i '/export DEBUGFLAGS/c\export DEBUGFLAGS=-g' ../Makefile
 
 ## Build Pyxis for Static and send warnings to Wwarning.txt
 cd ..
